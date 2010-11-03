@@ -25,12 +25,12 @@ try:
 except ImportError:
     import simplejson as json
     
-import os    
+import os, sys
 from optparse import OptionParser
 import boto
 from boto.ec2.connection import EC2Connection
 import roboto.jsonresponse
-from roboto import mklist, pythonize_name
+from roboto import mklist, pythonize_name, Param
 
 class ValidationException(Exception):
 
@@ -43,77 +43,6 @@ class ValidationException(Exception):
                                                               param['type'],
                                                               msg)
 
-class Param:
-
-    @classmethod
-    def encode(cls, p, rp, v, label=None):
-        try:
-            mthd = getattr(cls, 'encode_'+p['type'])
-            mthd(p, rp, v, label)
-        except AttributeError:
-            raise 'Unknown type: %s' % p['type']
-        
-    @classmethod
-    def encode_string(cls, p, rp, v, l):
-        if l:
-            label = l
-        else:
-            label = p['name']
-        rp[label] = v
-
-    @classmethod
-    def encode_integer(cls, p, rp, v, l):
-        if l:
-            label = l
-        else:
-            label = p['name']
-        rp[label] = '%d' % v
-        
-    @classmethod
-    def encode_boolean(cls, p, rp, v, l):
-        if l:
-            label = l
-        else:
-            label = p['name']
-        if v:
-            v = 'true'
-        else:
-            v = 'false'
-        rp[label] = v
-        
-    @classmethod
-    def encode_datetime(cls, p, rp, v, l):
-        if l:
-            label = l
-        else:
-            label = p['name']
-        rp[label] = v
-        
-    @classmethod
-    def validate(cls, p, v):
-        try:
-            mthd = getattr(cls, 'validate_'+p['type'])
-            mthd(p, v)
-        except AttributeError:
-            raise ValidationException(p, '')
-        
-    @classmethod
-    def validate_string(cls, p, v):
-        pass
-
-    @classmethod
-    def validate_integer(cls, p, v):
-        pass
-        
-    @classmethod
-    def validate_boolean(cls, p, v):
-        if v not in ('true', 'True', 'false', 'False', True, False):
-            raise 'Invalid value for a boolean param: %s' % p['name']
-        
-    @classmethod
-    def validate_datetime(cls, p, v):
-        pass
-        
 class AWSQueryRequest(object):
     """
     This is an abstract base class (well, it would be if Python had such a thing)
@@ -131,6 +60,7 @@ class AWSQueryRequest(object):
     def __init__(self, request_name, **args):
         self.name = request_name
         self.args = args
+        self.request_params = {}
         self.parser = None
         self.http_response = None
         self.aws_response = None
@@ -198,20 +128,19 @@ class AWSQueryRequest(object):
             retval = self._schema['response']
         return retval
 
-    def _process_filters(self, filters, request_params):
+    def process_filters(self, args):
         filter_names = [f['name'] for f in self.filters]
-        unknown_filters = [f for f in filters if f not in filter_names]
+        unknown_filters = [f for f in args if f not in filter_names]
         if unknown_filters:
             raise ValueError, 'Unknown filters: %s' % unknown_filters
         for i, filter in enumerate(self.filters):
-            if filter['name'] in filters:
-                request_params['Filter.%d.Name' % (i+1)] = filter['name']
-                for j, value in enumerate(mklist(filters[filter['name']])):
-                    Param.encode(filter, request_params, value,
+            if filter['name'] in args:
+                self.request_params['Filter.%d.Name' % (i+1)] = filter['name']
+                for j, value in enumerate(mklist(args[filter['name']])):
+                    Param.encode(filter, self.request_params, value,
                                  'Filter.%d.Value.%d' % (i+1,j+1))
 
     def process_args(self, args):
-        self.request_params = {}
         required = [p['name'] for p in self.params if not p['optional']]
         for param in self.params:
             if 'cli_option' in param:
@@ -228,9 +157,6 @@ class AWSQueryRequest(object):
         if required:
             raise ValueError, 'Required parameters missing: %s' % required
         print 'request_params', self.request_params
-        if 'filters' in args:
-            self._process_filters(args['filters'], self.request_params)
-            del args['filters']
 
     def send(self, path='/', verb='GET'):
         self.init_connection()
@@ -255,9 +181,14 @@ class AWSQueryRequest(object):
         self.parser = OptionParser()
         self.parser.add_option('-D', '--debug', action='store_true',
                                help='Turn on all debugging output')
+        if self.filters:
+            self.parser.add_option('--help-filters', action='store_true',
+                                   help='Display list of available filters')
+            self.parser.add_option('--filter', action='append',
+                                   metavar=' name=value',
+                                   help='A filter for limiting the results')
         for param in self.params:
             if 'cli_option' in param:
-                print 'param=', param
                 short_name = '-' + param['cli_option'][0]
                 long_name = '--' + param['cli_option'][1]
                 type = self.CLITypeMap[param['type']]
@@ -268,12 +199,28 @@ class AWSQueryRequest(object):
         if not self.parser:
             self.build_cli_parser()
         options, args = self.parser.parse_args(cli_args)
+        if options.help_filters:
+            print 'Available filters:'
+            for filter in self.filters:
+                print '%s\t%s' % (filter['name'], filter['doc'])
+                sys.exit(0)
+        print 'options=', options
+        print 'args=', args
         d = {}
         for param in self.params:
             if 'cli_option' in param:
                 p_name = param['cli_option'][1]
                 d[p_name] = getattr(options, p_name)
+            else:
+                p_name = pythonize_name(param['name'])
+                d[p_name] = args
         self.process_args(d)
+        if options.filter:
+            d = {}
+            for filter in options.filter:
+                name, value = filter.split('=')
+                d[name] = value
+            self.process_filters(d)
         try:
             if options.debug:
                 boto.set_stream_logger(self.name)

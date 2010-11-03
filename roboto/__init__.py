@@ -36,3 +36,85 @@ def pythonize_name(name):
             s += c
     return s
 
+class Param:
+
+    @classmethod
+    def encode(cls, p, rp, v, label=None):
+        try:
+            mthd = getattr(cls, 'encode_'+p['type'])
+            mthd(p, rp, v, label)
+        except AttributeError:
+            raise 'Unknown type: %s' % p['type']
+        
+    @classmethod
+    def encode_string(cls, p, rp, v, l):
+        if l:
+            label = l
+        else:
+            label = p['name']
+        rp[label] = v
+
+    @classmethod
+    def encode_integer(cls, p, rp, v, l):
+        if l:
+            label = l
+        else:
+            label = p['name']
+        rp[label] = '%d' % v
+        
+    @classmethod
+    def encode_boolean(cls, p, rp, v, l):
+        if l:
+            label = l
+        else:
+            label = p['name']
+        if v:
+            v = 'true'
+        else:
+            v = 'false'
+        rp[label] = v
+        
+    @classmethod
+    def encode_datetime(cls, p, rp, v, l):
+        if l:
+            label = l
+        else:
+            label = p['name']
+        rp[label] = v
+        
+    @classmethod
+    def encode_array(cls, p, rp, v, l):
+        v = mklist(v)
+        if l:
+            label = l
+        else:
+            label = p['name']
+        label = label + '.%d'
+        for i, value in enumerate(v):
+            rp[label%(i+1)] = value
+        
+    @classmethod
+    def validate(cls, p, v):
+        try:
+            mthd = getattr(cls, 'validate_'+p['type'])
+            mthd(p, v)
+        except AttributeError:
+            raise ValidationException(p, '')
+        
+    @classmethod
+    def validate_string(cls, p, v):
+        pass
+
+    @classmethod
+    def validate_integer(cls, p, v):
+        pass
+        
+    @classmethod
+    def validate_boolean(cls, p, v):
+        if v not in ('true', 'True', 'false', 'False', True, False):
+            raise 'Invalid value for a boolean param: %s' % p['name']
+        
+    @classmethod
+    def validate_datetime(cls, p, v):
+        pass
+        

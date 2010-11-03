@@ -1,7 +1,27 @@
-This project builds a layer on top of the boto library that provides
-features like automatically generated command line interface and
-mocking libraries by declaratively specifying the requests and
-responses for supported web services.
+This project is focused on performing in "in situ" refactoring of the
+boto library.  By that I mean a refactoring on top of the existing
+boto library.  By pulling in bits and pieces of boto within a newly
+designed and refactored set of interfaces, we can hopefully:
 
-This functionality may in time be folded into the main boto library
-but for now, I'm going to keep it separate.
+ * Leverage the stability of the boto library
+ * Maintain backwards-compatibility with existing boto users
+   and applications.
+ * Explore and benefit from a new design that makes it easier
+   to expand boto to support new services.
+
+Roboto starts with a different set of logical, hierarchical objects.
+
+ * Provider (e.g. Amazon Web Services)
+   * Service (e.g. Elastic Compute Cloud (EC2))
+     * Endpoint (e.g. us-west-1 AKA region)
+       * Host (e.g. ec2.us-west-1.amazonaws.com)
+       * Port (e.g. 443)
+       * Path (e.g. /)
+     * Request (e.g. DescribeInstances)
+     * Response (e.g. XML data returned by DescribeInstances)
+
+Almost all of the information about these objects is specified
+declaratively using JSON.  These JSON descriptions are read in
+at run time and define everything from which URL to talk to to
+the exact format of a request and it's response.
+
