@@ -1,0 +1,45 @@
+{
+    "name" : "DescribeInstances",
+    "type" : "AWSQueryRequest",
+    "doc" : "Lists elastic IP addresses assigned to your account or provides information about a specific address.",
+    "params": [{"name" : "InstanceId",
+                "param_name" : "InstanceId.%d",
+                "py_name": "instance_id",
+                "required": false,
+                "type": "StringList",
+                "doc": "Instance ID's to describe"}],
+    "filters": [{"doc": "Instance the address is associated with (if any)",
+                 "py_name": "instance_id",
+                 "type": "string",
+                 "name": "instance-id"},
+                {"doc": "The elastic IP address.",
+                 "py_name": "public_ip",
+                 "type": "string",
+                 "name": "public-ip"}],
+    "response" : {"type" : "object",
+                  "name" : "DescribeAddressesResponse",
+                  "properties" : {
+                      "requestId" : {"type" : "string",
+                                     "py_name" : "request_id"},
+                      "addressesSet" : {"type" : "array",
+                                        "py_name" : "addresses",
+                                        "items" : [
+                                            {"name" : "publicIp",
+                                             "py_name" : "public_ip",
+                                             "type" : "string"},
+                                            {"name" : "instanceId",
+                                             "py_name" : "instance_id",
+                                             "type" : "string"}
+                                            ]
+                                        }
+                      }
+                  }
+    }
+
+
+
+            
+
+
+    
+

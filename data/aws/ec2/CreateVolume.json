@@ -1,0 +1,36 @@
+{
+    "name" : "CreateVolume",
+    "type" : "AWSQueryRequest",
+    "doc" : "Creates a new Amazon EBS volume to which any Amazon EC2 instance can attach within the same Availability Zone.",
+    "params": [{"name" : "Size",
+                "cli_option" : ["s", "size"],
+                "optional": true,
+                "type": "integer",
+                "validate" : [">0", "<1024"],
+                "doc": "The size of the volume, in GiBs"},
+               {"name" : "AvailabilityZone",
+                "cli_option" : ["z", "zone"],
+                "type" : "string",
+                "optional" : false,
+                "doc" : "The Availability Zone in which to create the new volume"},
+               {"name" : "SnapshotId",
+                "cli_option" : ["S", "snapshot"],
+                "type" : "string",
+                "validate" : "snap-.+",
+                "optional" : true,
+                "doc" : "The snapshot from which to create the new volume"}],
+    "filters": [],
+    "response" : {"type" : "object",
+                  "name" : "CreateVolumeResponse",
+                  "properties" : {
+                      "requestId" : {"type" : "string"},
+                      "volumeId" : {"type" : "string"},
+                      "size" : {"type" : "integer"},
+                      "status" : {"type" : "integer"},
+                      "createTime" : {"type" : "string",
+                                      "format" : "date-time"},
+                      "availabilityZone" : {"type" : "string"},
+                      "snapshotId" : {"type" : "string"}
+                      }
+                  }
+}
