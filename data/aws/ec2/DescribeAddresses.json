@@ -18,15 +18,17 @@
                   "properties" : {
                       "requestId" : {"type" : "string"},
                       "addressesSet" : {"type" : "array",
-                                        "items" : [
-                                            {"name" : "publicIp",
-                                             "type" : "string"},
-                                            {"name" : "instanceId",
-                                             "type" : "string"}
-                                            ]
-                                        }
-                      }
+                                        "items" : [{"name" : "publicIp",
+                                                    "type" : "string"},
+                                                   {"name" : "instanceId",
+                                                    "type" : "string"}
+                                                  ]}
                   }
+                 },
+    "cli_output" : {"type" : "array",
+                    "name" : "addressesSet",
+                    "label" : "ADDRESS",
+                    "items" : ["publicIp", "instanceId"]}
     }
 
 

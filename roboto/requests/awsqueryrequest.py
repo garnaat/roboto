@@ -128,6 +128,14 @@ class AWSQueryRequest(object):
             retval = self._schema['response']
         return retval
 
+    @property
+    def cli_output(self):
+        retval = None
+        if self._schema:
+            if 'cli_output' in self._schema:
+                retval = self._schema['cli_output']
+        return retval
+
     def process_filters(self, args):
         filter_names = [f['name'] for f in self.filters]
         unknown_filters = [f for f in args if f not in filter_names]
@@ -156,7 +164,7 @@ class AWSQueryRequest(object):
                 del args[python_name]
         if required:
             raise ValueError, 'Required parameters missing: %s' % required
-        print 'request_params', self.request_params
+        boto.log.debug('request_params: %s' % self.request_params)
 
     def send(self, path='/', verb='GET'):
         self.init_connection()
@@ -203,9 +211,7 @@ class AWSQueryRequest(object):
             print 'Available filters:'
             for filter in self.filters:
                 print '%s\t%s' % (filter['name'], filter['doc'])
-                sys.exit(0)
-        print 'options=', options
-        print 'args=', args
+            sys.exit(0)
         d = {}
         for param in self.params:
             if 'cli_option' in param:
@@ -226,6 +232,17 @@ class AWSQueryRequest(object):
                 boto.set_stream_logger(self.name)
                 self.args['debug'] = 2
             self.send()
-            print self.aws_response
+            self.cli_formatter()
         except self.connection.ResponseError as err:
             print 'Error(%s): %s' % (err.error_code, err.error_message)
+
+    def cli_formatter(self):
+        if self.cli_output:
+            fmt = self.cli_output
+            if fmt['type'] == 'array':
+                values = getattr(self.aws_response, fmt['name'])
+                for value in values:
+                    s = fmt['label'] + '\t'
+                    for item in fmt['items']:
+                        s += '%s\t' % value[item]
+                    print s
