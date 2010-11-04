@@ -201,16 +201,26 @@
                                                 "clientToken" : {"type" : "string"}}
                                            }]
                                    }}}]}}},
-    "cli_output" : {"type" : "array",
-                    "name" : "reservationSet",
-                    "label" : "RESERVATION",
-                    "items" : ["reservationId", "ownerId"]}
+    "cli_output_format" : {"DescribeInstancesResponse" :
+                           {"reservationSet" :
+                            {"type" : "array",
+                             "label" : "RESERVATION",
+                             "items" : [
+                                 "reservationId",
+                                 "ownerId",
+                                 {"name" : "groupSet",
+                                  "type" : "array",
+                                  "items" : ["groupId"]},
+                                 {"name" : "instancesSet",
+                                  "type" : "array",
+                                  "label" : "INSTANCE",
+                                  "items" : [
+                                      "instanceId",
+                                      "imageId",
+                                      "dnsName",
+                                      "privateDnsName",
+                                      "keyName",
+                                      "amiLaunchIndex",
+                                      "instanceType"
+                                  ]}]}}}
 }
-
-
-
-            
-
-
-    
-

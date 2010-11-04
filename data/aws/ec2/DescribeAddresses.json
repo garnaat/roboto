@@ -25,10 +25,13 @@
                                                   ]}
                   }
                  },
-    "cli_output" : {"type" : "array",
-                    "name" : "addressesSet",
-                    "label" : "ADDRESS",
-                    "items" : ["publicIp", "instanceId"]}
+    "cli_output_format" : {"DescribeAddressesResponse" :
+                           {"addressesSet" :
+                            {"type" : "array",
+                             "label" : "ADDRESS",
+                             "items" : [
+                                 "publicIp",
+                                 "instanceId"]}}}
     }
 
 

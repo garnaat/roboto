@@ -129,11 +129,11 @@ class AWSQueryRequest(object):
         return retval
 
     @property
-    def cli_output(self):
+    def cli_output_format(self):
         retval = None
         if self._schema:
-            if 'cli_output' in self._schema:
-                retval = self._schema['cli_output']
+            if 'cli_output_format' in self._schema:
+                retval = self._schema['cli_output_format']
         return retval
 
     def process_filters(self, args):
@@ -148,20 +148,23 @@ class AWSQueryRequest(object):
                     Param.encode(filter, self.request_params, value,
                                  'Filter.%d.Value.%d' % (i+1,j+1))
 
-    def process_args(self, args):
+    def process_args(self, args=None):
+        if args:
+            self.args = args
         required = [p['name'] for p in self.params if not p['optional']]
         for param in self.params:
             if 'cli_option' in param:
                 python_name = param['cli_option'][1]
             else:
                 python_name = pythonize_name(param['name'])
-            if python_name in args:
+            if python_name in self.args:
                 if param['name'] in required:
                     required.remove(param['name'])
-                value = args[python_name]
+                value = self.args[python_name]
                 if value is not None:
-                    Param.encode(param, self.request_params, args[python_name])
-                del args[python_name]
+                    Param.encode(param, self.request_params,
+                                 self.args[python_name])
+                del self.args[python_name]
         if required:
             raise ValueError, 'Required parameters missing: %s' % required
         boto.log.debug('request_params: %s' % self.request_params)
@@ -232,17 +235,31 @@ class AWSQueryRequest(object):
                 boto.set_stream_logger(self.name)
                 self.args['debug'] = 2
             self.send()
-            self.cli_formatter()
+            self.cli_output_formatter()
         except self.connection.ResponseError as err:
             print 'Error(%s): %s' % (err.error_code, err.error_message)
 
-    def cli_formatter(self):
-        if self.cli_output:
-            fmt = self.cli_output
-            if fmt['type'] == 'array':
-                values = getattr(self.aws_response, fmt['name'])
-                for value in values:
-                    s = fmt['label'] + '\t'
-                    for item in fmt['items']:
-                        s += '%s\t' % value[item]
-                    print s
+    def _cli_fmt(self, fmt, data, line=''):
+        if isinstance(data, dict):
+            for key in fmt:
+                d = data[key]
+                f = fmt[key]
+                if 'label' in f:
+                    line = '%s\t' % f['label']
+                self._cli_fmt(f, d, line)
+        elif isinstance(data, list):
+            if 'items' in fmt:
+                for data_item in data:
+                    if 'label' in fmt:
+                        line = '%s\t' % fmt['label']
+                    for fmt_item in fmt['items']:
+                        if isinstance(fmt_item, dict):
+                            self._cli_fmt(fmt_item, data_item[fmt_item['name']], line)
+                        else:
+                            line += '%s\t' % data_item[fmt_item]
+                    print line
+                    line = ''
+
+    def cli_output_formatter(self):
+        if self.cli_output_format:
+            self._cli_fmt(self.cli_output_format, self.aws_response)
