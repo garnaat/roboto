@@ -1,4 +1,4 @@
-This project is focused on performing in "in situ" refactoring of the
+This project is focused on performing an "in situ" refactoring of the
 boto library.  By that I mean a refactoring on top of the existing
 boto library.  By pulling in bits and pieces of boto within a newly
 designed and refactored set of interfaces, we can hopefully:

@@ -205,7 +205,7 @@
                     "name" : "reservationSet",
                     "label" : "RESERVATION",
                     "items" : ["reservationId", "ownerId"]}
-    }
+}
 
 
 
