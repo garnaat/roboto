@@ -26,6 +26,7 @@ except ImportError:
     import simplejson as json
     
 import os, sys
+import pdb
 from optparse import OptionParser
 import boto
 from boto.ec2.connection import EC2Connection
@@ -239,7 +240,7 @@ class AWSQueryRequest(object):
         except self.connection.ResponseError as err:
             print 'Error(%s): %s' % (err.error_code, err.error_message)
 
-    def _cli_fmt(self, fmt, data, line=''):
+    def _cli_fmt_save(self, fmt, data, line=''):
         if isinstance(data, dict):
             for key in fmt:
                 d = data[key]
@@ -257,6 +258,26 @@ class AWSQueryRequest(object):
                             self._cli_fmt(fmt_item, data_item[fmt_item['name']], line)
                         else:
                             line += '%s\t' % data_item[fmt_item]
+                    print line
+                    line = ''
+
+    def _cli_fmt(self, fmt, data, line=''):
+        if 'items' not in fmt:
+            for key in fmt:
+                self._cli_fmt(fmt[key], data[key], line)
+        else:
+            if isinstance(data, list):
+                for data_item in data:
+                    if 'label' in fmt:
+                        line = '%s\t' % fmt['label']
+                    for fmt_item in fmt['items']:
+                        if isinstance(fmt_item, dict):
+                            self._cli_fmt(fmt_item, data_item[fmt_item['name']])
+                        else:
+                            val = data_item[fmt_item]
+                            if not val:
+                                val = ''
+                            line += '%s\t' % val
                     print line
                     line = ''
 
