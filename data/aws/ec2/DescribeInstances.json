@@ -195,12 +195,28 @@
                                                 "architecture" : {"type" : "string"},
                                                 "rootDeviceType" : {"type" : "string"},
                                                 "rootDeviceName" : {"type" : "string"},
+                                                "blockDeviceMapping" : {"type" : "array",
+                                                                        "items" : [
+                                                                            {"type" : "object",
+                                                                             "properties" : {
+                                                                                 "deviceName" : {"type" : "string"},
+                                                                                 "ebs" : {"type" : "object",
+                                                                                          "properties" : {
+                                                                                              "volumeId" : {"type" : "string"},
+                                                                                              "status" : {"type" : "string"},
+                                                                                              "attachTime" : {"type" : "datetime"},
+                                                                                              "deleteOnTermination" : {"type" : "boolean"}}}}}]},
                                                 "instanceLifeCycle" : {"type" : "string"},
                                                 "spotInstanceRequestId" : {"type" : "string"},
                                                 "virtualizationType" : {"type" : "string"},
-                                                "clientToken" : {"type" : "string"}}
-                                           }]
-                                   }}}]}}},
+                                                "clientToken" : {"type" : "string"},
+                                                "tagSet" : {"type" : "array",
+                                                            "items" : [
+                                                                {"type" : "object",
+                                                                 "properties" : {
+                                                                     "key" : {"type" : "string"},
+                                                                     "value" : {"type" : "string"}
+                                                                 }}]}}}]}}}]}}},
     "cli_output_format" : {"DescribeInstancesResponse" :
                            {"reservationSet" :
                             {"type" : "array",
@@ -221,6 +237,18 @@
                                       "privateDnsName",
                                       "keyName",
                                       "amiLaunchIndex",
-                                      "instanceType"
+                                      "instanceType",
+                                      "launchTime",
+                                      {"name" : "placement",
+                                       "type" : "array",
+                                       "items" : ["availabilityZone"]},
+                                      "kernelId",
+                                      "ramdiskId",
+                                      "ipAddress",
+                                      "privateIpAddress",
+                                      {"name" : "blockDeviceMapping",
+                                       "type" : "array",
+                                       "label" : "BLOCKDEVICE",
+                                       "items" : ["deviceName"]}
                                   ]}]}}}
 }

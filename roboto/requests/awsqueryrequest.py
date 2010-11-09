@@ -44,6 +44,23 @@ class ValidationException(Exception):
                                                               param['type'],
                                                               msg)
 
+class Line(object):
+
+    def __init__(self, fmt, data, label):
+        self.fmt = fmt
+        self.data = data
+        self.label = label
+        self.line = '%s\t' % label
+        self.printed = False
+
+    def append(self, datum):
+        self.line += '%s\t' % datum
+
+    def print_it(self):
+        if not self.printed:
+            print self.line
+            self.printed = True
+                
 class AWSQueryRequest(object):
     """
     This is an abstract base class (well, it would be if Python had such a thing)
@@ -240,28 +257,7 @@ class AWSQueryRequest(object):
         except self.connection.ResponseError as err:
             print 'Error(%s): %s' % (err.error_code, err.error_message)
 
-    def _cli_fmt_save(self, fmt, data, line=''):
-        if isinstance(data, dict):
-            for key in fmt:
-                d = data[key]
-                f = fmt[key]
-                if 'label' in f:
-                    line = '%s\t' % f['label']
-                self._cli_fmt(f, d, line)
-        elif isinstance(data, list):
-            if 'items' in fmt:
-                for data_item in data:
-                    if 'label' in fmt:
-                        line = '%s\t' % fmt['label']
-                    for fmt_item in fmt['items']:
-                        if isinstance(fmt_item, dict):
-                            self._cli_fmt(fmt_item, data_item[fmt_item['name']], line)
-                        else:
-                            line += '%s\t' % data_item[fmt_item]
-                    print line
-                    line = ''
-
-    def _cli_fmt(self, fmt, data, line=''):
+    def _cli_fmt(self, fmt, data, line=None):
         if 'items' not in fmt:
             for key in fmt:
                 self._cli_fmt(fmt[key], data[key], line)
@@ -269,17 +265,22 @@ class AWSQueryRequest(object):
             if isinstance(data, list):
                 for data_item in data:
                     if 'label' in fmt:
-                        line = '%s\t' % fmt['label']
+                        if line:
+                            line.print_it()
+                        line = Line(fmt, data, fmt['label'])
                     for fmt_item in fmt['items']:
                         if isinstance(fmt_item, dict):
-                            self._cli_fmt(fmt_item, data_item[fmt_item['name']])
+                            self._cli_fmt(fmt_item, data_item[fmt_item['name']], line)
                         else:
-                            val = data_item[fmt_item]
-                            if not val:
-                                val = ''
-                            line += '%s\t' % val
-                    print line
-                    line = ''
+                            try:
+                                val = data_item[fmt_item]
+                                if not val:
+                                    val = ''
+                                line.append(val)
+                            except KeyError:
+                                boto.log.debug("%s not found in %s" % (fmt_item, data_item))
+                    line.print_it()
+                    line = None
 
     def cli_output_formatter(self):
         if self.cli_output_format:
