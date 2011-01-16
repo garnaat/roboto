@@ -67,7 +67,7 @@ class AWSQueryRequest(object):
     for all requests that are based on the AWS Query interface.
     """
 
-    JsonPath = '/Users/mitch/Projects/roboto/data/aws/ec2'
+    JsonPath = '/Users/mitch/Projects/roboto/roboto/services/aws/ec2'
     ConnectionCls = EC2Connection
     CLITypeMap = {'string' : 'string',
                   'integer' : 'int',
@@ -195,7 +195,11 @@ class AWSQueryRequest(object):
         self.body = self.http_response.read()
         boto.log.debug(self.body)
         if self.http_response.status == 200:
-            self.aws_response = roboto.jsonresponse.Element()
+            if 'list_marker' in self._schema:
+                list_marker = [self._schema['list_marker']]
+            else:
+                list_marker = ['Set']
+            self.aws_response = roboto.jsonresponse.Element(list_marker=list_marker)
             h = roboto.jsonresponse.XmlHandler(self.aws_response, self.connection)
             h.parse(self.body)
             return self.aws_response
@@ -228,7 +232,7 @@ class AWSQueryRequest(object):
         if not self.parser:
             self.build_cli_parser()
         options, args = self.parser.parse_args(cli_args)
-        if options.help_filters:
+        if hasattr(options, 'help_filters') and options.help_filters:
             print 'Available filters:'
             for filter in self.filters:
                 print '%s\t%s' % (filter['name'], filter['doc'])
@@ -242,7 +246,7 @@ class AWSQueryRequest(object):
                 p_name = pythonize_name(param['name'])
                 d[p_name] = args
         self.process_args(d)
-        if options.filter:
+        if hasattr(options, 'filter') and options.filter:
             d = {}
             for filter in options.filter:
                 name, value = filter.split('=')

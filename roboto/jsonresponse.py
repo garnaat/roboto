@@ -53,7 +53,7 @@ class XmlHandler(xml.sax.ContentHandler):
 class Element(dict):
 
     def __init__(self, connection=None, element_name=None,
-                 stack=None, parent=None, list_marker='Set',
+                 stack=None, parent=None, list_marker=['Set'],
                  item_marker=('member', 'item')):
         dict.__init__(self)
         self.connection = connection
@@ -80,11 +80,12 @@ class Element(dict):
 
     def startElement(self, name, attrs, connection):
         self.stack.append(name)
-        if name.endswith(self.list_marker):
-            l = ListElement(self.connection, name, self.list_marker,
-                            self.item_marker)
-            self[name] = l
-            return l
+        for lm in self.list_marker:
+            if name.endswith(lm):
+                l = ListElement(self.connection, name, self.list_marker,
+                                self.item_marker)
+                self[name] = l
+                return l
         if len(self.stack) > 0:
             element_name = self.stack[-1]
             e = Element(self.connection, element_name, self.stack, self,
@@ -107,7 +108,7 @@ class Element(dict):
 class ListElement(list):
 
     def __init__(self, connection=None, element_name=None,
-                 list_marker='Set', item_marker=('member', 'item')):
+                 list_marker=['Set'], item_marker=('member', 'item')):
         list.__init__(self)
         self.connection = connection
         self.element_name = element_name
@@ -115,11 +116,12 @@ class ListElement(list):
         self.item_marker = item_marker
 
     def startElement(self, name, attrs, connection):
-        if name.endswith(self.list_marker):
-            l = ListElement(self.connection, name, self.item_marker)
-            setattr(self, name, l)
-            return l
-        elif name in self.item_marker:
+        for lm in self.list_marker:
+            if name.endswith(lm):
+                l = ListElement(self.connection, name, self.item_marker)
+                setattr(self, name, l)
+                return l
+        if name in self.item_marker:
             e = Element(self.connection, name, parent=self)
             self.append(e)
             return e
