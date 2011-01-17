@@ -1,0 +1,1 @@
+{"params": [{"min_length": 1, "cli_option": ["g", "group_name"], "name": "GroupName", "doc": " Name of the group to delete. ", "max_length": 128, "optional": true, "pattern": "[\\w+=,.@-]*", "type": "string"}], "name": "DeleteGroup"}

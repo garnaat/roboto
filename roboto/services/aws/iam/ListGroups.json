@@ -1,0 +1,35 @@
+{"params": [
+    {"min_length": 1,
+     "cli_option": ["m", "marker"],
+     "name": "Marker",
+     "doc": " Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the Marker element in the response you just received. ",
+     "max_length": 320,
+     "optional": true,
+     "pattern": "[\\u0020-\\u00FF]*",
+     "type": "string"},
+    {"min_length": 1,
+     "cli_option": ["p", "path_prefix"],
+     "name": "PathPrefix",
+     "doc": " The path prefix for filtering the results. For example: /division_abc/subdivision_xyz/, which would get all groups whose path starts with /division_abc/subdivision_xyz/.  This parameter is optional. If it is not included, it defaults to a slash (/), listing all groups. ",
+     "max_length": 512,
+     "optional": true,
+     "pattern": "\\u002F[\\u0021-\\u007F]*",
+     "type": "string"},
+    {"doc": " Use this only when paginating results to indicate the maximum number of groups you want in the response. If there are additional groups beyond the maximum you specify, the IsTruncated response element is true. ",
+     "cli_option": ["a", "max_items"],
+     "type": "integer",
+     "name": "MaxItems",
+     "optional": true}],
+ "cli_output_format" : {"ListGroupsResponse" :
+                        {"ListGroupsResult" :
+                         {"Groups" :
+                          {"type" : "array",
+                           "label" : "GROUP",
+                           "items" : [
+                               "GroupId",
+                               "GroupName",
+                               "Path",
+                               "Arn",
+                               "CreateDate"]}}}},
+ "list_marker" : "Groups",
+ "name": "ListGroups"}
