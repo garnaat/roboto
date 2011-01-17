@@ -136,7 +136,8 @@ class AWSQueryRequest(object):
     def filters(self):
         retval = None
         if self._schema:
-            retval = self._schema['filters']
+            if hasattr(self._schema, 'filters'):
+                retval = self._schema['filters']
         return retval
 
     @property

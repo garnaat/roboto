@@ -25,7 +25,7 @@ def mklist(value):
         value = [value]
     return value
 
-def pythonize_name(name):
+def pythonize_name(name, sep='_'):
     s = ''
     if name[0].isupper:
         s = name[0].lower()
