@@ -241,8 +241,9 @@ def find_real_type(p, type_dict):
     d = copy.deepcopy(p.types[type_name])
     if 'doc' in type_dict:
         d['doc'] = type_dict['doc']
-    if 'name' in type_dict:
-        d['name'] = type_dict['name']
+    if 'name' not in d:
+        if 'name' in type_dict:
+            d['name'] = type_dict['name']
     return find_real_type(p, d)
 
 def simplify_type(type_dict):
