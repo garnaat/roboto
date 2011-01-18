@@ -37,7 +37,7 @@ class WSDLParser(object):
     SOAP_NS = 'http://schemas.xmlsoap.org/wsdl/soap/'
     TNS_NS = 'https://iam.amazonaws.com/doc/2010-05-08/'
 
-    BaseTypes = ['string', 'integer', 'enum', 'boolean']
+    BaseTypes = ['string', 'integer', 'enum', 'boolean', 'dateTime']
 
     def __init__(self, wsdl_file_path):
         self.service = {}
@@ -112,8 +112,7 @@ class WSDLParser(object):
         #if name:
         #    type_dict['name'] = name
         sequence = self.try_element(type_elem, self.XS_NS, 'sequence')
-        prop_dict = {}
-        type_dict['properties'] = prop_dict
+        type_dict['properties'] = []
         type_dict['type'] = 'object'
         if sequence:
             for child in sequence.childNodes:
@@ -122,7 +121,9 @@ class WSDLParser(object):
                         min_occurs = child.getAttribute('minOccurs')
                         max_occurs = child.getAttribute('maxOccurs')
                         param_dict = {}
-                        prop_dict[child.getAttribute('name')] = param_dict
+                        type_dict['properties'].append(param_dict)
+                        name = child.getAttribute('name')
+                        param_dict['name'] = name
                         self._parse_documentation(child, param_dict)
                         type = child.getAttribute('type')
                         if not type:
@@ -222,15 +223,14 @@ class WSDLParser(object):
 
 def find_real_type(p, type_dict):
     type_name = type_dict['type'].split(':')[-1]
-    if type_name in ['string', 'boolean', 'integer', 'enum']:
+    if type_name in ['string', 'boolean', 'integer', 'enum', 'dateTime']:
         return type_dict
     if type_name == 'object':
-        nd = {}
-        for prop_name in type_dict['properties']:
-            if 'doc' in type_dict['properties'][prop_name]:
-                nd['doc'] = type_dict['properties'][prop_name]['doc']
-            nd[prop_name] = find_real_type(p, type_dict['properties'][prop_name])
-        type_dict['properties'] = nd
+        props = []
+        for prop_dict in type_dict['properties']:
+            nd = find_real_type(p, prop_dict)
+            props.append(nd)
+        type_dict['properties'] = props
         return type_dict
     if type_name == 'array':
         nl = []
@@ -241,16 +241,17 @@ def find_real_type(p, type_dict):
     d = copy.deepcopy(p.types[type_name])
     if 'doc' in type_dict:
         d['doc'] = type_dict['doc']
+    if 'name' in type_dict:
+        d['name'] = type_dict['name']
     return find_real_type(p, d)
 
 def simplify_type(type_dict):
     if 'properties' in type_dict:
         if len(type_dict['properties']) == 1:
-            key = type_dict['properties'].keys()[0]
-            val = type_dict['properties'][key]
+            val = type_dict['properties'][0]
             del type_dict['properties']
             type_dict.update(val)
-            type_dict['name'] = key
+            type_dict['name'] = val['name']
             simplify_type(type_dict)
         else:
             for prop in type_dict['properties']:
@@ -265,7 +266,8 @@ def build_json(wsdl_file, json_dir):
     for operation in p.service['porttype']['operations']:
         op_dict = p.service['porttype']['operations'][operation]
         new_dict = {'name' : operation,
-                    'params' : []}
+                    'params' : [],
+                    'response' : []}
         if 'doc' in op_dict:
             new_dict['doc'] = op_dict['doc']
         ops.append(new_dict)
@@ -273,52 +275,34 @@ def build_json(wsdl_file, json_dir):
             short_names = []
             param_dict = copy.deepcopy(p.types[param1])
             param_type = find_real_type(p, param_dict)
-            simplify_type(param_type)
+            #simplify_type(param_type)
             if 'properties' in param_type:
                 for param2 in param_type['properties']:
-                    val = param_type['properties'][param2]
-                    if isinstance(val, dict):
-                        val['name'] = param2
-                        if 'optional' not in val:
-                            val['optional'] = True
-                        cli_name = pythonize_name(param2, '-')
+                    if isinstance(param2, dict):
+                        if 'optional' not in param2:
+                            param2['optional'] = True
+                        cli_name = pythonize_name(param2['name'], '-')
                         i = 0
                         short_name = cli_name[0]
                         while short_name in short_names:
                             i += 1
                             short_name = cli_name[i]
                         short_names.append(short_name)
-                        val['cli_option'] = [short_name, cli_name]
-                        new_dict['params'].append(val)
+                        param2['cli_option'] = [short_name, cli_name]
+                        new_dict['params'].append(param2)
             else:
                 new_dict['params'].append(param_type)
-        for response in op_dict['response']:
-            resp_dict = copy.deepcopy(p.types[response])
-            resp_type = find_real_type(p, resp_dict)
-            simplify_type(resp_type)
-            if 'properties' in resp_type:
-                for param2 in resp_type['properties']:
-                    val = param_type['properties'][param2]
-                    if isinstance(val, dict):
-                        val['name'] = param2
-                        if 'optional' not in val:
-                            val['optional'] = True
-                        cli_name = pythonize_name(param2, '-')
-                        i = 0
-                        short_name = cli_name[0]
-                        while short_name in short_names:
-                            i += 1
-                            short_name = cli_name[i]
-                        short_names.append(short_name)
-                        val['cli_option'] = [short_name, cli_name]
-                        new_dict['params'].append(val)
-            else:
-                new_dict['params'].append(param_type)
+        resp_type = p.messages[op_dict['response'][0]]
+        resp_dict = copy.deepcopy(p.types[resp_type])
+        resp_type = find_real_type(p, resp_dict)
+        new_dict['response'] = resp_type
     for op in ops:
         json_filename = op['name'] + '.json'
         json_filename = os.path.join(json_dir, json_filename)
+        if os.path.isfile(json_filename):
+            os.rename(json_filename, json_filename+'.orig')
         fp = open(json_filename, 'w')
-        json.dump(op, fp)
+        json.dump(op, fp, indent=2)
         fp.close()
         print 'Wrote file: %s' % json_filename
     return ops

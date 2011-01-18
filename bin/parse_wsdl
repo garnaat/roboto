@@ -23,6 +23,8 @@
 # IN THE SOFTWARE.
 #
 
+import sys
+import os
 import roboto.wsdlparser
 
 if __name__ == '__main__':
@@ -34,7 +36,7 @@ if __name__ == '__main__':
         json_dir = os.path.expanduser(json_dir)
         json_dir = os.path.expandvars(json_dir)
         
-        robot.wsdlparser.build_json(wsdl_file, json_dir)
+        roboto.wsdlparser.build_json(wsdl_file, json_dir)
     else:
         print 'Usage: parse_wsdl <wsdl_file> <json_dir>'
         sys.exit(1)
