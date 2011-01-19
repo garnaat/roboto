@@ -3,14 +3,14 @@
     {
       "min_length": 1, 
       "cli_option": [
-        "p", 
-        "path_prefix"
+        "u", 
+        "user_name"
       ], 
-      "name": "PathPrefix", 
-      "doc": " The path prefix for filtering the results. For example: /division_abc/subdivision_xyz/, which would get all groups whose path starts with /division_abc/subdivision_xyz/.  This parameter is optional. If it is not included, it defaults to a slash (/), listing all groups. ", 
-      "max_length": 512, 
+      "name": "UserName", 
+      "doc": " The name of the User to list groups for. ", 
+      "max_length": 128, 
       "optional": true, 
-      "pattern": "\\u002F[\\u0021-\\u007F]*", 
+      "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }, 
     {
@@ -37,15 +37,15 @@
       "optional": true
     }
   ], 
-  "name": "ListGroups", 
+  "name": "ListGroupsForUser", 
   "response": {
     "type": "object", 
-    "name": "ListGroupsResponse", 
+    "name": "ListGroupsForUserResponse", 
     "properties": [
       {
-        "doc": " Contains the result of a successful invocation of the ListGroups action. ", 
+        "doc": " Contains the result of a successful invocation of the ListGroupsForUser action. ", 
         "type": "object", 
-        "name": "ListGroupsResult", 
+        "name": "ListGroupsForUserResult", 
         "properties": [
           {
             "doc": " A list of groups. ", 

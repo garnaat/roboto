@@ -1,0 +1,47 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "u", 
+        "user_name"
+      ], 
+      "name": "UserName", 
+      "doc": " Name of the User whose key you want to delete. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 16, 
+      "cli_option": [
+        "a", 
+        "access_key_id"
+      ], 
+      "name": "AccessKeyId", 
+      "doc": " The Access Key ID for the Access Key ID and Secret Access Key you want to delete. ", 
+      "max_length": 32, 
+      "optional": true, 
+      "pattern": "[\\w]*", 
+      "type": "string"
+    }
+  ], 
+  "name": "DeleteAccessKey", 
+  "response": {
+    "type": "object", 
+    "name": "DeleteAccessKeyResponse", 
+    "properties": [
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

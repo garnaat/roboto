@@ -3,14 +3,14 @@
     {
       "min_length": 1, 
       "cli_option": [
-        "g", 
-        "group_name"
+        "p", 
+        "path_prefix"
       ], 
-      "name": "GroupName", 
-      "doc": " Name of the group. ", 
-      "max_length": 128, 
+      "name": "PathPrefix", 
+      "doc": " The path prefix for filtering the results. For example: /division_abc/subdivision_xyz/, which would get all User names whose path starts with /division_abc/subdivision_xyz/.  This parameter is optional. If it is not included, it defaults to a slash (/), listing all User names. ", 
+      "max_length": 512, 
       "optional": true, 
-      "pattern": "[\\w+=,.@-]*", 
+      "pattern": "\\u002F[\\u0021-\\u007F]*", 
       "type": "string"
     }, 
     {
@@ -20,14 +20,14 @@
         "marker"
       ], 
       "name": "Marker", 
-      "doc": " Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the Marker element in the response you just received. ", 
+      "doc": " Use this parameter only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the Marker element in the response you just received. ", 
       "max_length": 320, 
       "optional": true, 
       "pattern": "[\\u0020-\\u00FF]*", 
       "type": "string"
     }, 
     {
-      "doc": " Use this only when paginating results to indicate the maximum number of User names you want in the response. If there are additional User names beyond the maximum you specify, the IsTruncated response element is true. ", 
+      "doc": " Use this parameter only when paginating results to indicate the maximum number of User names you want in the response. If there are additional User names beyond the maximum you specify, the IsTruncated response element is true. ", 
       "cli_option": [
         "a", 
         "max_items"
@@ -37,56 +37,18 @@
       "optional": true
     }
   ], 
-  "name": "GetGroup", 
+  "name": "ListUsers", 
   "response": {
     "type": "object", 
-    "name": "GetGroupResponse", 
+    "name": "ListUsersResponse", 
     "properties": [
       {
-        "doc": " Contains the result of a successful invocation of the GetGroup action. ", 
+        "doc": " Contains the result of a successful invocation of the ListUsers action. ", 
         "type": "object", 
-        "name": "GetGroupResult", 
+        "name": "ListUsersResult", 
         "properties": [
           {
-            "doc": " Information about the group. ", 
-            "type": "object", 
-            "properties": [
-              {
-                "min_length": 1, 
-                "name": "Path", 
-                "doc": " Path to the group. For more information about paths, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
-                "max_length": 512, 
-                "pattern": "(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)", 
-                "type": "string"
-              }, 
-              {
-                "min_length": 1, 
-                "name": "GroupName", 
-                "doc": " The name that identifies the group. ", 
-                "max_length": 128, 
-                "pattern": "[\\w+=,.@-]*", 
-                "type": "string"
-              }, 
-              {
-                "min_length": 16, 
-                "name": "GroupId", 
-                "doc": " The stable and unique string identifying the group. For more information about IDs, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
-                "max_length": 32, 
-                "pattern": "[\\w]*", 
-                "type": "string"
-              }, 
-              {
-                "min_length": 20, 
-                "max_length": 2048, 
-                "type": "string", 
-                "name": "Arn", 
-                "doc": " The Amazon Resource Name (ARN) specifying the group. For more information about ARNs and how to use them in policies, see Identifiers for IAM Entities in Using AWS Identity and Access Management. "
-              }
-            ], 
-            "name": "Group"
-          }, 
-          {
-            "doc": " A list of Users in the group. ", 
+            "doc": " A list of User names. ", 
             "type": "object", 
             "properties": [
               {
@@ -136,7 +98,7 @@
             "name": "Users"
           }, 
           {
-            "doc": " A flag that indicates whether there are more User names to list. If your results were truncated, you can make a subsequent pagination request using the Marker request parameter to retrieve more User names in the list. ", 
+            "doc": " A flag that indicates whether there are more User names to list. If your results were truncated, you can make a subsequent pagination request using the Marker request parameter to retrieve more Users in the list. ", 
             "optional": true, 
             "name": "IsTruncated", 
             "type": "boolean"
@@ -144,7 +106,7 @@
           {
             "min_length": 1, 
             "name": "Marker", 
-            "doc": " If IsTruncated is true, then this element is present and contains the value to use for the Marker parameter in a subsequent pagination request. ", 
+            "doc": " If IsTruncated is true, this element is present and contains the value to use for the Marker parameter in a subsequent pagination request. ", 
             "max_length": 320, 
             "pattern": "[\\u0020-\\u00FF]*", 
             "type": "string"

@@ -31,7 +31,7 @@ def pythonize_name(name, sep='_'):
         s = name[0].lower()
     for c in name[1:]:
         if c.isupper():
-            s += '_' + c.lower()
+            s += sep + c.lower()
         else:
             s += c
     return s

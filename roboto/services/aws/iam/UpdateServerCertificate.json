@@ -3,11 +3,11 @@
     {
       "min_length": 1, 
       "cli_option": [
-        "g", 
-        "group_name"
+        "s", 
+        "server_certificate_name"
       ], 
-      "name": "GroupName", 
-      "doc": " Name of the group to update. If you're changing the name of the group, this is the original name. ", 
+      "name": "ServerCertificateName", 
+      "doc": " The name of the server certificate that you want to update. ", 
       "max_length": 128, 
       "optional": true, 
       "pattern": "[\\w+=,.@-]*", 
@@ -20,7 +20,7 @@
         "new_path"
       ], 
       "name": "NewPath", 
-      "doc": " New path for the group. Only include this if changing the group's path. ", 
+      "doc": " The new path for the server certificate. Include this only if you are updating the server certificate's path. ", 
       "max_length": 512, 
       "optional": true, 
       "pattern": "(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)", 
@@ -30,20 +30,20 @@
       "min_length": 1, 
       "cli_option": [
         "e", 
-        "new_group_name"
+        "new_server_certificate_name"
       ], 
-      "name": "NewGroupName", 
-      "doc": " New name for the group. Only include this if changing the group's name. ", 
+      "name": "NewServerCertificateName", 
+      "doc": " The new name for the server certificate. Include this only if you are updating the server certificate's name. ", 
       "max_length": 128, 
       "optional": true, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }
   ], 
-  "name": "UpdateGroup", 
+  "name": "UpdateServerCertificate", 
   "response": {
     "type": "object", 
-    "name": "UpdateGroupResponse", 
+    "name": "UpdateServerCertificateResponse", 
     "properties": [
       {
         "type": "object", 

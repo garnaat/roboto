@@ -1,0 +1,113 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "u", 
+        "user_name"
+      ], 
+      "name": "UserName", 
+      "doc": " Name of the User whose MFA devices you want to list. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "m", 
+        "marker"
+      ], 
+      "name": "Marker", 
+      "doc": " Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the Marker element in the response you just received. ", 
+      "max_length": 320, 
+      "optional": true, 
+      "pattern": "[\\u0020-\\u00FF]*", 
+      "type": "string"
+    }, 
+    {
+      "doc": " Use this only when paginating results to indicate the maximum number of keys you want in the response. If there are additional keys beyond the maximum you specify, the IsTruncated response element is true. ", 
+      "cli_option": [
+        "a", 
+        "max_items"
+      ], 
+      "type": "integer", 
+      "name": "MaxItems", 
+      "optional": true
+    }
+  ], 
+  "name": "ListMFADevices", 
+  "response": {
+    "type": "object", 
+    "name": "ListMFADevicesResponse", 
+    "properties": [
+      {
+        "doc": " Contains the result of a successful invocation of the ListMFADevices action. ", 
+        "type": "object", 
+        "name": "ListMFADevicesResult", 
+        "properties": [
+          {
+            "doc": " A list of MFA devices. ", 
+            "type": "object", 
+            "properties": [
+              {
+                "items": [
+                  {
+                    "doc": " The MFADevice data type contains information about an MFA Device.   This data type is used as a response element in the action ListMFADevices.   ", 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "min_length": 1, 
+                        "name": "UserName", 
+                        "doc": " The User with whom the MFA device is associated. ", 
+                        "max_length": 128, 
+                        "pattern": "[\\w+=,.@-]*", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 9, 
+                        "name": "SerialNumber", 
+                        "doc": " Serial number that uniquely identifies the MFA device. ", 
+                        "max_length": 48, 
+                        "pattern": "[\\w]*", 
+                        "type": "string"
+                      }
+                    ]
+                  }
+                ], 
+                "type": "array", 
+                "name": "member"
+              }
+            ], 
+            "name": "MFADevices"
+          }, 
+          {
+            "doc": " A flag that indicates whether there are more User names to list. If your results were truncated, you can make a subsequent pagination request using the Marker request parameter to retrieve more User names in the list. ", 
+            "optional": true, 
+            "name": "IsTruncated", 
+            "type": "boolean"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "Marker", 
+            "doc": " If IsTruncated is true, this element is present and contains the value to use for the Marker parameter in a subsequent pagination request. ", 
+            "max_length": 320, 
+            "pattern": "[\\u0020-\\u00FF]*", 
+            "type": "string"
+          }
+        ]
+      }, 
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "u", 
+        "user_name"
+      ], 
+      "name": "UserName", 
+      "doc": " Name of the User to create a login profile for. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "p", 
+        "password"
+      ], 
+      "name": "Password", 
+      "doc": " The new password for the User name. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+", 
+      "type": "string"
+    }
+  ], 
+  "name": "CreateLoginProfile", 
+  "response": {
+    "type": "object", 
+    "name": "CreateLoginProfileResponse", 
+    "properties": [
+      {
+        "doc": " Contains the result of a successful invocation of the CreateLoginProfile action. ", 
+        "type": "object", 
+        "name": "CreateLoginProfileResult", 
+        "properties": [
+          {
+            "doc": " The new login profile. ", 
+            "type": "object", 
+            "properties": [
+              {
+                "min_length": 1, 
+                "name": "UserName", 
+                "doc": " The name of the User, which can be used for logins. ", 
+                "max_length": 128, 
+                "pattern": "[\\w+=,.@-]*", 
+                "type": "string"
+              }
+            ], 
+            "name": "LoginProfile"
+          }
+        ]
+      }, 
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

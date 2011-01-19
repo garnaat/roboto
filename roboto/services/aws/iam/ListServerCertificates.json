@@ -7,7 +7,7 @@
         "path_prefix"
       ], 
       "name": "PathPrefix", 
-      "doc": " The path prefix for filtering the results. For example: /division_abc/subdivision_xyz/, which would get all groups whose path starts with /division_abc/subdivision_xyz/.  This parameter is optional. If it is not included, it defaults to a slash (/), listing all groups. ", 
+      "doc": " The path prefix for filtering the results. For example: /company/servercerts would get all server certificates for which the path starts with /company/servercerts.  This parameter is optional. If it is not included, it defaults to a slash (/), listing all server certificates. ", 
       "max_length": 512, 
       "optional": true, 
       "pattern": "\\u002F[\\u0021-\\u007F]*", 
@@ -27,7 +27,7 @@
       "type": "string"
     }, 
     {
-      "doc": " Use this only when paginating results to indicate the maximum number of groups you want in the response. If there are additional groups beyond the maximum you specify, the IsTruncated response element is true. ", 
+      "doc": " Use this only when paginating results to indicate the maximum number of server certificates you want in the response. If there are additional server certificates beyond the maximum you specify, the IsTruncated response element will be set to true. ", 
       "cli_option": [
         "a", 
         "max_items"
@@ -37,46 +37,46 @@
       "optional": true
     }
   ], 
-  "name": "ListGroups", 
+  "name": "ListServerCertificates", 
   "response": {
     "type": "object", 
-    "name": "ListGroupsResponse", 
+    "name": "ListServerCertificatesResponse", 
     "properties": [
       {
-        "doc": " Contains the result of a successful invocation of the ListGroups action. ", 
+        "doc": " Contains the result of a successful invocation of the ListServerCertificates action. ", 
         "type": "object", 
-        "name": "ListGroupsResult", 
+        "name": "ListServerCertificatesResult", 
         "properties": [
           {
-            "doc": " A list of groups. ", 
+            "doc": " A list of server certificates. ", 
             "type": "object", 
             "properties": [
               {
                 "items": [
                   {
-                    "doc": " The Group data type contains information about a group.   This data type is used as a response element in the following actions:  CreateGroup GetGroup ListGroups  ", 
+                    "doc": " ServerCertificateMetadata contains information about a server certificate without its certificate body, certificate chain, and private key.  This data type is used as a response element in the action UploadServerCertificate and ListServerCertificates. ", 
                     "type": "object", 
                     "properties": [
                       {
                         "min_length": 1, 
                         "name": "Path", 
-                        "doc": " Path to the group. For more information about paths, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
+                        "doc": " Path to the server certificate. For more information about paths, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
                         "max_length": 512, 
                         "pattern": "(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)", 
                         "type": "string"
                       }, 
                       {
                         "min_length": 1, 
-                        "name": "GroupName", 
-                        "doc": " The name that identifies the group. ", 
+                        "name": "ServerCertificateName", 
+                        "doc": " The name that identifies the server certificate. ", 
                         "max_length": 128, 
                         "pattern": "[\\w+=,.@-]*", 
                         "type": "string"
                       }, 
                       {
                         "min_length": 16, 
-                        "name": "GroupId", 
-                        "doc": " The stable and unique string identifying the group. For more information about IDs, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
+                        "name": "ServerCertificateId", 
+                        "doc": " The stable and unique string identifying the server certificate. For more information about IDs, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
                         "max_length": 32, 
                         "pattern": "[\\w]*", 
                         "type": "string"
@@ -86,7 +86,13 @@
                         "max_length": 2048, 
                         "type": "string", 
                         "name": "Arn", 
-                        "doc": " The Amazon Resource Name (ARN) specifying the group. For more information about ARNs and how to use them in policies, see Identifiers for IAM Entities in Using AWS Identity and Access Management. "
+                        "doc": " The Amazon Resource Name (ARN) specifying the server certificate. For more information about ARNs and how to use them in policies, see Identifiers for IAM Entities in Using AWS Identity and Access Management. "
+                      }, 
+                      {
+                        "doc": " The date when the server certificate was uploaded. ", 
+                        "optional": true, 
+                        "name": "UploadDate", 
+                        "type": "dateTime"
                       }
                     ]
                   }
@@ -95,10 +101,10 @@
                 "name": "member"
               }
             ], 
-            "name": "Groups"
+            "name": "ServerCertificateMetadataList"
           }, 
           {
-            "doc": " A flag that indicates whether there are more groups to list. If your results were truncated, you can make a subsequent pagination request using the Marker request parameter to retrieve more groups in the list. ", 
+            "doc": " A flag that indicates whether there are more server certificates to list. If your results were truncated, you can make a subsequent pagination request using the Marker request parameter to retrieve more server certificates in the list. ", 
             "optional": true, 
             "name": "IsTruncated", 
             "type": "boolean"

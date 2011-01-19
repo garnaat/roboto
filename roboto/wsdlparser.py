@@ -37,7 +37,8 @@ class WSDLParser(object):
     SOAP_NS = 'http://schemas.xmlsoap.org/wsdl/soap/'
     TNS_NS = 'https://iam.amazonaws.com/doc/2010-05-08/'
 
-    BaseTypes = ['string', 'integer', 'enum', 'boolean', 'dateTime']
+    BaseTypes = ['string', 'integer', 'int', 'long',
+                 'double', 'enum', 'boolean', 'dateTime']
 
     def __init__(self, wsdl_file_path):
         self.service = {}
@@ -223,7 +224,8 @@ class WSDLParser(object):
 
 def find_real_type(p, type_dict):
     type_name = type_dict['type'].split(':')[-1]
-    if type_name in ['string', 'boolean', 'integer', 'enum', 'dateTime']:
+    if type_name in ['string', 'boolean', 'integer', 'int', 'long',
+                     'double', 'enum', 'dateTime']:
         return type_dict
     if type_name == 'object':
         props = []
@@ -283,12 +285,11 @@ def build_json(wsdl_file, json_dir):
                         if 'optional' not in param2:
                             param2['optional'] = True
                         cli_name = pythonize_name(param2['name'], '-')
-                        i = 0
                         short_name = cli_name[0]
-                        while short_name in short_names:
-                            i += 1
-                            short_name = cli_name[i]
-                        short_names.append(short_name)
+                        if short_name not in short_names:
+                            short_names.append(short_name)
+                        else:
+                            short_name = None
                         param2['cli_option'] = [short_name, cli_name]
                         new_dict['params'].append(param2)
             else:

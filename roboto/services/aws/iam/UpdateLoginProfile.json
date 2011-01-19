@@ -1,0 +1,47 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "u", 
+        "user_name"
+      ], 
+      "name": "UserName", 
+      "doc": " Name of the User whose login profile you want to update. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "p", 
+        "password"
+      ], 
+      "name": "Password", 
+      "doc": " The new password for the User name. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+", 
+      "type": "string"
+    }
+  ], 
+  "name": "UpdateLoginProfile", 
+  "response": {
+    "type": "object", 
+    "name": "UpdateLoginProfileResponse", 
+    "properties": [
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

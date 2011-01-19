@@ -1,0 +1,56 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "u", 
+        "user_name"
+      ], 
+      "name": "UserName", 
+      "doc": " Name of the User whose login profile you want to retrieve. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }
+  ], 
+  "name": "GetLoginProfile", 
+  "response": {
+    "type": "object", 
+    "name": "GetLoginProfileResponse", 
+    "properties": [
+      {
+        "doc": " Contains the result of a successful invocation of the GetLoginProfile action. ", 
+        "type": "object", 
+        "name": "GetLoginProfileResult", 
+        "properties": [
+          {
+            "doc": " Login profile for the User name. ", 
+            "type": "object", 
+            "properties": [
+              {
+                "min_length": 1, 
+                "name": "UserName", 
+                "doc": " The name of the User, which can be used for logins. ", 
+                "max_length": 128, 
+                "pattern": "[\\w+=,.@-]*", 
+                "type": "string"
+              }
+            ], 
+            "name": "LoginProfile"
+          }
+        ]
+      }, 
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

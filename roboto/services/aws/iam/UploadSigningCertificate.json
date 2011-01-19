@@ -1,0 +1,100 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "u", 
+        "user_name"
+      ], 
+      "name": "UserName", 
+      "doc": " Name of the User the signing certificate is for. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "c", 
+        "certificate_body"
+      ], 
+      "name": "CertificateBody", 
+      "doc": " The contents of the signing certificate. ", 
+      "max_length": 16384, 
+      "optional": true, 
+      "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+", 
+      "type": "string"
+    }
+  ], 
+  "name": "UploadSigningCertificate", 
+  "response": {
+    "type": "object", 
+    "name": "UploadSigningCertificateResponse", 
+    "properties": [
+      {
+        "doc": " Contains the result of a successful invocation of the UploadSigningCertificate action. ", 
+        "type": "object", 
+        "name": "UploadSigningCertificateResult", 
+        "properties": [
+          {
+            "doc": " Information about the certificate. ", 
+            "type": "object", 
+            "properties": [
+              {
+                "min_length": 1, 
+                "name": "UserName", 
+                "doc": " Name of the User the signing certificate is associated with. ", 
+                "max_length": 128, 
+                "pattern": "[\\w+=,.@-]*", 
+                "type": "string"
+              }, 
+              {
+                "min_length": 24, 
+                "name": "CertificateId", 
+                "doc": " The ID for the signing certificate. ", 
+                "max_length": 128, 
+                "pattern": "[\\w]*", 
+                "type": "string"
+              }, 
+              {
+                "min_length": 1, 
+                "name": "CertificateBody", 
+                "doc": " The contents of the signing certificate. ", 
+                "max_length": 16384, 
+                "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+", 
+                "type": "string"
+              }, 
+              {
+                "doc": " The status of the signing certificate. Active means the key is valid for API calls, while Inactive means it is not. ", 
+                "type": "enum", 
+                "name": "Status", 
+                "choices": [
+                  "Active", 
+                  "Inactive"
+                ]
+              }, 
+              {
+                "doc": " The date when the signing certificate was uploaded. ", 
+                "optional": true, 
+                "name": "UploadDate", 
+                "type": "dateTime"
+              }
+            ], 
+            "name": "Certificate"
+          }
+        ]
+      }, 
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

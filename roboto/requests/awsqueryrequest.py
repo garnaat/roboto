@@ -79,6 +79,8 @@ class AWSQueryRequest(object):
         self.name = request_name
         self.args = args
         self.request_params = {}
+        self.list_markers = []
+        self.item_markers = []
         self.parser = None
         self.http_response = None
         self.aws_response = None
@@ -101,6 +103,7 @@ class AWSQueryRequest(object):
             s = fp.read()
             fp.close()
             self._schema = json.loads(s)
+            self.process_markers(self.response)
         else:
             print 'Unable to find request: %s' % self.name
             
@@ -144,7 +147,8 @@ class AWSQueryRequest(object):
     def response(self):
         retval = None
         if self._schema:
-            retval = self._schema['response']
+            if 'response' in self._schema:
+                retval = self._schema['response']
         return retval
 
     @property
@@ -188,6 +192,14 @@ class AWSQueryRequest(object):
             raise ValueError, 'Required parameters missing: %s' % required
         boto.log.debug('request_params: %s' % self.request_params)
 
+    def process_markers(self, fmt, prev_name=None):
+        if fmt['type'] == 'object':
+            for prop in fmt['properties']:
+                self.process_markers(prop, fmt['name'])
+        elif fmt['type'] == 'array':
+            self.list_markers.append(prev_name)
+            self.item_markers.append(fmt['name'])
+        
     def send(self, path='/', verb='GET'):
         self.init_connection()
         self.http_response = self.connection.make_request(self.name,
@@ -196,11 +208,8 @@ class AWSQueryRequest(object):
         self.body = self.http_response.read()
         boto.log.debug(self.body)
         if self.http_response.status == 200:
-            if 'list_marker' in self._schema:
-                list_marker = [self._schema['list_marker']]
-            else:
-                list_marker = ['Set']
-            self.aws_response = roboto.jsonresponse.Element(list_marker=list_marker)
+            self.aws_response = roboto.jsonresponse.Element(list_marker=self.list_markers,
+                                                            item_marker=self.item_markers)
             h = roboto.jsonresponse.XmlHandler(self.aws_response, self.connection)
             h.parse(self.body)
             return self.aws_response
@@ -223,11 +232,18 @@ class AWSQueryRequest(object):
                                    help='A filter for limiting the results')
         for param in self.params:
             if 'cli_option' in param:
-                short_name = '-' + param['cli_option'][0]
-                long_name = '--' + param['cli_option'][1]
                 type = self.CLITypeMap[param['type']]
-                self.parser.add_option(short_name, long_name, action='store',
-                                       type=type, help=param['doc'])
+                if param['cli_option'][0] is None:
+                    long_name = '--' + param['cli_option'][1]
+                    self.parser.add_option(long_name,
+                                           action='store', type=type,
+                                           help=param['doc'])
+                else:
+                    short_name = '-' + param['cli_option'][0]
+                    long_name = '--' + param['cli_option'][1]
+                    self.parser.add_option(short_name, long_name,
+                                           action='store', type=type,
+                                           help=param['doc'])
 
     def do_cli(self, cli_args=None):
         if not self.parser:
@@ -287,6 +303,30 @@ class AWSQueryRequest(object):
                     line.print_it()
                     line = None
 
+    def _generic_cli_formatter(self, fmt, data, label=''):
+        if fmt['type'] == 'object':
+            for prop in fmt['properties']:
+                if 'name' in fmt:
+                    if fmt['name'] in data:
+                        data = data[fmt['name']]
+                    if fmt['name'] in self.list_markers:
+                        label = fmt['name']
+                        if label[-1] == 's':
+                            label = label[0:-1]
+                        label = label.upper()
+                self._generic_cli_formatter(prop, data, label)
+        elif fmt['type'] == 'array':
+            for item in data:
+                line = Line(fmt, item, label)
+                for field_name in item:
+                    line.append(item[field_name])
+                line.print_it()
+
     def cli_output_formatter(self):
         if self.cli_output_format:
             self._cli_fmt(self.cli_output_format, self.aws_response)
+        elif self.response:
+            self._generic_cli_formatter(self.response, self.aws_response)
+        else:
+            print 'No formatter found: dumping raw data'
+            print self.aws_response

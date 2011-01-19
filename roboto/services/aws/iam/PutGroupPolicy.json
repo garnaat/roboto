@@ -7,7 +7,7 @@
         "group_name"
       ], 
       "name": "GroupName", 
-      "doc": " Name of the group to update. If you're changing the name of the group, this is the original name. ", 
+      "doc": " Name of the group to associate the policy with. ", 
       "max_length": 128, 
       "optional": true, 
       "pattern": "[\\w+=,.@-]*", 
@@ -16,34 +16,34 @@
     {
       "min_length": 1, 
       "cli_option": [
-        "n", 
-        "new_path"
+        "p", 
+        "policy_name"
       ], 
-      "name": "NewPath", 
-      "doc": " New path for the group. Only include this if changing the group's path. ", 
-      "max_length": 512, 
+      "name": "PolicyName", 
+      "doc": " Name of the policy document. ", 
+      "max_length": 128, 
       "optional": true, 
-      "pattern": "(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)", 
+      "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }, 
     {
       "min_length": 1, 
       "cli_option": [
-        "e", 
-        "new_group_name"
+        "o", 
+        "policy_document"
       ], 
-      "name": "NewGroupName", 
-      "doc": " New name for the group. Only include this if changing the group's name. ", 
-      "max_length": 128, 
+      "name": "PolicyDocument", 
+      "doc": " The policy document. ", 
+      "max_length": 131072, 
       "optional": true, 
-      "pattern": "[\\w+=,.@-]*", 
+      "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+", 
       "type": "string"
     }
   ], 
-  "name": "UpdateGroup", 
+  "name": "PutGroupPolicy", 
   "response": {
     "type": "object", 
-    "name": "UpdateGroupResponse", 
+    "name": "PutGroupPolicyResponse", 
     "properties": [
       {
         "type": "object", 

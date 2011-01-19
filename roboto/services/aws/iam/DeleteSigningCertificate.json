@@ -1,0 +1,47 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "u", 
+        "user_name"
+      ], 
+      "name": "UserName", 
+      "doc": " Name of the User the signing certificate belongs to. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 24, 
+      "cli_option": [
+        "c", 
+        "certificate_id"
+      ], 
+      "name": "CertificateId", 
+      "doc": " ID of the signing certificate to delete. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w]*", 
+      "type": "string"
+    }
+  ], 
+  "name": "DeleteSigningCertificate", 
+  "response": {
+    "type": "object", 
+    "name": "DeleteSigningCertificateResponse", 
+    "properties": [
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -3,21 +3,21 @@
     {
       "min_length": 1, 
       "cli_option": [
-        "g", 
-        "group_name"
+        "s", 
+        "server_certificate_name"
       ], 
-      "name": "GroupName", 
-      "doc": " Name of the group to delete. ", 
+      "name": "ServerCertificateName", 
+      "doc": " The name of the server certificate you want to delete. ", 
       "max_length": 128, 
       "optional": true, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }
   ], 
-  "name": "DeleteGroup", 
+  "name": "DeleteServerCertificate", 
   "response": {
     "type": "object", 
-    "name": "DeleteGroupResponse", 
+    "name": "DeleteServerCertificateResponse", 
     "properties": [
       {
         "type": "object", 

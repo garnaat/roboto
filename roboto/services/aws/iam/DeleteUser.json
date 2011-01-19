@@ -3,21 +3,21 @@
     {
       "min_length": 1, 
       "cli_option": [
-        "g", 
-        "group_name"
+        "u", 
+        "user_name"
       ], 
-      "name": "GroupName", 
-      "doc": " Name of the group to delete. ", 
+      "name": "UserName", 
+      "doc": " Name of the User to delete. ", 
       "max_length": 128, 
       "optional": true, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }
   ], 
-  "name": "DeleteGroup", 
+  "name": "DeleteUser", 
   "response": {
     "type": "object", 
-    "name": "DeleteGroupResponse", 
+    "name": "DeleteUserResponse", 
     "properties": [
       {
         "type": "object", 

@@ -1,0 +1,108 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "s", 
+        "server_certificate_name"
+      ], 
+      "name": "ServerCertificateName", 
+      "doc": " The name of the server certificate you want to retrieve information about. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }
+  ], 
+  "name": "GetServerCertificate", 
+  "response": {
+    "type": "object", 
+    "name": "GetServerCertificateResponse", 
+    "properties": [
+      {
+        "doc": " Contains the result of a successful invocation of the GetServerCertificate action. ", 
+        "type": "object", 
+        "name": "GetServerCertificateResult", 
+        "properties": [
+          {
+            "doc": " Information about the server certificate. ", 
+            "type": "object", 
+            "properties": [
+              {
+                "doc": " The meta information of the server certificate, such as its name, path, ID, and ARN. ", 
+                "type": "object", 
+                "properties": [
+                  {
+                    "min_length": 1, 
+                    "name": "Path", 
+                    "doc": " Path to the server certificate. For more information about paths, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
+                    "max_length": 512, 
+                    "pattern": "(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)", 
+                    "type": "string"
+                  }, 
+                  {
+                    "min_length": 1, 
+                    "name": "ServerCertificateName", 
+                    "doc": " The name that identifies the server certificate. ", 
+                    "max_length": 128, 
+                    "pattern": "[\\w+=,.@-]*", 
+                    "type": "string"
+                  }, 
+                  {
+                    "min_length": 16, 
+                    "name": "ServerCertificateId", 
+                    "doc": " The stable and unique string identifying the server certificate. For more information about IDs, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
+                    "max_length": 32, 
+                    "pattern": "[\\w]*", 
+                    "type": "string"
+                  }, 
+                  {
+                    "min_length": 20, 
+                    "max_length": 2048, 
+                    "type": "string", 
+                    "name": "Arn", 
+                    "doc": " The Amazon Resource Name (ARN) specifying the server certificate. For more information about ARNs and how to use them in policies, see Identifiers for IAM Entities in Using AWS Identity and Access Management. "
+                  }, 
+                  {
+                    "doc": " The date when the server certificate was uploaded. ", 
+                    "optional": true, 
+                    "name": "UploadDate", 
+                    "type": "dateTime"
+                  }
+                ], 
+                "name": "ServerCertificateMetadata"
+              }, 
+              {
+                "min_length": 1, 
+                "name": "CertificateBody", 
+                "doc": " The contents of the public key certificate. ", 
+                "max_length": 16384, 
+                "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+", 
+                "type": "string"
+              }, 
+              {
+                "min_length": 1, 
+                "name": "CertificateChain", 
+                "doc": " The contents of the public key certificate chain. ", 
+                "max_length": 2097152, 
+                "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]*", 
+                "type": "string"
+              }
+            ], 
+            "name": "ServerCertificate"
+          }
+        ]
+      }, 
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -7,17 +7,30 @@
         "group_name"
       ], 
       "name": "GroupName", 
-      "doc": " Name of the group to delete. ", 
+      "doc": " Name of the group the policy is associated with. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "p", 
+        "policy_name"
+      ], 
+      "name": "PolicyName", 
+      "doc": " Name of the policy document to delete. ", 
       "max_length": 128, 
       "optional": true, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }
   ], 
-  "name": "DeleteGroup", 
+  "name": "DeleteGroupPolicy", 
   "response": {
     "type": "object", 
-    "name": "DeleteGroupResponse", 
+    "name": "DeleteGroupPolicyResponse", 
     "properties": [
       {
         "type": "object", 

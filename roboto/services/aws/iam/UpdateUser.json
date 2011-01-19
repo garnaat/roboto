@@ -3,11 +3,11 @@
     {
       "min_length": 1, 
       "cli_option": [
-        "g", 
-        "group_name"
+        "u", 
+        "user_name"
       ], 
-      "name": "GroupName", 
-      "doc": " Name of the group to update. If you're changing the name of the group, this is the original name. ", 
+      "name": "UserName", 
+      "doc": " Name of the User to update.  If you're changing the name of the User, this is the original User name. ", 
       "max_length": 128, 
       "optional": true, 
       "pattern": "[\\w+=,.@-]*", 
@@ -20,7 +20,7 @@
         "new_path"
       ], 
       "name": "NewPath", 
-      "doc": " New path for the group. Only include this if changing the group's path. ", 
+      "doc": " New path for the User. Include this parameter only if you're changing the User's path. ", 
       "max_length": 512, 
       "optional": true, 
       "pattern": "(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)", 
@@ -30,20 +30,20 @@
       "min_length": 1, 
       "cli_option": [
         "e", 
-        "new_group_name"
+        "new_user_name"
       ], 
-      "name": "NewGroupName", 
-      "doc": " New name for the group. Only include this if changing the group's name. ", 
+      "name": "NewUserName", 
+      "doc": " New name for the User. Include this parameter only if you're changing the User's name. ", 
       "max_length": 128, 
       "optional": true, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }
   ], 
-  "name": "UpdateGroup", 
+  "name": "UpdateUser", 
   "response": {
     "type": "object", 
-    "name": "UpdateGroupResponse", 
+    "name": "UpdateUserResponse", 
     "properties": [
       {
         "type": "object", 

@@ -7,17 +7,30 @@
         "group_name"
       ], 
       "name": "GroupName", 
-      "doc": " Name of the group to delete. ", 
+      "doc": " Name of the group to update. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "u", 
+        "user_name"
+      ], 
+      "name": "UserName", 
+      "doc": " Name of the User to add. ", 
       "max_length": 128, 
       "optional": true, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }
   ], 
-  "name": "DeleteGroup", 
+  "name": "AddUserToGroup", 
   "response": {
     "type": "object", 
-    "name": "DeleteGroupResponse", 
+    "name": "AddUserToGroupResponse", 
     "properties": [
       {
         "type": "object", 

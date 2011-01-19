@@ -1,0 +1,78 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "u", 
+        "user_name"
+      ], 
+      "name": "UserName", 
+      "doc": " Name of the User who the policy is associated with. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "p", 
+        "policy_name"
+      ], 
+      "name": "PolicyName", 
+      "doc": " Name of the policy document to get. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }
+  ], 
+  "name": "GetUserPolicy", 
+  "response": {
+    "type": "object", 
+    "name": "GetUserPolicyResponse", 
+    "properties": [
+      {
+        "doc": " Contains the result of a successful invocation of the GetUserPolicy action. ", 
+        "type": "object", 
+        "name": "GetUserPolicyResult", 
+        "properties": [
+          {
+            "min_length": 1, 
+            "name": "UserName", 
+            "doc": " The User the policy is associated with. ", 
+            "max_length": 128, 
+            "pattern": "[\\w+=,.@-]*", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "PolicyName", 
+            "doc": " The name of the policy. ", 
+            "max_length": 128, 
+            "pattern": "[\\w+=,.@-]*", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "PolicyDocument", 
+            "doc": " The policy document. ", 
+            "max_length": 131072, 
+            "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+", 
+            "type": "string"
+          }
+        ]
+      }, 
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

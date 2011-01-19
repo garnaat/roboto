@@ -1,0 +1,97 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "g", 
+        "group_name"
+      ], 
+      "name": "GroupName", 
+      "doc": " The name of the group to list policies for. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "m", 
+        "marker"
+      ], 
+      "name": "Marker", 
+      "doc": " Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the Marker element in the response you just received. ", 
+      "max_length": 320, 
+      "optional": true, 
+      "pattern": "[\\u0020-\\u00FF]*", 
+      "type": "string"
+    }, 
+    {
+      "doc": " Use this only when paginating results to indicate the maximum number of policy names you want in the response. If there are additional policy names beyond the maximum you specify, the IsTruncated response element is true. ", 
+      "cli_option": [
+        "a", 
+        "max_items"
+      ], 
+      "type": "integer", 
+      "name": "MaxItems", 
+      "optional": true
+    }
+  ], 
+  "name": "ListGroupPolicies", 
+  "response": {
+    "type": "object", 
+    "name": "ListGroupPoliciesResponse", 
+    "properties": [
+      {
+        "doc": " Contains the result of a successful invocation of the ListGroupPolicies action. ", 
+        "type": "object", 
+        "name": "ListGroupPoliciesResult", 
+        "properties": [
+          {
+            "doc": " A list of policy names. ", 
+            "type": "object", 
+            "properties": [
+              {
+                "items": [
+                  {
+                    "pattern": "[\\w+=,.@-]*", 
+                    "max_length": 128, 
+                    "type": "string", 
+                    "min_length": 1
+                  }
+                ], 
+                "type": "array", 
+                "name": "member"
+              }
+            ], 
+            "name": "PolicyNames"
+          }, 
+          {
+            "doc": " A flag that indicates whether there are more policy names to list. If your results were truncated, you can make a subsequent pagination request using the Marker request parameter to retrieve more policy names in the list. ", 
+            "optional": true, 
+            "name": "IsTruncated", 
+            "type": "boolean"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "Marker", 
+            "doc": " If IsTruncated is true, this element is present and contains the value to use for the Marker parameter in a subsequent pagination request. ", 
+            "max_length": 320, 
+            "pattern": "[\\u0020-\\u00FF]*", 
+            "type": "string"
+          }
+        ]
+      }, 
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

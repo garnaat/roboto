@@ -1,0 +1,136 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "u", 
+        "user_name"
+      ], 
+      "name": "UserName", 
+      "doc": " The name of the User. ", 
+      "max_length": 128, 
+      "optional": true, 
+      "pattern": "[\\w+=,.@-]*", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "m", 
+        "marker"
+      ], 
+      "name": "Marker", 
+      "doc": " Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the Marker element in the response you just received. ", 
+      "max_length": 320, 
+      "optional": true, 
+      "pattern": "[\\u0020-\\u00FF]*", 
+      "type": "string"
+    }, 
+    {
+      "doc": " Use this only when paginating results to indicate the maximum number of certificate IDs you want in the response. If there are additional certificate IDs beyond the maximum you specify, the IsTruncated response element is true. ", 
+      "cli_option": [
+        "a", 
+        "max_items"
+      ], 
+      "type": "integer", 
+      "name": "MaxItems", 
+      "optional": true
+    }
+  ], 
+  "name": "ListSigningCertificates", 
+  "response": {
+    "type": "object", 
+    "name": "ListSigningCertificatesResponse", 
+    "properties": [
+      {
+        "doc": " Contains the result of a successful invocation of the ListSigningCertificates action. ", 
+        "type": "object", 
+        "name": "ListSigningCertificatesResult", 
+        "properties": [
+          {
+            "doc": " A list of the User's signing certificate information. ", 
+            "type": "object", 
+            "properties": [
+              {
+                "items": [
+                  {
+                    "doc": " The SigningCertificate data type contains information about an X.509 signing certificate.   This data type is used as a response element in the actions UploadSigningCertificate and ListSigningCertificates.  ", 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "min_length": 1, 
+                        "name": "UserName", 
+                        "doc": " Name of the User the signing certificate is associated with. ", 
+                        "max_length": 128, 
+                        "pattern": "[\\w+=,.@-]*", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 24, 
+                        "name": "CertificateId", 
+                        "doc": " The ID for the signing certificate. ", 
+                        "max_length": 128, 
+                        "pattern": "[\\w]*", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 1, 
+                        "name": "CertificateBody", 
+                        "doc": " The contents of the signing certificate. ", 
+                        "max_length": 16384, 
+                        "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+", 
+                        "type": "string"
+                      }, 
+                      {
+                        "doc": " The status of the signing certificate. Active means the key is valid for API calls, while Inactive means it is not. ", 
+                        "type": "enum", 
+                        "name": "Status", 
+                        "choices": [
+                          "Active", 
+                          "Inactive"
+                        ]
+                      }, 
+                      {
+                        "doc": " The date when the signing certificate was uploaded. ", 
+                        "optional": true, 
+                        "name": "UploadDate", 
+                        "type": "dateTime"
+                      }
+                    ]
+                  }
+                ], 
+                "type": "array", 
+                "name": "member"
+              }
+            ], 
+            "name": "Certificates"
+          }, 
+          {
+            "doc": " A flag that indicates whether there are more certificate IDs to list. If your results were truncated, you can make a subsequent pagination request using the Marker request parameter to retrieve more certificates in the list. ", 
+            "optional": true, 
+            "name": "IsTruncated", 
+            "type": "boolean"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "Marker", 
+            "doc": " If IsTruncated is true, this element is present and contains the value to use for the Marker parameter in a subsequent pagination request. ", 
+            "max_length": 320, 
+            "pattern": "[\\u0020-\\u00FF]*", 
+            "type": "string"
+          }
+        ]
+      }, 
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}
