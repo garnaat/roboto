@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "g", 
-        "group_name"
+        "group-name"
       ], 
       "name": "GroupName", 
       "doc": " Name of the group to update. If you're changing the name of the group, this is the original name. ", 
@@ -17,7 +17,7 @@
       "min_length": 1, 
       "cli_option": [
         "n", 
-        "new_path"
+        "new-path"
       ], 
       "name": "NewPath", 
       "doc": " New path for the group. Only include this if changing the group's path. ", 
@@ -29,8 +29,8 @@
     {
       "min_length": 1, 
       "cli_option": [
-        "e", 
-        "new_group_name"
+        null, 
+        "new-group-name"
       ], 
       "name": "NewGroupName", 
       "doc": " New name for the group. Only include this if changing the group's name. ", 

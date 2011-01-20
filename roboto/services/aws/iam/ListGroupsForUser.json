@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "u", 
-        "user_name"
+        "user-name"
       ], 
       "name": "UserName", 
       "doc": " The name of the User to list groups for. ", 
@@ -29,8 +29,8 @@
     {
       "doc": " Use this only when paginating results to indicate the maximum number of groups you want in the response. If there are additional groups beyond the maximum you specify, the IsTruncated response element is true. ", 
       "cli_option": [
-        "a", 
-        "max_items"
+        null, 
+        "max-items"
       ], 
       "type": "integer", 
       "name": "MaxItems", 

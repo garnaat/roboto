@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "u", 
-        "user_name"
+        "user-name"
       ], 
       "name": "UserName", 
       "doc": " Name of the User the signing certificate is for. ", 
@@ -17,7 +17,7 @@
       "min_length": 1, 
       "cli_option": [
         "c", 
-        "certificate_body"
+        "certificate-body"
       ], 
       "name": "CertificateBody", 
       "doc": " The contents of the signing certificate. ", 

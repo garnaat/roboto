@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "u", 
-        "user_name"
+        "user-name"
       ], 
       "name": "UserName", 
       "doc": " Name of the User to update.  If you're changing the name of the User, this is the original User name. ", 
@@ -17,7 +17,7 @@
       "min_length": 1, 
       "cli_option": [
         "n", 
-        "new_path"
+        "new-path"
       ], 
       "name": "NewPath", 
       "doc": " New path for the User. Include this parameter only if you're changing the User's path. ", 
@@ -29,8 +29,8 @@
     {
       "min_length": 1, 
       "cli_option": [
-        "e", 
-        "new_user_name"
+        null, 
+        "new-user-name"
       ], 
       "name": "NewUserName", 
       "doc": " New name for the User. Include this parameter only if you're changing the User's name. ", 

@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "u", 
-        "user_name"
+        "user-name"
       ], 
       "name": "UserName", 
       "doc": " Name of the User to delete. ", 

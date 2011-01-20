@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "u", 
-        "user_name"
+        "user-name"
       ], 
       "name": "UserName", 
       "doc": " Name of the User whose MFA device you want to resynchronize. ", 
@@ -17,7 +17,7 @@
       "min_length": 9, 
       "cli_option": [
         "s", 
-        "serial_number"
+        "serial-number"
       ], 
       "name": "SerialNumber", 
       "doc": " Serial number that uniquely identifies the MFA device. ", 
@@ -30,7 +30,7 @@
       "min_length": 6, 
       "cli_option": [
         "a", 
-        "authentication_code1"
+        "authentication-code1"
       ], 
       "name": "AuthenticationCode1", 
       "doc": " An authentication code emitted by the device. ", 
@@ -42,8 +42,8 @@
     {
       "min_length": 6, 
       "cli_option": [
-        "t", 
-        "authentication_code2"
+        null, 
+        "authentication-code2"
       ], 
       "name": "AuthenticationCode2", 
       "doc": " A subsequent authentication code emitted by the device. ", 

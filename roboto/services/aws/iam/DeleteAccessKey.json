@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "u", 
-        "user_name"
+        "user-name"
       ], 
       "name": "UserName", 
       "doc": " Name of the User whose key you want to delete. ", 
@@ -17,7 +17,7 @@
       "min_length": 16, 
       "cli_option": [
         "a", 
-        "access_key_id"
+        "access-key-id"
       ], 
       "name": "AccessKeyId", 
       "doc": " The Access Key ID for the Access Key ID and Secret Access Key you want to delete. ", 

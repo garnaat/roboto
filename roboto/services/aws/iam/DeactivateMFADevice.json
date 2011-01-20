@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "u", 
-        "user_name"
+        "user-name"
       ], 
       "name": "UserName", 
       "doc": " Name of the User whose MFA device you want to deactivate. ", 
@@ -17,7 +17,7 @@
       "min_length": 9, 
       "cli_option": [
         "s", 
-        "serial_number"
+        "serial-number"
       ], 
       "name": "SerialNumber", 
       "doc": " The serial number that uniquely identifies the MFA device. ", 

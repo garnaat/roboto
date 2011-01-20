@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "g", 
-        "group_name"
+        "group-name"
       ], 
       "name": "GroupName", 
       "doc": " Name of the group to associate the policy with. ", 
@@ -17,7 +17,7 @@
       "min_length": 1, 
       "cli_option": [
         "p", 
-        "policy_name"
+        "policy-name"
       ], 
       "name": "PolicyName", 
       "doc": " Name of the policy document. ", 
@@ -29,8 +29,8 @@
     {
       "min_length": 1, 
       "cli_option": [
-        "o", 
-        "policy_document"
+        null, 
+        "policy-document"
       ], 
       "name": "PolicyDocument", 
       "doc": " The policy document. ", 

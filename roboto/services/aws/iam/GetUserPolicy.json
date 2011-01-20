@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "u", 
-        "user_name"
+        "user-name"
       ], 
       "name": "UserName", 
       "doc": " Name of the User who the policy is associated with. ", 
@@ -17,7 +17,7 @@
       "min_length": 1, 
       "cli_option": [
         "p", 
-        "policy_name"
+        "policy-name"
       ], 
       "name": "PolicyName", 
       "doc": " Name of the policy document to get. ", 

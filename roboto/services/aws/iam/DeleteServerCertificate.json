@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "s", 
-        "server_certificate_name"
+        "server-certificate-name"
       ], 
       "name": "ServerCertificateName", 
       "doc": " The name of the server certificate you want to delete. ", 

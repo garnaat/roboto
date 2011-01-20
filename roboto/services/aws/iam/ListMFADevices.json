@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "u", 
-        "user_name"
+        "user-name"
       ], 
       "name": "UserName", 
       "doc": " Name of the User whose MFA devices you want to list. ", 
@@ -29,8 +29,8 @@
     {
       "doc": " Use this only when paginating results to indicate the maximum number of keys you want in the response. If there are additional keys beyond the maximum you specify, the IsTruncated response element is true. ", 
       "cli_option": [
-        "a", 
-        "max_items"
+        null, 
+        "max-items"
       ], 
       "type": "integer", 
       "name": "MaxItems", 

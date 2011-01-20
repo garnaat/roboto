@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "p", 
-        "path_prefix"
+        "path-prefix"
       ], 
       "name": "PathPrefix", 
       "doc": " The path prefix for filtering the results. For example: /division_abc/subdivision_xyz/, which would get all User names whose path starts with /division_abc/subdivision_xyz/.  This parameter is optional. If it is not included, it defaults to a slash (/), listing all User names. ", 
@@ -29,8 +29,8 @@
     {
       "doc": " Use this parameter only when paginating results to indicate the maximum number of User names you want in the response. If there are additional User names beyond the maximum you specify, the IsTruncated response element is true. ", 
       "cli_option": [
-        "a", 
-        "max_items"
+        null, 
+        "max-items"
       ], 
       "type": "integer", 
       "name": "MaxItems", 

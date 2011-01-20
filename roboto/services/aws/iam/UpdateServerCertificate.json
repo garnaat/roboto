@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "s", 
-        "server_certificate_name"
+        "server-certificate-name"
       ], 
       "name": "ServerCertificateName", 
       "doc": " The name of the server certificate that you want to update. ", 
@@ -17,7 +17,7 @@
       "min_length": 1, 
       "cli_option": [
         "n", 
-        "new_path"
+        "new-path"
       ], 
       "name": "NewPath", 
       "doc": " The new path for the server certificate. Include this only if you are updating the server certificate's path. ", 
@@ -29,8 +29,8 @@
     {
       "min_length": 1, 
       "cli_option": [
-        "e", 
-        "new_server_certificate_name"
+        null, 
+        "new-server-certificate-name"
       ], 
       "name": "NewServerCertificateName", 
       "doc": " The new name for the server certificate. Include this only if you are updating the server certificate's name. ", 

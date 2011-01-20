@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "u", 
-        "user_name"
+        "user-name"
       ], 
       "name": "UserName", 
       "doc": " The name of the User to list policies for. ", 
@@ -29,8 +29,8 @@
     {
       "doc": " Use this only when paginating results to indicate the maximum number of policy names you want in the response. If there are additional policy names beyond the maximum you specify, the IsTruncated response element is true. ", 
       "cli_option": [
-        "a", 
-        "max_items"
+        null, 
+        "max-items"
       ], 
       "type": "integer", 
       "name": "MaxItems", 

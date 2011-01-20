@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "u", 
-        "user_name"
+        "user-name"
       ], 
       "name": "UserName", 
       "doc": " Name of the User the signing certificate belongs to. ", 
@@ -17,7 +17,7 @@
       "min_length": 24, 
       "cli_option": [
         "c", 
-        "certificate_id"
+        "certificate-id"
       ], 
       "name": "CertificateId", 
       "doc": " ID of the signing certificate to delete. ", 

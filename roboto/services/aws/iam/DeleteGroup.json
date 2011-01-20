@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "g", 
-        "group_name"
+        "group-name"
       ], 
       "name": "GroupName", 
       "doc": " Name of the group to delete. ", 

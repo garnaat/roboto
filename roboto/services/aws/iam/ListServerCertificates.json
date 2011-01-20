@@ -4,7 +4,7 @@
       "min_length": 1, 
       "cli_option": [
         "p", 
-        "path_prefix"
+        "path-prefix"
       ], 
       "name": "PathPrefix", 
       "doc": " The path prefix for filtering the results. For example: /company/servercerts would get all server certificates for which the path starts with /company/servercerts.  This parameter is optional. If it is not included, it defaults to a slash (/), listing all server certificates. ", 
@@ -29,8 +29,8 @@
     {
       "doc": " Use this only when paginating results to indicate the maximum number of server certificates you want in the response. If there are additional server certificates beyond the maximum you specify, the IsTruncated response element will be set to true. ", 
       "cli_option": [
-        "a", 
-        "max_items"
+        null, 
+        "max-items"
       ], 
       "type": "integer", 
       "name": "MaxItems", 
