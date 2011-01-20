@@ -25,18 +25,62 @@
 
 import sys
 import os
+import optparse
 import roboto.wsdlparser
 
 if __name__ == '__main__':
-    if len(sys.argv) == 3:
-        wsdl_file = sys.argv[1]
-        wsdl_file = os.path.expanduser(wsdl_file)
-        wsdl_file = os.path.expandvars(wsdl_file)
-        json_dir = sys.argv[2]
-        json_dir = os.path.expanduser(json_dir)
-        json_dir = os.path.expandvars(json_dir)
+    usage = 'usage: %prog [options] wsdl_file'
+    parser = optparse.OptionParser(usage=usage)
+    parser.add_option("--json-dir",
+                      help="Directory in which to write JSON files",
+                      default='json')
+    parser.add_option("--bin-dir",
+                      help="Directory in which to write bin wrappers",
+                      default='bin')
+    parser.add_option("--prefix",
+                      help="Prefix for command wrappers (e.g. iam, ec2)",
+                      default='')
+    parser.add_option("--class-name",
+                      help="Name of Connection class to instantiate",
+                      default=None)
+    parser.add_option("--module",
+                      help="Boto module containing the Connection class",
+                      default=None)
+    parser.add_option("--template",
+                      help="Template file for bin wrappers",
+                      default=None)
+    options, args = parser.parse_args()
+    print options, args
+    if len(args) != 1:
+        parser.error('Must supply a WSDL file')
+    
+    wsdl_file = args[0]
+    wsdl_file = os.path.expanduser(wsdl_file)
+    wsdl_file = os.path.expandvars(wsdl_file)
+    
+    json_dir = options.json_dir
+    json_dir = os.path.expanduser(json_dir)
+    json_dir = os.path.expandvars(json_dir)
+    if not os.path.isdir(json_dir):
+        parser.error('%s is not a valid directory' % json_dir)
         
-        roboto.wsdlparser.build_json(wsdl_file, json_dir)
-    else:
-        print 'Usage: parse_wsdl <wsdl_file> <json_dir>'
-        sys.exit(1)
+    bin_dir = options.bin_dir
+    bin_dir = os.path.expanduser(bin_dir)
+    bin_dir = os.path.expandvars(bin_dir)
+    if not os.path.isdir(bin_dir):
+        parser.error('%s is not a valid directory' % bin_dir)
+
+    template = options.template
+    template = os.path.expanduser(template)
+    template = os.path.expandvars(template)
+    if not os.path.isfile(template):
+        parser.error('%s does not exist' % template)
+    
+        
+    roboto.wsdlparser.build_json(wsdl_file=wsdl_file,
+                                 json_dir=json_dir,
+                                 bin_dir=bin_dir,
+                                 template=template,
+                                 module_name=options.module,
+                                 class_name=options.class_name,
+                                 prefix=options.prefix)

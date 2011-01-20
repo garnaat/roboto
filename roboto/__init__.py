@@ -36,6 +36,9 @@ def pythonize_name(name, sep='_'):
             s += c
     return s
 
+def awsify_name(name):
+    return name[0:1].upper()+name[1:]
+
 class Param:
 
     @classmethod
@@ -51,7 +54,7 @@ class Param:
         if l:
             label = l
         else:
-            label = p['name']
+            label = awsify_name(p['name'])
         rp[label] = v
 
     @classmethod
@@ -59,7 +62,7 @@ class Param:
         if l:
             label = l
         else:
-            label = p['name']
+            label = awsify_name(p['name'])
         rp[label] = '%d' % v
         
     @classmethod
@@ -67,7 +70,7 @@ class Param:
         if l:
             label = l
         else:
-            label = p['name']
+            label = awsify_name(p['name'])
         if v:
             v = 'true'
         else:
@@ -79,7 +82,7 @@ class Param:
         if l:
             label = l
         else:
-            label = p['name']
+            label = awsify_name(p['name'])
         rp[label] = v
         
     @classmethod
@@ -88,7 +91,7 @@ class Param:
         if l:
             label = l
         else:
-            label = p['name']
+            label = awsify_name(p['name'])
         label = label + '.%d'
         for i, value in enumerate(v):
             rp[label%(i+1)] = value

@@ -71,6 +71,7 @@ class AWSQueryRequest(object):
     ConnectionCls = EC2Connection
     CLITypeMap = {'string' : 'string',
                   'integer' : 'int',
+                  'int' : 'int',
                   'enum' : 'choice',
                   'datetime' : 'string',
                   'boolean' : 'string'}
@@ -237,13 +238,13 @@ class AWSQueryRequest(object):
                     long_name = '--' + param['cli_option'][1]
                     self.parser.add_option(long_name,
                                            action='store', type=type,
-                                           help=param['doc'])
+                                           help=param.get('doc', None))
                 else:
                     short_name = '-' + param['cli_option'][0]
                     long_name = '--' + param['cli_option'][1]
                     self.parser.add_option(short_name, long_name,
                                            action='store', type=type,
-                                           help=param['doc'])
+                                           help=param.get('doc', None))
 
     def do_cli(self, cli_args=None):
         if not self.parser:
@@ -258,7 +259,7 @@ class AWSQueryRequest(object):
         for param in self.params:
             if 'cli_option' in param:
                 p_name = param['cli_option'][1]
-                d[p_name] = getattr(options, p_name)
+                d[p_name] = getattr(options, p_name.replace('-', '_'))
             else:
                 p_name = pythonize_name(param['name'])
                 d[p_name] = args
@@ -304,6 +305,9 @@ class AWSQueryRequest(object):
                     line = None
 
     def _generic_cli_formatter(self, fmt, data, label=''):
+        print 'fmt=', fmt
+        print 'data=', data
+        print '========='
         if fmt['type'] == 'object':
             for prop in fmt['properties']:
                 if 'name' in fmt:
@@ -318,8 +322,11 @@ class AWSQueryRequest(object):
         elif fmt['type'] == 'array':
             for item in data:
                 line = Line(fmt, item, label)
-                for field_name in item:
-                    line.append(item[field_name])
+                if isinstance(item, dict):
+                    for field_name in item:
+                        line.append(item[field_name])
+                elif isinstance(item, basestring):
+                    line.append(item)
                 line.print_it()
 
     def cli_output_formatter(self):

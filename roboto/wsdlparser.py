@@ -263,9 +263,9 @@ def simplify_type(type_dict):
         for item in type_dict['items']:
             simplify_type(item)
 
-def build_json(wsdl_file, json_dir):
+def build_json(**kwargs):
     ops = []
-    p = WSDLParser(wsdl_file)
+    p = WSDLParser(kwargs['wsdl_file'])
     for operation in p.service['porttype']['operations']:
         op_dict = p.service['porttype']['operations'][operation]
         new_dict = {'name' : operation,
@@ -299,13 +299,21 @@ def build_json(wsdl_file, json_dir):
         resp_type = find_real_type(p, resp_dict)
         new_dict['response'] = resp_type
     for op in ops:
+        kwargs['request'] = op['name']
         json_filename = op['name'] + '.json'
-        json_filename = os.path.join(json_dir, json_filename)
-        if os.path.isfile(json_filename):
-            os.rename(json_filename, json_filename+'.orig')
+        json_filename = os.path.join(kwargs['json_dir'], json_filename)
         fp = open(json_filename, 'w')
         json.dump(op, fp, indent=2)
         fp.close()
         print 'Wrote file: %s' % json_filename
+        bin_filename = kwargs['prefix'] + '-' + pythonize_name(op['name'], '-')
+        bin_filename = os.path.join(kwargs['bin_dir'], bin_filename)
+        fp = open(bin_filename, 'w')
+        fp2 = open(kwargs['template'], 'r')
+        s = fp2.read()
+        fp2.close()
+        s = s % kwargs
+        fp.write(s)
+        fp.close()
     return ops
 
