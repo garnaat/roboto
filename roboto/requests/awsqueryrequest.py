@@ -29,7 +29,6 @@ import os, sys
 import pdb
 from optparse import OptionParser
 import boto
-from boto.ec2.connection import EC2Connection
 import roboto.jsonresponse
 from roboto import mklist, pythonize_name, Param
 
@@ -67,8 +66,6 @@ class AWSQueryRequest(object):
     for all requests that are based on the AWS Query interface.
     """
 
-    JsonPath = '/Users/mitch/Projects/roboto/roboto/services/aws/ec2'
-    ConnectionCls = EC2Connection
     CLITypeMap = {'string' : 'string',
                   'integer' : 'int',
                   'int' : 'int',
@@ -76,8 +73,9 @@ class AWSQueryRequest(object):
                   'datetime' : 'string',
                   'boolean' : 'string'}
 
-    def __init__(self, request_name, **args):
-        self.name = request_name
+    def __init__(self, service, request, **args):
+        self.service = service
+        self.name = request
         self.args = args
         self.request_params = {}
         self.list_markers = []
@@ -87,18 +85,34 @@ class AWSQueryRequest(object):
         self.aws_response = None
         self._schema = None
         self.connection = None
-        self._load_json()
+        self.json_dir = None
+        self._get_json_dir()
+        self._load_json('aws', self.service, self.name)
+
+    def _get_json_dir(self):
+        if self.json_dir == None:
+            if boto.config.has_section('roboto'):
+                if boto.config.has_option('roboto', 'json_dir'):
+                    self.json_dir = boto.config.get_value('roboto', 'json_dir')
+                    self.json_dir = os.path.expanduser(self.json_dir)
+                    self.json_dir = os.path.expandvars(self.json_dir)
+            else:
+                raise ValueError('No value for json_dir found in boto config')
 
     def init_connection(self):
         if self.connection is None:
             if 'connection' in self.args:
                 self.connection = self.args['connection']
             else:
-                self.connection = self.ConnectionCls(**self.args)
+                fn_name = 'connect_%s' % self.service
+                fn = getattr(boto, fn_name)
+                self.connection = fn(**self.args)
         return self.connection
 
-    def _load_json(self):
-        json_path = os.path.join(self.JsonPath, self.name+'.json')
+    def _load_json(self, provider, service, request):
+        json_path = os.path.join(self.json_dir, provider)
+        json_path = os.path.join(json_path, service)
+        json_path = os.path.join(json_path, request+'.json')
         if os.path.isfile(json_path):
             fp = open(json_path)
             s = fp.read()

@@ -40,12 +40,6 @@ if __name__ == '__main__':
     parser.add_option("--prefix",
                       help="Prefix for command wrappers (e.g. iam, ec2)",
                       default='')
-    parser.add_option("--class-name",
-                      help="Name of Connection class to instantiate",
-                      default=None)
-    parser.add_option("--module",
-                      help="Boto module containing the Connection class",
-                      default=None)
     parser.add_option("--template",
                       help="Template file for bin wrappers",
                       default=None)
@@ -81,6 +75,4 @@ if __name__ == '__main__':
                                  json_dir=json_dir,
                                  bin_dir=bin_dir,
                                  template=template,
-                                 module_name=options.module,
-                                 class_name=options.class_name,
                                  prefix=options.prefix)
