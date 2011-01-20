@@ -305,9 +305,6 @@ class AWSQueryRequest(object):
                     line = None
 
     def _generic_cli_formatter(self, fmt, data, label=''):
-        print 'fmt=', fmt
-        print 'data=', data
-        print '========='
         if fmt['type'] == 'object':
             for prop in fmt['properties']:
                 if 'name' in fmt:
