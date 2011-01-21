@@ -196,10 +196,10 @@ class AWSQueryRequest(object):
             else:
                 python_name = pythonize_name(param['name'])
             if python_name in self.args:
-                if param['name'] in required:
-                    required.remove(param['name'])
                 value = self.args[python_name]
                 if value is not None:
+                    if param['name'] in required:
+                        required.remove(param['name'])
                     Param.encode(param, self.request_params,
                                  self.args[python_name])
                 del self.args[python_name]
@@ -277,7 +277,11 @@ class AWSQueryRequest(object):
             else:
                 p_name = pythonize_name(param['name'])
                 d[p_name] = args
-        self.process_args(d)
+        try:
+            self.process_args(d)
+        except ValueError as ve:
+            print ve.message
+            sys.exit(1)
         if hasattr(options, 'filter') and options.filter:
             d = {}
             for filter in options.filter:
