@@ -9,7 +9,7 @@
       "name": "GroupName", 
       "doc": " Name of the group the policy is associated with. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }, 
@@ -22,7 +22,7 @@
       "name": "PolicyName", 
       "doc": " Name of the policy document to get. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }
@@ -36,12 +36,14 @@
         "doc": " Contains the result of a successful invocation of the GetGroupPolicy action. ", 
         "type": "object", 
         "name": "GetGroupPolicyResult", 
+        "optional": false, 
         "properties": [
           {
             "min_length": 1, 
             "name": "GroupName", 
             "doc": " The group the policy is associated with. ", 
             "max_length": 128, 
+            "optional": false, 
             "pattern": "[\\w+=,.@-]*", 
             "type": "string"
           }, 
@@ -50,6 +52,7 @@
             "name": "PolicyName", 
             "doc": " The name of the policy. ", 
             "max_length": 128, 
+            "optional": false, 
             "pattern": "[\\w+=,.@-]*", 
             "type": "string"
           }, 
@@ -58,16 +61,19 @@
             "name": "PolicyDocument", 
             "doc": " The policy document. ", 
             "max_length": 131072, 
+            "optional": false, 
             "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+", 
             "type": "string"
           }
         ]
       }, 
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

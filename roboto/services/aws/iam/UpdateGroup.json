@@ -9,7 +9,7 @@
       "name": "GroupName", 
       "doc": " Name of the group to update. If you're changing the name of the group, this is the original name. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }, 
@@ -46,10 +46,12 @@
     "name": "UpdateGroupResponse", 
     "properties": [
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

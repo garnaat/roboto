@@ -22,7 +22,7 @@
       "name": "CertificateId", 
       "doc": " ID of the signing certificate to delete. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w]*", 
       "type": "string"
     }
@@ -33,10 +33,12 @@
     "name": "DeleteSigningCertificateResponse", 
     "properties": [
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

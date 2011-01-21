@@ -9,7 +9,7 @@
       "name": "UserName", 
       "doc": " Name of the User to update.  If you're changing the name of the User, this is the original User name. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }, 
@@ -46,10 +46,12 @@
     "name": "UpdateUserResponse", 
     "properties": [
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

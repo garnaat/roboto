@@ -22,7 +22,7 @@
       "name": "AccessKeyId", 
       "doc": " The Access Key ID of the Secret Access Key you want to update. ", 
       "max_length": 32, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w]*", 
       "type": "string"
     }, 
@@ -33,7 +33,7 @@
         "Active", 
         "Inactive"
       ], 
-      "optional": true, 
+      "optional": false, 
       "type": "enum", 
       "cli_option": [
         "s", 
@@ -47,10 +47,12 @@
     "name": "UpdateAccessKeyResponse", 
     "properties": [
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

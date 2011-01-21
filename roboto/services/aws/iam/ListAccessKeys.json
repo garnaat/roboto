@@ -46,12 +46,16 @@
         "doc": " Contains the result of a successful invocation of the ListAccessKeys action. ", 
         "type": "object", 
         "name": "ListAccessKeysResult", 
+        "optional": false, 
         "properties": [
           {
             "doc": " A list of access key metadata. ", 
             "type": "object", 
             "properties": [
               {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
                 "items": [
                   {
                     "doc": " The AccessKey data type contains information about an AWS access key, without its secret key.   This data type is used as a response element in the action ListAccessKeys.  ", 
@@ -62,6 +66,7 @@
                         "name": "UserName", 
                         "doc": " Name of the User the key is associated with. ", 
                         "max_length": 128, 
+                        "optional": true, 
                         "pattern": "[\\w+=,.@-]*", 
                         "type": "string"
                       }, 
@@ -70,6 +75,7 @@
                         "name": "AccessKeyId", 
                         "doc": " The ID for this access key. ", 
                         "max_length": 32, 
+                        "optional": true, 
                         "pattern": "[\\w]*", 
                         "type": "string"
                       }, 
@@ -77,6 +83,7 @@
                         "doc": " The status of the access key. Active means the key is valid for API calls, while Inactive means it is not. ", 
                         "type": "enum", 
                         "name": "Status", 
+                        "optional": true, 
                         "choices": [
                           "Active", 
                           "Inactive"
@@ -90,11 +97,10 @@
                       }
                     ]
                   }
-                ], 
-                "type": "array", 
-                "name": "member"
+                ]
               }
             ], 
+            "optional": false, 
             "name": "AccessKeyMetadata"
           }, 
           {
@@ -108,16 +114,19 @@
             "name": "Marker", 
             "doc": " If IsTruncated is true, this element is present and contains the value to use for the Marker parameter in a subsequent pagination request. ", 
             "max_length": 320, 
+            "optional": true, 
             "pattern": "[\\u0020-\\u00FF]*", 
             "type": "string"
           }
         ]
       }, 
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

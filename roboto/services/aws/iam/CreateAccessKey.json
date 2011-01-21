@@ -23,6 +23,7 @@
         "doc": " Contains the result of a successful invocation of the CreateAccessKey action. ", 
         "type": "object", 
         "name": "CreateAccessKeyResult", 
+        "optional": false, 
         "properties": [
           {
             "doc": " Information about the access key. ", 
@@ -33,6 +34,7 @@
                 "name": "UserName", 
                 "doc": " Name of the User the key is associated with. ", 
                 "max_length": 128, 
+                "optional": false, 
                 "pattern": "[\\w+=,.@-]*", 
                 "type": "string"
               }, 
@@ -41,6 +43,7 @@
                 "name": "AccessKeyId", 
                 "doc": " The ID for this access key. ", 
                 "max_length": 32, 
+                "optional": false, 
                 "pattern": "[\\w]*", 
                 "type": "string"
               }, 
@@ -48,6 +51,7 @@
                 "doc": " The status of the access key. Active means the key is valid for API calls, while Inactive means it is not. ", 
                 "type": "enum", 
                 "name": "Status", 
+                "optional": false, 
                 "choices": [
                   "Active", 
                   "Inactive"
@@ -55,8 +59,9 @@
               }, 
               {
                 "doc": " The secret key used to sign requests. ", 
-                "type": "string", 
-                "name": "SecretAccessKey"
+                "optional": false, 
+                "name": "SecretAccessKey", 
+                "type": "string"
               }, 
               {
                 "doc": " The date when the access key was created. ", 
@@ -65,15 +70,18 @@
                 "type": "dateTime"
               }
             ], 
+            "optional": false, 
             "name": "AccessKey"
           }
         ]
       }, 
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

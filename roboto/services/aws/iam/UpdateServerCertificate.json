@@ -9,7 +9,7 @@
       "name": "ServerCertificateName", 
       "doc": " The name of the server certificate that you want to update. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }, 
@@ -46,10 +46,12 @@
     "name": "UpdateServerCertificateResponse", 
     "properties": [
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

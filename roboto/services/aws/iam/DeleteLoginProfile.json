@@ -9,7 +9,7 @@
       "name": "UserName", 
       "doc": " Name of the User whose login profile you want to delete. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }
@@ -20,10 +20,12 @@
     "name": "DeleteLoginProfileResponse", 
     "properties": [
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

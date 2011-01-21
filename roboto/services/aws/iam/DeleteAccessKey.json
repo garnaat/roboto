@@ -22,7 +22,7 @@
       "name": "AccessKeyId", 
       "doc": " The Access Key ID for the Access Key ID and Secret Access Key you want to delete. ", 
       "max_length": 32, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w]*", 
       "type": "string"
     }
@@ -33,10 +33,12 @@
     "name": "DeleteAccessKeyResponse", 
     "properties": [
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

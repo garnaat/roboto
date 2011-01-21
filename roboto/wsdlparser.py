@@ -120,7 +120,16 @@ class WSDLParser(object):
                 if child.nodeType == type_elem.ELEMENT_NODE:
                     if child.tagName == 'xs:element':
                         min_occurs = child.getAttribute('minOccurs')
+                        if min_occurs:
+                            min_occurs = int(min_occurs)
+                        else:
+                            min_occurs = 1
                         max_occurs = child.getAttribute('maxOccurs')
+                        if max_occurs:
+                            if max_occurs.lower() != 'unbounded':
+                                max_occurs = int(max_occurs)
+                        else:
+                            max_occurs = 1
                         param_dict = {}
                         type_dict['properties'].append(param_dict)
                         name = child.getAttribute('name')
@@ -129,8 +138,10 @@ class WSDLParser(object):
                         type = child.getAttribute('type')
                         if not type:
                             type = child.getAttribute('ref')
-                        if min_occurs == '0':
+                        if min_occurs == 0:
                             param_dict['optional'] = True
+                        else:
+                            param_dict['optional'] = False
                         if max_occurs == 'unbounded':
                             param_dict['type'] = 'array'
                             param_dict['items'] = []
@@ -243,6 +254,8 @@ def find_real_type(p, type_dict):
     d = copy.deepcopy(p.types[type_name])
     if 'doc' in type_dict:
         d['doc'] = type_dict['doc']
+    if 'optional' in type_dict:
+        d['optional'] = type_dict['optional']
     if 'name' not in d:
         if 'name' in type_dict:
             d['name'] = type_dict['name']
@@ -282,8 +295,6 @@ def build_json(**kwargs):
             if 'properties' in param_type:
                 for param2 in param_type['properties']:
                     if isinstance(param2, dict):
-                        if 'optional' not in param2:
-                            param2['optional'] = True
                         cli_name = pythonize_name(param2['name'], '-')
                         short_name = cli_name[0]
                         if short_name not in short_names:

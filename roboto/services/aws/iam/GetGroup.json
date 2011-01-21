@@ -9,7 +9,7 @@
       "name": "GroupName", 
       "doc": " Name of the group. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }, 
@@ -46,6 +46,7 @@
         "doc": " Contains the result of a successful invocation of the GetGroup action. ", 
         "type": "object", 
         "name": "GetGroupResult", 
+        "optional": false, 
         "properties": [
           {
             "doc": " Information about the group. ", 
@@ -56,6 +57,7 @@
                 "name": "Path", 
                 "doc": " Path to the group. For more information about paths, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
                 "max_length": 512, 
+                "optional": false, 
                 "pattern": "(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)", 
                 "type": "string"
               }, 
@@ -64,6 +66,7 @@
                 "name": "GroupName", 
                 "doc": " The name that identifies the group. ", 
                 "max_length": 128, 
+                "optional": false, 
                 "pattern": "[\\w+=,.@-]*", 
                 "type": "string"
               }, 
@@ -72,17 +75,20 @@
                 "name": "GroupId", 
                 "doc": " The stable and unique string identifying the group. For more information about IDs, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
                 "max_length": 32, 
+                "optional": false, 
                 "pattern": "[\\w]*", 
                 "type": "string"
               }, 
               {
                 "min_length": 20, 
-                "max_length": 2048, 
-                "type": "string", 
                 "name": "Arn", 
-                "doc": " The Amazon Resource Name (ARN) specifying the group. For more information about ARNs and how to use them in policies, see Identifiers for IAM Entities in Using AWS Identity and Access Management. "
+                "optional": false, 
+                "max_length": 2048, 
+                "doc": " The Amazon Resource Name (ARN) specifying the group. For more information about ARNs and how to use them in policies, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
+                "type": "string"
               }
             ], 
+            "optional": false, 
             "name": "Group"
           }, 
           {
@@ -90,6 +96,9 @@
             "type": "object", 
             "properties": [
               {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
                 "items": [
                   {
                     "doc": " The User data type contains information about a User.   This data type is used as a response element in the following actions:  CreateUser GetUser ListUsers  ", 
@@ -100,6 +109,7 @@
                         "name": "Path", 
                         "doc": " Path to the User name. For more information about paths, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
                         "max_length": 512, 
+                        "optional": false, 
                         "pattern": "(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)", 
                         "type": "string"
                       }, 
@@ -108,6 +118,7 @@
                         "name": "UserName", 
                         "doc": " The name identifying the User. ", 
                         "max_length": 128, 
+                        "optional": false, 
                         "pattern": "[\\w+=,.@-]*", 
                         "type": "string"
                       }, 
@@ -116,23 +127,24 @@
                         "name": "UserId", 
                         "doc": " The stable and unique string identifying the User. For more information about IDs, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
                         "max_length": 32, 
+                        "optional": false, 
                         "pattern": "[\\w]*", 
                         "type": "string"
                       }, 
                       {
                         "min_length": 20, 
-                        "max_length": 2048, 
-                        "type": "string", 
                         "name": "Arn", 
-                        "doc": " The Amazon Resource Name (ARN) specifying the User. For more information about ARNs and how to use them in policies, see Identifiers for IAM Entities in Using AWS Identity and Access Management. "
+                        "optional": false, 
+                        "max_length": 2048, 
+                        "doc": " The Amazon Resource Name (ARN) specifying the User. For more information about ARNs and how to use them in policies, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
+                        "type": "string"
                       }
                     ]
                   }
-                ], 
-                "type": "array", 
-                "name": "member"
+                ]
               }
             ], 
+            "optional": false, 
             "name": "Users"
           }, 
           {
@@ -146,16 +158,19 @@
             "name": "Marker", 
             "doc": " If IsTruncated is true, then this element is present and contains the value to use for the Marker parameter in a subsequent pagination request. ", 
             "max_length": 320, 
+            "optional": true, 
             "pattern": "[\\u0020-\\u00FF]*", 
             "type": "string"
           }
         ]
       }, 
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

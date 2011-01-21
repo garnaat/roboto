@@ -9,7 +9,7 @@
       "name": "UserName", 
       "doc": " Name of the User whose MFA devices you want to list. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }, 
@@ -46,12 +46,16 @@
         "doc": " Contains the result of a successful invocation of the ListMFADevices action. ", 
         "type": "object", 
         "name": "ListMFADevicesResult", 
+        "optional": false, 
         "properties": [
           {
             "doc": " A list of MFA devices. ", 
             "type": "object", 
             "properties": [
               {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
                 "items": [
                   {
                     "doc": " The MFADevice data type contains information about an MFA Device.   This data type is used as a response element in the action ListMFADevices.   ", 
@@ -62,6 +66,7 @@
                         "name": "UserName", 
                         "doc": " The User with whom the MFA device is associated. ", 
                         "max_length": 128, 
+                        "optional": false, 
                         "pattern": "[\\w+=,.@-]*", 
                         "type": "string"
                       }, 
@@ -70,16 +75,16 @@
                         "name": "SerialNumber", 
                         "doc": " Serial number that uniquely identifies the MFA device. ", 
                         "max_length": 48, 
+                        "optional": false, 
                         "pattern": "[\\w]*", 
                         "type": "string"
                       }
                     ]
                   }
-                ], 
-                "type": "array", 
-                "name": "member"
+                ]
               }
             ], 
+            "optional": false, 
             "name": "MFADevices"
           }, 
           {
@@ -93,16 +98,19 @@
             "name": "Marker", 
             "doc": " If IsTruncated is true, this element is present and contains the value to use for the Marker parameter in a subsequent pagination request. ", 
             "max_length": 320, 
+            "optional": true, 
             "pattern": "[\\u0020-\\u00FF]*", 
             "type": "string"
           }
         ]
       }, 
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

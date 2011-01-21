@@ -9,7 +9,7 @@
       "name": "ServerCertificateName", 
       "doc": " The name of the server certificate you want to delete. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }
@@ -20,10 +20,12 @@
     "name": "DeleteServerCertificateResponse", 
     "properties": [
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

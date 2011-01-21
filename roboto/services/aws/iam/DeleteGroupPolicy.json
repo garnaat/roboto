@@ -9,7 +9,7 @@
       "name": "GroupName", 
       "doc": " Name of the group the policy is associated with. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }, 
@@ -22,7 +22,7 @@
       "name": "PolicyName", 
       "doc": " Name of the policy document to delete. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }
@@ -33,10 +33,12 @@
     "name": "DeleteGroupPolicyResponse", 
     "properties": [
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }

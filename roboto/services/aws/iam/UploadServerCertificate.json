@@ -22,7 +22,7 @@
       "name": "ServerCertificateName", 
       "doc": " The name for the server certificate. Do not include the path in this value. ", 
       "max_length": 128, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\w+=,.@-]*", 
       "type": "string"
     }, 
@@ -35,7 +35,7 @@
       "name": "CertificateBody", 
       "doc": " The contents of the public key certificate in PEM-encoded format. ", 
       "max_length": 16384, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+", 
       "type": "string"
     }, 
@@ -48,7 +48,7 @@
       "name": "PrivateKey", 
       "doc": " The contents of the private key in PEM-encoded format. ", 
       "max_length": 16384, 
-      "optional": true, 
+      "optional": false, 
       "pattern": "[\\u0009\\u000A\\u000D\\u0020-\\u00FF]*", 
       "type": "string"
     }, 
@@ -75,6 +75,7 @@
         "doc": " Contains the result of a successful invocation of the UploadServerCertificate action. ", 
         "type": "object", 
         "name": "UploadServerCertificateResult", 
+        "optional": false, 
         "properties": [
           {
             "doc": " The meta information of the uploaded server certificate without its certificate body, certificate chain, and private key. ", 
@@ -85,6 +86,7 @@
                 "name": "Path", 
                 "doc": " Path to the server certificate. For more information about paths, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
                 "max_length": 512, 
+                "optional": false, 
                 "pattern": "(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)", 
                 "type": "string"
               }, 
@@ -93,6 +95,7 @@
                 "name": "ServerCertificateName", 
                 "doc": " The name that identifies the server certificate. ", 
                 "max_length": 128, 
+                "optional": false, 
                 "pattern": "[\\w+=,.@-]*", 
                 "type": "string"
               }, 
@@ -101,15 +104,17 @@
                 "name": "ServerCertificateId", 
                 "doc": " The stable and unique string identifying the server certificate. For more information about IDs, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
                 "max_length": 32, 
+                "optional": false, 
                 "pattern": "[\\w]*", 
                 "type": "string"
               }, 
               {
                 "min_length": 20, 
-                "max_length": 2048, 
-                "type": "string", 
                 "name": "Arn", 
-                "doc": " The Amazon Resource Name (ARN) specifying the server certificate. For more information about ARNs and how to use them in policies, see Identifiers for IAM Entities in Using AWS Identity and Access Management. "
+                "optional": false, 
+                "max_length": 2048, 
+                "doc": " The Amazon Resource Name (ARN) specifying the server certificate. For more information about ARNs and how to use them in policies, see Identifiers for IAM Entities in Using AWS Identity and Access Management. ", 
+                "type": "string"
               }, 
               {
                 "doc": " The date when the server certificate was uploaded. ", 
@@ -118,15 +123,18 @@
                 "type": "dateTime"
               }
             ], 
+            "optional": true, 
             "name": "ServerCertificateMetadata"
           }
         ]
       }, 
       {
+        "optional": false, 
         "type": "object", 
         "name": "ResponseMetadata", 
         "properties": [
           {
+            "optional": false, 
             "type": "string", 
             "name": "RequestId"
           }
