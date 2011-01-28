@@ -25,3 +25,27 @@ declaratively using JSON.  These JSON descriptions are read in
 at run time and define everything from which URL to talk to to
 the exact format of a request and it's response.
 
+Installation
+------------
+Eventually, this will be packaged up properly but for now follow
+these instructions to try out the current version of roboto:
+
+ # Download the current source tarball by clicking on the Downloads
+   button on the github.com project page
+
+ # Un-tar the tarball in your desired location
+
+ # Adjust your PYTHONPATH environment variable accordingly, e.g.:
+ 
+   $ export PYTHONPATH=/path/to/roboto:$PYTHONPATH
+
+ # Add the roboto bin directory to your PATH:
+
+   $ export PATH=$PATH:/path/to/roboto/bin
+
+ # Finally, you need to add an entry to your boto config file
+   (either /etc/boto.cfg or ~/.boto) that looks like this:
+
+   [roboto]
+   json_dir = /path/to/roboto/data
+
