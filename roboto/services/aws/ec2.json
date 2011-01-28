@@ -1,23 +1,29 @@
-{"name" : "ec2",
- "Description" : "Elastic Load Balancing Service",
- "endpoints" : [{"name" : "us-east-1",
-                 "description" : "US-East (Northern Virginia)",
-                 "host" : "ec2.us-east.amazonaws.com",
-                 "port" : 443,
-                 "path" : "/"},
-                 {"name" : "us-west-1",
-                 "description" : "US-West (Northern California)",
-                 "host" : "ec2.us-west.amazonaws.com",
-                 "port" : 443,
-                 "path" : "/"},
-                 {"name" : "eu-west-1",
-                 "description" : "EU (Ireland)",
-                 "host" : "ec2.eu-west.amazonaws.com",
-                 "port" : 443,
-                 "path" : "/"},
-                 {"name" : "ap-southeast-1",
-                 "description" : "Asia Pacific (Singapore)",
-                 "host" : "ec2.ap-southeast.amazonaws.com",
-                 "port" : 443,
-                 "path" : "/"}]
+{
+    "name": "ec2", 
+    "module": "boto.ec2", 
+    "regions": [
+        {
+            "endpoint": "ec2.us-east-1.amazonaws.com", 
+            "name": "us-east-1", 
+            "description": "US-East (Northern Virginia)"
+        }, 
+        {
+            "endpoint": "ec2.us-west-1.amazonaws.com", 
+            "name": "us-west-1", 
+            "description": "US-West (Northern California)"
+        }, 
+        {
+            "endpoint": "ec2.eu-west-1.amazonaws.com", 
+            "name": "eu-west-1", 
+            "description": "EU (Ireland)"
+        }, 
+        {
+            "endpoint": "ec2.ap-southeast-1.amazonaws.com", 
+            "name": "ap-southeast-1", 
+            "description": "Asia Pacific (Singapore)"
+        }
+    ], 
+    "provider": "aws", 
+    "path": "/", 
+    "port": 443
 }

@@ -59,7 +59,7 @@ class Line(object):
         if not self.printed:
             print self.line
             self.printed = True
-                
+
 class AWSQueryRequest(object):
     """
     This class should be able to handle requests/responses for any
@@ -97,7 +97,7 @@ class AWSQueryRequest(object):
         self.connection = None
         self.json_dir = None
         self._get_json_dir()
-        self._load_json('aws', self.service, self.name)
+        self._load_json()
 
     def _get_json_dir(self):
         if self.json_dir == None:
@@ -114,15 +114,13 @@ class AWSQueryRequest(object):
             if 'connection' in self.args:
                 self.connection = self.args['connection']
             else:
-                fn_name = 'connect_%s' % self.service
-                fn = getattr(boto, fn_name)
-                self.connection = fn(**self.args)
+                self.connection = self.service.connect(**self.args)
         return self.connection
 
-    def _load_json(self, provider, service, request):
-        json_path = os.path.join(self.json_dir, provider)
-        json_path = os.path.join(json_path, service)
-        json_path = os.path.join(json_path, request+'.json')
+    def _load_json(self):
+        json_path = os.path.join(self.json_dir, self.service.provider)
+        json_path = os.path.join(json_path, self.service.name)
+        json_path = os.path.join(json_path, self.name+'.json')
         if os.path.isfile(json_path):
             fp = open(json_path)
             s = fp.read()
