@@ -1,0 +1,15 @@
+{
+    "name": "bean",
+    "authentication": "sign-v2",
+    "api_version" : "2010-12-01",
+    "regions": [
+        {
+            "endpoint": "elasticbeanstalk.us-east-1.amazonaws.com", 
+            "name": "us-east-1", 
+            "description": "US-East (Northern Virginia)"
+        }
+    ], 
+    "provider": "aws", 
+    "path": "/", 
+    "port": 443
+}
