@@ -1,0 +1,32 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "t", 
+        "topic-arn"
+      ], 
+      "type": "string", 
+      "name": "TopicArn"
+    }
+  ], 
+  "name": "DeleteTopic", 
+  "response": {
+    "type": "object", 
+    "name": "DeleteTopicResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

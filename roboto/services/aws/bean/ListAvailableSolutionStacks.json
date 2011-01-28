@@ -1,0 +1,50 @@
+{
+  "params": [], 
+  "name": "ListAvailableSolutionStacks", 
+  "response": {
+    "type": "object", 
+    "name": "ListAvailableSolutionStacksResponse", 
+    "properties": [
+      {
+        "doc": " A list of available Amazon ElasticBeanstalk solution stacks.  ", 
+        "type": "object", 
+        "name": "ListAvailableSolutionStacksResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "doc": "  A list of available solution stacks.  ", 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
+                "items": [
+                  {
+                    "min_length": 0, 
+                    "max_length": 100, 
+                    "type": "string"
+                  }
+                ]
+              }
+            ], 
+            "optional": true, 
+            "name": "SolutionStacks"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

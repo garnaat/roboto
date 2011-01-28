@@ -1,0 +1,17 @@
+{
+    "name": "iam",
+    "description": "Identity and Access Management",
+    "api_version" : "2010-05-08",
+    "module": "boto.iam",
+    "authentication" : "sign-v2",
+    "regions": [
+        {
+            "endpoint": "iam.amazonaws.com", 
+            "name": "us-east-1", 
+            "description": "US-East (Northern Virginia)"
+        }
+    ], 
+    "provider": "aws",
+    "path": "/", 
+    "port": 443
+}

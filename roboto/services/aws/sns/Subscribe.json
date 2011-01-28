@@ -1,0 +1,62 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "t", 
+        "topic-arn"
+      ], 
+      "type": "string", 
+      "name": "TopicArn"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "p", 
+        "protocol"
+      ], 
+      "type": "string", 
+      "name": "Protocol"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "e", 
+        "endpoint"
+      ], 
+      "type": "string", 
+      "name": "Endpoint"
+    }
+  ], 
+  "name": "Subscribe", 
+  "response": {
+    "type": "object", 
+    "name": "SubscribeResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "SubscribeResult", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "string", 
+            "name": "SubscriptionArn"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

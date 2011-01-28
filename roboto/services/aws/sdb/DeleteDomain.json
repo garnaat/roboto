@@ -1,0 +1,34 @@
+{
+  "params": [
+    {
+      "optional": true, 
+      "cli_option": [
+        "d", 
+        "domain-name"
+      ], 
+      "type": "string", 
+      "name": "DomainName"
+    }
+  ], 
+  "name": "DeleteDomain", 
+  "response": {
+    "type": "object", 
+    "name": "DeleteDomainResponse", 
+    "properties": [
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }, 
+          {
+            "type": "string", 
+            "name": "BoxUsage"
+          }
+        ]
+      }
+    ]
+  }
+}

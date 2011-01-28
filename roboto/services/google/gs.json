@@ -1,0 +1,14 @@
+{
+    "name": "gs", 
+    "module": "boto.gs", 
+    "regions": [
+        {
+            "endpoint": "commondatastorage.googleapis.com", 
+            "name": "us", 
+            "description": "United States"
+        }
+    ], 
+    "provider": "google", 
+    "path": "/", 
+    "port": 443
+}

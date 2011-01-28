@@ -1,0 +1,62 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "t", 
+        "topic-arn"
+      ], 
+      "type": "string", 
+      "name": "TopicArn"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        null, 
+        "token"
+      ], 
+      "type": "string", 
+      "name": "Token"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "a", 
+        "authenticate-on-unsubscribe"
+      ], 
+      "type": "string", 
+      "name": "AuthenticateOnUnsubscribe"
+    }
+  ], 
+  "name": "ConfirmSubscription", 
+  "response": {
+    "type": "object", 
+    "name": "ConfirmSubscriptionResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ConfirmSubscriptionResult", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "string", 
+            "name": "SubscriptionArn"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

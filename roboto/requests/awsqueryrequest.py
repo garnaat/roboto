@@ -25,9 +25,9 @@ try:
 except ImportError:
     import simplejson as json
     
-import os, sys
-import pdb
-from optparse import OptionParser
+import os
+import sys
+import optparse
 import boto
 import roboto.jsonresponse
 from roboto import mklist, pythonize_name, Param
@@ -62,8 +62,8 @@ class Line(object):
                 
 class AWSQueryRequest(object):
     """
-    This is an abstract base class (well, it would be if Python had such a thing)
-    for all requests that are based on the AWS Query interface.
+    This class should be able to handle requests/responses for any
+    AWS service using the Query-style interface such as EC2, IAM, etc.
     """
 
     CLITypeMap = {'string' : 'string',
@@ -74,6 +74,16 @@ class AWSQueryRequest(object):
                   'boolean' : 'string'}
 
     def __init__(self, service, request, **args):
+        """
+        :type service: str
+        :param service: The short-version of the service name.  This
+                        is the same name used for the corresponding
+                        boto module (e.g. ec2, iam, sdb, etc.)
+        :type request: str
+        :param request: The name of the request to execute against
+                        the service.  This should be the exact name
+                        as used in the API.
+        """
         self.service = service
         self.name = request
         self.args = args
@@ -236,7 +246,7 @@ class AWSQueryRequest(object):
                                                 self.body)
 
     def build_cli_parser(self):
-        self.parser = OptionParser()
+        self.parser = optparse.OptionParser()
         self.parser.add_option('-D', '--debug', action='store_true',
                                help='Turn on all debugging output')
         if self.filters:

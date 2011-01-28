@@ -1,0 +1,75 @@
+{
+  "params": [
+    {
+      "optional": true, 
+      "cli_option": [
+        "d", 
+        "domain-name"
+      ], 
+      "type": "string", 
+      "name": "DomainName"
+    }, 
+    {
+      "items": [
+        {
+          "type": "object", 
+          "properties": [
+            {
+              "type": "string", 
+              "name": "ItemName"
+            }, 
+            {
+              "optional": true, 
+              "type": "array", 
+              "name": "Attribute", 
+              "items": [
+                {
+                  "type": "object", 
+                  "properties": [
+                    {
+                      "type": "string", 
+                      "name": "Name"
+                    }, 
+                    {
+                      "optional": true, 
+                      "type": "string", 
+                      "name": "Value"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "cli_option": [
+        "i", 
+        "item"
+      ], 
+      "type": "array", 
+      "name": "Item", 
+      "optional": true
+    }
+  ], 
+  "name": "BatchDeleteAttributes", 
+  "response": {
+    "type": "object", 
+    "name": "BatchDeleteAttributesResponse", 
+    "properties": [
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }, 
+          {
+            "type": "string", 
+            "name": "BoxUsage"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+    "name": "emr", 
+    "module": "boto.emr", 
+    "regions": [
+        {
+            "endpoint": "us-east-1.elasticmapreduce.amazonaws.com", 
+            "name": "us-east-1", 
+            "description": "US-East (Northern Virginia)"
+        }, 
+        {
+            "endpoint": "us-west-1.elasticmapreduce.amazonaws.com", 
+            "name": "us-west-1", 
+            "description": "US-West (Northern California)"
+        }, 
+        {
+            "endpoint": "eu-west-1.elasticmapreduce.amazonaws.com", 
+            "name": "eu-west-1", 
+            "description": "EU (Ireland)"
+        }
+    ], 
+    "provider": "aws", 
+    "path": "/", 
+    "port": 443
+}

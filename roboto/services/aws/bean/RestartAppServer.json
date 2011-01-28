@@ -1,0 +1,45 @@
+{
+  "params": [
+    {
+      "doc": "  The ID of the environment to restart the server for.  ", 
+      "cli_option": [
+        "e", 
+        "environment-id"
+      ], 
+      "optional": true, 
+      "name": "EnvironmentId", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 4, 
+      "cli_option": [
+        null, 
+        "environment-name"
+      ], 
+      "name": "EnvironmentName", 
+      "optional": true, 
+      "max_length": 23, 
+      "doc": "  The name of the environment to restart the server for.  ", 
+      "type": "string"
+    }
+  ], 
+  "name": "RestartAppServer", 
+  "response": {
+    "type": "object", 
+    "name": "RestartAppServerResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

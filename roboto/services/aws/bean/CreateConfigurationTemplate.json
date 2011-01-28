@@ -1,0 +1,264 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "a", 
+        "application-name"
+      ], 
+      "name": "ApplicationName", 
+      "optional": false, 
+      "max_length": 100, 
+      "doc": "  The name of the application to associate with this configuration template. If no application is found with this name, returns an InvalidParameterValue error.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "t", 
+        "template-name"
+      ], 
+      "name": "TemplateName", 
+      "optional": false, 
+      "max_length": 100, 
+      "doc": " The name of the configuration template.  Constraint: This name must be unique per application. Default: If a configuration template already exists with this name, Amazon ElasticBeanstalk returns an InvalidParameterValue error.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 0, 
+      "cli_option": [
+        "s", 
+        "solution-stack-name"
+      ], 
+      "name": "SolutionStackName", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": " The name of the solution stack used by this configuration. The solution stack specifies the operating system, architecture, and application server for a configuration template. It determines the set of configuration options as well as the possible and default values.    Use ListAvailableSolutionStacks to obtain a list of available solution stacks.   Default: If the SolutionStackName is not specified and the source configuration parameter is blank, Amazon ElasticBeanstalk uses the default solution stack, which is a 32-bit version of the default operating system running the Tomcat 6 application container server.  If not specified and the source configuration parameter is specified, Amazon ElasticBeanstalk uses the same solution stack as the source configuration template.   ", 
+      "type": "string"
+    }, 
+    {
+      "name": "SourceConfiguration", 
+      "doc": "  If specified, Amazon ElasticBeanstalk uses the configuration values from the specified configuration template to create a new configuration.   Values specified in the OptionSettings parameter of this call overrides any values obtained from the SourceConfiguration .    If no configuration template is found, returns an InvalidParameterValue error.   Constraint: If both the solution stack name parameter and the source configuration parameters are specified, the solution stack of the source configuration template must match the specified solution stack name or else Amazon ElasticBeanstalk returns an InvalidParameterCombination error.  ", 
+      "optional": true, 
+      "type": "object", 
+      "cli_option": [
+        null, 
+        "source-configuration"
+      ], 
+      "properties": [
+        {
+          "min_length": 1, 
+          "name": "ApplicationName", 
+          "optional": true, 
+          "max_length": 100, 
+          "doc": " The name of the application associated with the configuration. ", 
+          "type": "string"
+        }, 
+        {
+          "min_length": 1, 
+          "name": "TemplateName", 
+          "optional": true, 
+          "max_length": 100, 
+          "doc": " The name of the configuration template. ", 
+          "type": "string"
+        }
+      ]
+    }, 
+    {
+      "min_length": 0, 
+      "cli_option": [
+        "d", 
+        "description"
+      ], 
+      "name": "Description", 
+      "optional": true, 
+      "max_length": 200, 
+      "doc": " Describes this configuration. ", 
+      "type": "string"
+    }, 
+    {
+      "name": "OptionSettings", 
+      "doc": "  If specified, Amazon ElasticBeanstalk sets the specified configuration option to the requested value. The new values override the values obtained from the solution stack or the source configuration template.  ", 
+      "optional": true, 
+      "type": "object", 
+      "cli_option": [
+        "o", 
+        "option-settings"
+      ], 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "member", 
+          "items": [
+            {
+              "doc": "  A specification identifying an individual configuration option along with its current value.   ", 
+              "type": "object", 
+              "properties": [
+                {
+                  "min_length": 1, 
+                  "name": "Namespace", 
+                  "optional": true, 
+                  "max_length": 255, 
+                  "doc": "  A unique namespace identifying the option's associated AWS resource.  ", 
+                  "type": "string"
+                }, 
+                {
+                  "min_length": 1, 
+                  "name": "OptionName", 
+                  "optional": true, 
+                  "max_length": 100, 
+                  "doc": "  The name of the configuration option.  ", 
+                  "type": "string"
+                }, 
+                {
+                  "min_length": 0, 
+                  "name": "Value", 
+                  "optional": true, 
+                  "max_length": 100, 
+                  "doc": "  The current value for the configuration option.  ", 
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ], 
+  "name": "CreateConfigurationTemplate", 
+  "response": {
+    "type": "object", 
+    "name": "CreateConfigurationTemplateResponse", 
+    "properties": [
+      {
+        "doc": "  Describes the settings for a configuration set.   ", 
+        "type": "object", 
+        "name": "CreateConfigurationTemplateResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "min_length": 0, 
+            "name": "SolutionStackName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": "  The name of the solution stack this configuration set uses.  ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "ApplicationName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": "  The name of the application associated with this configuration set.  ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "TemplateName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": "  If not null , the name of the configuration template for this configuration set.  ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 0, 
+            "name": "Description", 
+            "optional": true, 
+            "max_length": 200, 
+            "doc": "  Describes this configuration set.  ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 4, 
+            "name": "EnvironmentName", 
+            "optional": true, 
+            "max_length": 23, 
+            "doc": "  If not null , the name of the environment for this configuration set.  ", 
+            "type": "string"
+          }, 
+          {
+            "doc": "  If this configuration set is associated with an environment, this indicates the deployment status of this configuration set:     null : This configuration is not associated with a running environment.     pending : This is a draft configuration that is not deployed to the associated environment but is in the process of deploying.     deployed : This is the configuration that is currently deployed to the associated running environment.     failed : This is a draft configuration, that failed to successfully deploy.       null : This configuration is not associated with a running environment.   pending : This is a draft configuration that is not deployed to the associated environment but is in the process of deploying.   deployed : This is the configuration that is currently deployed to the associated running environment.   failed : This is a draft configuration that failed to successfully deploy.   ", 
+            "type": "enum", 
+            "name": "DeploymentStatus", 
+            "optional": true, 
+            "choices": [
+              "deployed", 
+              "pending", 
+              "failed"
+            ]
+          }, 
+          {
+            "doc": "  The date (in UTC time) when this configuration set was created.  ", 
+            "optional": true, 
+            "name": "DateCreated", 
+            "type": "dateTime"
+          }, 
+          {
+            "doc": "  The date (in UTC time) when this configuration set was last modified.  ", 
+            "optional": true, 
+            "name": "DateUpdated", 
+            "type": "dateTime"
+          }, 
+          {
+            "doc": "  A list of the configuration options and their values in this configuration set.  ", 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
+                "items": [
+                  {
+                    "doc": "  A specification identifying an individual configuration option along with its current value.   ", 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "min_length": 1, 
+                        "name": "Namespace", 
+                        "optional": true, 
+                        "max_length": 255, 
+                        "doc": "  A unique namespace identifying the option's associated AWS resource.  ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 1, 
+                        "name": "OptionName", 
+                        "optional": true, 
+                        "max_length": 100, 
+                        "doc": "  The name of the configuration option.  ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 0, 
+                        "name": "Value", 
+                        "optional": true, 
+                        "max_length": 100, 
+                        "doc": "  The current value for the configuration option.  ", 
+                        "type": "string"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "optional": true, 
+            "name": "OptionSettings"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

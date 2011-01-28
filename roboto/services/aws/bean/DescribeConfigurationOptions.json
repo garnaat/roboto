@@ -1,0 +1,249 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "a", 
+        "application-name"
+      ], 
+      "name": "ApplicationName", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": "  The name of the application associated with the configuration template or environment. Only needed if you want to describe the configuration options associated with either the configuration template or environment.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "t", 
+        "template-name"
+      ], 
+      "name": "TemplateName", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": "  The name of the configuration template whose configuration options you want to describe.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 4, 
+      "cli_option": [
+        "e", 
+        "environment-name"
+      ], 
+      "name": "EnvironmentName", 
+      "optional": true, 
+      "max_length": 23, 
+      "doc": "  The name of the environment whose configuration options you want to describe.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 0, 
+      "cli_option": [
+        "s", 
+        "solution-stack-name"
+      ], 
+      "name": "SolutionStackName", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": "  The name of the solution stack whose configuration options you want to describe.  ", 
+      "type": "string"
+    }, 
+    {
+      "name": "Options", 
+      "doc": "  If specified, restricts the descriptions to only the specified options.  ", 
+      "optional": true, 
+      "type": "object", 
+      "cli_option": [
+        "o", 
+        "options"
+      ], 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "member", 
+          "items": [
+            {
+              "doc": "  A specification identifying an individual configuration option.  ", 
+              "type": "object", 
+              "properties": [
+                {
+                  "min_length": 1, 
+                  "name": "Namespace", 
+                  "optional": true, 
+                  "max_length": 255, 
+                  "doc": "  A unique namespace identifying the option's associated AWS resource.  ", 
+                  "type": "string"
+                }, 
+                {
+                  "min_length": 1, 
+                  "name": "OptionName", 
+                  "optional": true, 
+                  "max_length": 100, 
+                  "doc": "  The name of the configuration option.  ", 
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ], 
+  "name": "DescribeConfigurationOptions", 
+  "response": {
+    "type": "object", 
+    "name": "DescribeConfigurationOptionsResponse", 
+    "properties": [
+      {
+        "doc": " Describes the settings for a specified configuration set. ", 
+        "type": "object", 
+        "name": "DescribeConfigurationOptionsResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "min_length": 0, 
+            "name": "SolutionStackName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": "  The name of the solution stack these configuration options belong to.  ", 
+            "type": "string"
+          }, 
+          {
+            "doc": "  A list of ConfigurationOptionDescription .  ", 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
+                "items": [
+                  {
+                    "doc": "  Describes the possible values for a configuration option.  ", 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "min_length": 1, 
+                        "name": "Namespace", 
+                        "optional": true, 
+                        "max_length": 255, 
+                        "doc": "  A unique namespace identifying the option's associated AWS resource.  ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 1, 
+                        "name": "Name", 
+                        "optional": true, 
+                        "max_length": 100, 
+                        "doc": "  The name of the configuration option.  ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "doc": "  The default value for this configuration option.  ", 
+                        "optional": true, 
+                        "name": "DefaultValue", 
+                        "type": "string"
+                      }, 
+                      {
+                        "doc": "  An indication of which action is required if the value for this configuration option changes:     NoInterruption - There is no interruption to the environment or application availability.     RestartEnvironment - The environment is restarted, all AWS resources are deleted and recreated, and the environment is unavailable during the process.     RestartApplicationServer - The environment is available the entire time. However, a short application outage occurs when the application servers on the running Amazon EC2 instances are restarted.      NoInterruption : There is no interruption to the environment or application availability.   RestartEnvironment : The environment is entirely restarted, all AWS resources are deleted and recreated, and the environment is unavailable during the process.   RestartApplicationServer : The environment is available the entire time. However, a short application outage occurs when the application servers on the running Amazon EC2 instances are restarted.   ", 
+                        "optional": true, 
+                        "name": "ChangeSeverity", 
+                        "type": "string"
+                      }, 
+                      {
+                        "doc": "  An indication of whether the user defined this configuration option:     true : This configuration option was defined by the user. It is a valid choice for specifying this as an Option to Remove when updating configuration settings.       false : This configuration was not defined by the user.        true : This configuration option was defined by the user. It is a valid choice for specifying if this as an Option to Remove when updating configuration settings.     false : This configuration was not defined by the user.    Constraint: You can remove only UserDefined options from a configuration.   Valid Values: true | false ", 
+                        "optional": true, 
+                        "name": "UserDefined", 
+                        "type": "boolean"
+                      }, 
+                      {
+                        "doc": "  An indication of which type of values this option has and whether it is allowable to select one or more than one of the possible values:     Scalar : Values for this option are a single selection from the possible values, or a unformatted string or numeric value governed by the MIN/MAX/Regex constraints:     List : Values for this option are multiple selections of the possible values.     Boolean : Values for this option are either true or false .        Scalar : Values for this option are a single selection from the possible values, or an unformatted string, or numeric value governed by the MIN/MAX/Regex constraints.   List : Values for this option are multiple selections from the possible values.   Boolean : Values for this option are either true or false .      ", 
+                        "type": "enum", 
+                        "name": "ValueType", 
+                        "optional": true, 
+                        "choices": [
+                          "Scalar", 
+                          "List"
+                        ]
+                      }, 
+                      {
+                        "doc": "  If specified, values for the configuration option are selected from this list.  ", 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "optional": false, 
+                            "type": "array", 
+                            "name": "member", 
+                            "items": [
+                              {
+                                "type": "string"
+                              }
+                            ]
+                          }
+                        ], 
+                        "optional": true, 
+                        "name": "ValueOptions"
+                      }, 
+                      {
+                        "doc": "  If specified, the configuration option must be a numeric value greater than this value.  ", 
+                        "optional": true, 
+                        "name": "MinValue", 
+                        "type": "integer"
+                      }, 
+                      {
+                        "doc": "  If specified, the configuration option must be a numeric value less than this value.  ", 
+                        "optional": true, 
+                        "name": "MaxValue", 
+                        "type": "integer"
+                      }, 
+                      {
+                        "doc": "  If specified, the configuration option must be a string value no longer than this value.  ", 
+                        "optional": true, 
+                        "name": "MaxLength", 
+                        "type": "integer"
+                      }, 
+                      {
+                        "doc": "  If specified, the configuration option must be a string value that satisfies this regular expression.  ", 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "doc": "  The regular expression pattern that a string configuration option value with this restriction must match.  ", 
+                            "optional": true, 
+                            "name": "Pattern", 
+                            "type": "string"
+                          }, 
+                          {
+                            "doc": "  A unique name representing this regular expression.  ", 
+                            "optional": true, 
+                            "name": "Label", 
+                            "type": "string"
+                          }
+                        ], 
+                        "optional": true, 
+                        "name": "Regex"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "optional": true, 
+            "name": "Options"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

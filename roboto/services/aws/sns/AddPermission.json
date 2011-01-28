@@ -1,0 +1,83 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "t", 
+        "topic-arn"
+      ], 
+      "type": "string", 
+      "name": "TopicArn"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "l", 
+        "label"
+      ], 
+      "type": "string", 
+      "name": "Label"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "a", 
+        "a-w-s-account-id"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "member", 
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        }
+      ], 
+      "name": "AWSAccountId"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        null, 
+        "action-name"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "member", 
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        }
+      ], 
+      "name": "ActionName"
+    }
+  ], 
+  "name": "AddPermission", 
+  "response": {
+    "type": "object", 
+    "name": "AddPermissionResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

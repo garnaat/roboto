@@ -1,0 +1,135 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "a", 
+        "application-name"
+      ], 
+      "name": "ApplicationName", 
+      "optional": false, 
+      "max_length": 100, 
+      "doc": "  The name of the application associated with this version.   If no application is found with this name, returns an InvalidParameterValue error.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "v", 
+        "version-label"
+      ], 
+      "name": "VersionLabel", 
+      "optional": false, 
+      "max_length": 100, 
+      "doc": " The name of the version to update.  If no application version is found with this label, returns an InvalidParameterValue error.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 0, 
+      "cli_option": [
+        "d", 
+        "description"
+      ], 
+      "name": "Description", 
+      "optional": true, 
+      "max_length": 200, 
+      "doc": " A new description for this release. ", 
+      "type": "string"
+    }
+  ], 
+  "name": "UpdateApplicationVersion", 
+  "response": {
+    "type": "object", 
+    "name": "UpdateApplicationVersionResponse", 
+    "properties": [
+      {
+        "doc": "  Result message wrapping a single description of an application version.  ", 
+        "type": "object", 
+        "name": "UpdateApplicationVersionResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "doc": "  The ApplicationVersionDescription of the application version.  ", 
+            "type": "object", 
+            "properties": [
+              {
+                "min_length": 1, 
+                "name": "ApplicationName", 
+                "optional": true, 
+                "max_length": 100, 
+                "doc": " The name of the application associated with this release. ", 
+                "type": "string"
+              }, 
+              {
+                "min_length": 0, 
+                "name": "Description", 
+                "optional": true, 
+                "max_length": 200, 
+                "doc": " The description of this application version. ", 
+                "type": "string"
+              }, 
+              {
+                "min_length": 1, 
+                "name": "VersionLabel", 
+                "optional": true, 
+                "max_length": 100, 
+                "doc": "  A label uniquely identifying the version for the associated application.  ", 
+                "type": "string"
+              }, 
+              {
+                "doc": "  The location where the source bundle is located for this version.  ", 
+                "type": "object", 
+                "properties": [
+                  {
+                    "min_length": 0, 
+                    "name": "S3Bucket", 
+                    "optional": true, 
+                    "max_length": 255, 
+                    "doc": " The Amazon S3 bucket where the data is located. ", 
+                    "type": "string"
+                  }, 
+                  {
+                    "min_length": 0, 
+                    "name": "S3Key", 
+                    "optional": true, 
+                    "max_length": 1024, 
+                    "doc": " The Amazon S3 key where the data is located. ", 
+                    "type": "string"
+                  }
+                ], 
+                "optional": true, 
+                "name": "SourceBundle"
+              }, 
+              {
+                "doc": " The creation date of the application version. ", 
+                "optional": true, 
+                "name": "DateCreated", 
+                "type": "dateTime"
+              }, 
+              {
+                "doc": " The last modified date of the application version. ", 
+                "optional": true, 
+                "name": "DateUpdated", 
+                "type": "dateTime"
+              }
+            ], 
+            "optional": true, 
+            "name": "ApplicationVersion"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

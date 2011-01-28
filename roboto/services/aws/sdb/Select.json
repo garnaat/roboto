@@ -1,0 +1,100 @@
+{
+  "params": [
+    {
+      "optional": true, 
+      "cli_option": [
+        "s", 
+        "select-expression"
+      ], 
+      "type": "string", 
+      "name": "SelectExpression"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "n", 
+        "next-token"
+      ], 
+      "type": "string", 
+      "name": "NextToken"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "c", 
+        "consistent-read"
+      ], 
+      "type": "boolean", 
+      "name": "ConsistentRead"
+    }
+  ], 
+  "name": "Select", 
+  "response": {
+    "type": "object", 
+    "name": "SelectResponse", 
+    "properties": [
+      {
+        "type": "object", 
+        "name": "SelectResult", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "array", 
+            "name": "Item", 
+            "items": [
+              {
+                "type": "object", 
+                "properties": [
+                  {
+                    "type": "string", 
+                    "name": "Name"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "array", 
+                    "name": "Attribute", 
+                    "items": [
+                      {
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "type": "string", 
+                            "name": "Name"
+                          }, 
+                          {
+                            "optional": true, 
+                            "type": "string", 
+                            "name": "Value"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }, 
+          {
+            "optional": true, 
+            "type": "string", 
+            "name": "NextToken"
+          }
+        ]
+      }, 
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }, 
+          {
+            "type": "string", 
+            "name": "BoxUsage"
+          }
+        ]
+      }
+    ]
+  }
+}

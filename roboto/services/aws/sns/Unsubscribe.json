@@ -1,0 +1,32 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "s", 
+        "subscription-arn"
+      ], 
+      "type": "string", 
+      "name": "SubscriptionArn"
+    }
+  ], 
+  "name": "Unsubscribe", 
+  "response": {
+    "type": "object", 
+    "name": "UnsubscribeResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

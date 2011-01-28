@@ -1,0 +1,57 @@
+{
+  "params": [
+    {
+      "min_length": 4, 
+      "cli_option": [
+        "c", 
+        "c-n-a-m-e-prefix"
+      ], 
+      "name": "CNAMEPrefix", 
+      "optional": false, 
+      "max_length": 63, 
+      "doc": "  The prefix used when this CNAME is reserved.  ", 
+      "type": "string"
+    }
+  ], 
+  "name": "CheckDNSAvailability", 
+  "response": {
+    "type": "object", 
+    "name": "CheckDNSAvailabilityResponse", 
+    "properties": [
+      {
+        "doc": " Indicates if the specified CNAME is available. ", 
+        "type": "object", 
+        "name": "CheckDNSAvailabilityResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "doc": "  Indicates if the specified CNAME is available:     true : The CNAME is available.     true : The CNAME is not available.       true : The CNAME is available.   false : The CNAME is not available.    ", 
+            "optional": true, 
+            "name": "Available", 
+            "type": "boolean"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "FullyQualifiedCNAME", 
+            "optional": true, 
+            "max_length": 255, 
+            "doc": " The fully qualified CNAME to reserve when CreateEnvironment is called with the provided prefix. ", 
+            "type": "string"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

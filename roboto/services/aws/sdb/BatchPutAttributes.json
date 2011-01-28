@@ -1,0 +1,78 @@
+{
+  "params": [
+    {
+      "optional": true, 
+      "cli_option": [
+        "d", 
+        "domain-name"
+      ], 
+      "type": "string", 
+      "name": "DomainName"
+    }, 
+    {
+      "items": [
+        {
+          "type": "object", 
+          "properties": [
+            {
+              "type": "string", 
+              "name": "ItemName"
+            }, 
+            {
+              "items": [
+                {
+                  "type": "object", 
+                  "properties": [
+                    {
+                      "type": "string", 
+                      "name": "Name"
+                    }, 
+                    {
+                      "type": "string", 
+                      "name": "Value"
+                    }, 
+                    {
+                      "optional": true, 
+                      "type": "boolean", 
+                      "name": "Replace"
+                    }
+                  ]
+                }
+              ], 
+              "type": "array", 
+              "name": "Attribute"
+            }
+          ]
+        }
+      ], 
+      "cli_option": [
+        "i", 
+        "item"
+      ], 
+      "type": "array", 
+      "name": "Item", 
+      "optional": true
+    }
+  ], 
+  "name": "BatchPutAttributes", 
+  "response": {
+    "type": "object", 
+    "name": "BatchPutAttributesResponse", 
+    "properties": [
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }, 
+          {
+            "type": "string", 
+            "name": "BoxUsage"
+          }
+        ]
+      }
+    ]
+  }
+}

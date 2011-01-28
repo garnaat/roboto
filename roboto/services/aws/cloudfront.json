@@ -1,0 +1,14 @@
+{
+    "name": "cloudfront", 
+    "module": "cloudfront", 
+    "regions": [
+        {
+            "endpoint": "cloudfront.amazonaws.com", 
+            "name": "us-east-1", 
+            "description": "US-East (Northern Virginia)"
+        }
+    ], 
+    "provider": "aws", 
+    "path": "/", 
+    "port": 443
+}

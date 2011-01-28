@@ -1,0 +1,169 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "a", 
+        "application-name"
+      ], 
+      "name": "ApplicationName", 
+      "optional": false, 
+      "max_length": 100, 
+      "doc": "  The name of the application that the configuration template or environment belongs to.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "t", 
+        "template-name"
+      ], 
+      "name": "TemplateName", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": "  The name of the configuration template to validate the settings against.   You cannot specify both this and an environment name.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 4, 
+      "cli_option": [
+        "e", 
+        "environment-name"
+      ], 
+      "name": "EnvironmentName", 
+      "optional": true, 
+      "max_length": 23, 
+      "doc": "  The name of the environment to validate the settings against.   You cannot specify both this and a configuration template name.  ", 
+      "type": "string"
+    }, 
+    {
+      "name": "OptionSettings", 
+      "doc": "  A list of the options and desired values to evaluate.  ", 
+      "optional": false, 
+      "type": "object", 
+      "cli_option": [
+        "o", 
+        "option-settings"
+      ], 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "member", 
+          "items": [
+            {
+              "doc": "  A specification identifying an individual configuration option along with its current value.   ", 
+              "type": "object", 
+              "properties": [
+                {
+                  "min_length": 1, 
+                  "name": "Namespace", 
+                  "optional": true, 
+                  "max_length": 255, 
+                  "doc": "  A unique namespace identifying the option's associated AWS resource.  ", 
+                  "type": "string"
+                }, 
+                {
+                  "min_length": 1, 
+                  "name": "OptionName", 
+                  "optional": true, 
+                  "max_length": 100, 
+                  "doc": "  The name of the configuration option.  ", 
+                  "type": "string"
+                }, 
+                {
+                  "min_length": 0, 
+                  "name": "Value", 
+                  "optional": true, 
+                  "max_length": 100, 
+                  "doc": "  The current value for the configuration option.  ", 
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ], 
+  "name": "ValidateConfigurationSettings", 
+  "response": {
+    "type": "object", 
+    "name": "ValidateConfigurationSettingsResponse", 
+    "properties": [
+      {
+        "doc": " Provides a list of validation messages. ", 
+        "type": "object", 
+        "name": "ValidateConfigurationSettingsResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "doc": "  A list of ValidationMessage  ", 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
+                "items": [
+                  {
+                    "doc": "  An error or warning for a desired configuration option value.  ", 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "doc": "  A message describing the error or warning.  ", 
+                        "optional": true, 
+                        "name": "Message", 
+                        "type": "string"
+                      }, 
+                      {
+                        "doc": "  An indication of the severity of this message:     error - This message indicates that this is not a valid setting for an option.     warning - This message is providing information you should take into account.      error - This message indicates that this is not a valid setting for an option.   warning - This message is providing information you should take into account.   ", 
+                        "type": "enum", 
+                        "name": "Severity", 
+                        "optional": true, 
+                        "choices": [
+                          "error", 
+                          "warning"
+                        ]
+                      }, 
+                      {
+                        "min_length": 1, 
+                        "name": "Namespace", 
+                        "optional": true, 
+                        "max_length": 255, 
+                        "doc": "  ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 1, 
+                        "name": "OptionName", 
+                        "optional": true, 
+                        "max_length": 100, 
+                        "doc": "  ", 
+                        "type": "string"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "optional": true, 
+            "name": "Messages"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

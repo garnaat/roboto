@@ -1,0 +1,58 @@
+{
+  "params": [
+    {
+      "doc": " The ID of the environment of the requested data.  If no such environment is found, returns an InvalidParameterValue error.  ", 
+      "cli_option": [
+        "e", 
+        "environment-id"
+      ], 
+      "optional": true, 
+      "name": "EnvironmentId", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 4, 
+      "cli_option": [
+        null, 
+        "environment-name"
+      ], 
+      "name": "EnvironmentName", 
+      "optional": true, 
+      "max_length": 23, 
+      "doc": " The name of the environment of the requested data.  If no such environment is found, returns an InvalidParameterValue error.  ", 
+      "type": "string"
+    }, 
+    {
+      "name": "InfoType", 
+      "doc": "  The type of information to request.  ", 
+      "choices": [
+        "tail"
+      ], 
+      "optional": false, 
+      "type": "enum", 
+      "cli_option": [
+        "i", 
+        "info-type"
+      ]
+    }
+  ], 
+  "name": "RequestEnvironmentInfo", 
+  "response": {
+    "type": "object", 
+    "name": "RequestEnvironmentInfoResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

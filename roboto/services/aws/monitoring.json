@@ -1,0 +1,29 @@
+{
+    "name": "monitoring", 
+    "module": "boto.ec2.monitoring", 
+    "regions": [
+        {
+            "endpoint": "monitoring.us-east-1.amazonaws.com", 
+            "name": "us-east-1", 
+            "description": "US-East (Northern Virginia)"
+        }, 
+        {
+            "endpoint": "monitoring.us-west-1.amazonaws.com", 
+            "name": "us-west-1", 
+            "description": "US-West (Northern California)"
+        }, 
+        {
+            "endpoint": "monitoring.eu-west-1.amazonaws.com", 
+            "name": "eu-west-1", 
+            "description": "EU (Ireland)"
+        }, 
+        {
+            "endpoint": "monitoring.ap-southeast-1.amazonaws.com", 
+            "name": "ap-southeast-1", 
+            "description": "Asia Pacific (Singapore)"
+        }
+    ], 
+    "provider": "aws", 
+    "path": "/", 
+    "port": 443
+}

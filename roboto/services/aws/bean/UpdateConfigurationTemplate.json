@@ -1,0 +1,265 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "a", 
+        "application-name"
+      ], 
+      "name": "ApplicationName", 
+      "optional": false, 
+      "max_length": 100, 
+      "doc": " The name of the application associated with the configuration template to update.  If no application is found with this name, returns an InvalidParameterValue error.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "t", 
+        "template-name"
+      ], 
+      "name": "TemplateName", 
+      "optional": false, 
+      "max_length": 100, 
+      "doc": " The name of the configuration template to update.  If no configuration template is found with this name, returns an InvalidParameterValue error.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 0, 
+      "cli_option": [
+        "d", 
+        "description"
+      ], 
+      "name": "Description", 
+      "optional": true, 
+      "max_length": 200, 
+      "doc": " A new description for the configuration. ", 
+      "type": "string"
+    }, 
+    {
+      "name": "OptionSettings", 
+      "doc": "  A list of configuration option settings to update with the new specified option value.  ", 
+      "optional": true, 
+      "type": "object", 
+      "cli_option": [
+        "o", 
+        "option-settings"
+      ], 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "member", 
+          "items": [
+            {
+              "doc": "  A specification identifying an individual configuration option along with its current value.   ", 
+              "type": "object", 
+              "properties": [
+                {
+                  "min_length": 1, 
+                  "name": "Namespace", 
+                  "optional": true, 
+                  "max_length": 255, 
+                  "doc": "  A unique namespace identifying the option's associated AWS resource.  ", 
+                  "type": "string"
+                }, 
+                {
+                  "min_length": 1, 
+                  "name": "OptionName", 
+                  "optional": true, 
+                  "max_length": 100, 
+                  "doc": "  The name of the configuration option.  ", 
+                  "type": "string"
+                }, 
+                {
+                  "min_length": 0, 
+                  "name": "Value", 
+                  "optional": true, 
+                  "max_length": 100, 
+                  "doc": "  The current value for the configuration option.  ", 
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }, 
+    {
+      "name": "OptionsToRemove", 
+      "doc": "  A list of configuration options to remove from the configuration set.   Constraint: You can remove only UserDefined configuration options.  ", 
+      "optional": true, 
+      "type": "object", 
+      "cli_option": [
+        null, 
+        "options-to-remove"
+      ], 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "member", 
+          "items": [
+            {
+              "doc": "  A specification identifying an individual configuration option.  ", 
+              "type": "object", 
+              "properties": [
+                {
+                  "min_length": 1, 
+                  "name": "Namespace", 
+                  "optional": true, 
+                  "max_length": 255, 
+                  "doc": "  A unique namespace identifying the option's associated AWS resource.  ", 
+                  "type": "string"
+                }, 
+                {
+                  "min_length": 1, 
+                  "name": "OptionName", 
+                  "optional": true, 
+                  "max_length": 100, 
+                  "doc": "  The name of the configuration option.  ", 
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ], 
+  "name": "UpdateConfigurationTemplate", 
+  "response": {
+    "type": "object", 
+    "name": "UpdateConfigurationTemplateResponse", 
+    "properties": [
+      {
+        "doc": "  Describes the settings for a configuration set.   ", 
+        "type": "object", 
+        "name": "UpdateConfigurationTemplateResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "min_length": 0, 
+            "name": "SolutionStackName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": "  The name of the solution stack this configuration set uses.  ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "ApplicationName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": "  The name of the application associated with this configuration set.  ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "TemplateName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": "  If not null , the name of the configuration template for this configuration set.  ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 0, 
+            "name": "Description", 
+            "optional": true, 
+            "max_length": 200, 
+            "doc": "  Describes this configuration set.  ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 4, 
+            "name": "EnvironmentName", 
+            "optional": true, 
+            "max_length": 23, 
+            "doc": "  If not null , the name of the environment for this configuration set.  ", 
+            "type": "string"
+          }, 
+          {
+            "doc": "  If this configuration set is associated with an environment, this indicates the deployment status of this configuration set:     null : This configuration is not associated with a running environment.     pending : This is a draft configuration that is not deployed to the associated environment but is in the process of deploying.     deployed : This is the configuration that is currently deployed to the associated running environment.     failed : This is a draft configuration, that failed to successfully deploy.       null : This configuration is not associated with a running environment.   pending : This is a draft configuration that is not deployed to the associated environment but is in the process of deploying.   deployed : This is the configuration that is currently deployed to the associated running environment.   failed : This is a draft configuration that failed to successfully deploy.   ", 
+            "type": "enum", 
+            "name": "DeploymentStatus", 
+            "optional": true, 
+            "choices": [
+              "deployed", 
+              "pending", 
+              "failed"
+            ]
+          }, 
+          {
+            "doc": "  The date (in UTC time) when this configuration set was created.  ", 
+            "optional": true, 
+            "name": "DateCreated", 
+            "type": "dateTime"
+          }, 
+          {
+            "doc": "  The date (in UTC time) when this configuration set was last modified.  ", 
+            "optional": true, 
+            "name": "DateUpdated", 
+            "type": "dateTime"
+          }, 
+          {
+            "doc": "  A list of the configuration options and their values in this configuration set.  ", 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
+                "items": [
+                  {
+                    "doc": "  A specification identifying an individual configuration option along with its current value.   ", 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "min_length": 1, 
+                        "name": "Namespace", 
+                        "optional": true, 
+                        "max_length": 255, 
+                        "doc": "  A unique namespace identifying the option's associated AWS resource.  ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 1, 
+                        "name": "OptionName", 
+                        "optional": true, 
+                        "max_length": 100, 
+                        "doc": "  The name of the configuration option.  ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 0, 
+                        "name": "Value", 
+                        "optional": true, 
+                        "max_length": 100, 
+                        "doc": "  The current value for the configuration option.  ", 
+                        "type": "string"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "optional": true, 
+            "name": "OptionSettings"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

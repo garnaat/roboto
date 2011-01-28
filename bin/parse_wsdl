@@ -44,7 +44,6 @@ if __name__ == '__main__':
                       help="Template file for bin wrappers",
                       default=None)
     options, args = parser.parse_args()
-    print options, args
     if len(args) != 1:
         parser.error('Must supply a WSDL file')
     

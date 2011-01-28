@@ -1,0 +1,98 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "t", 
+        "topic-arn"
+      ], 
+      "type": "string", 
+      "name": "TopicArn"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "n", 
+        "next-token"
+      ], 
+      "type": "string", 
+      "name": "NextToken"
+    }
+  ], 
+  "name": "ListSubscriptionsByTopic", 
+  "response": {
+    "type": "object", 
+    "name": "ListSubscriptionsByTopicResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ListSubscriptionsByTopicResult", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
+                "items": [
+                  {
+                    "doc": "A wrapper type for the attributes of an SNS subscription.", 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "SubscriptionArn"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "Owner"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "Protocol"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "Endpoint"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "TopicArn"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "name": "Subscriptions"
+          }, 
+          {
+            "optional": true, 
+            "type": "string", 
+            "name": "NextToken"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

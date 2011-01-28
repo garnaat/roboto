@@ -1,0 +1,44 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "n", 
+        "name"
+      ], 
+      "type": "string", 
+      "name": "Name"
+    }
+  ], 
+  "name": "CreateTopic", 
+  "response": {
+    "type": "object", 
+    "name": "CreateTopicResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "CreateTopicResult", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "string", 
+            "name": "TopicArn"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

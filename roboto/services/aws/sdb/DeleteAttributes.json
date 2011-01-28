@@ -1,0 +1,93 @@
+{
+  "params": [
+    {
+      "optional": true, 
+      "cli_option": [
+        "d", 
+        "domain-name"
+      ], 
+      "type": "string", 
+      "name": "DomainName"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "i", 
+        "item-name"
+      ], 
+      "type": "string", 
+      "name": "ItemName"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "a", 
+        "attribute"
+      ], 
+      "type": "array", 
+      "name": "Attribute", 
+      "items": [
+        {
+          "type": "object", 
+          "properties": [
+            {
+              "type": "string", 
+              "name": "Name"
+            }, 
+            {
+              "optional": true, 
+              "type": "string", 
+              "name": "Value"
+            }
+          ]
+        }
+      ]
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "e", 
+        "expected"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "type": "string", 
+          "name": "Name"
+        }, 
+        {
+          "optional": true, 
+          "type": "string", 
+          "name": "Value"
+        }, 
+        {
+          "optional": true, 
+          "type": "boolean", 
+          "name": "Exists"
+        }
+      ], 
+      "name": "Expected"
+    }
+  ], 
+  "name": "DeleteAttributes", 
+  "response": {
+    "type": "object", 
+    "name": "DeleteAttributesResponse", 
+    "properties": [
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }, 
+          {
+            "type": "string", 
+            "name": "BoxUsage"
+          }
+        ]
+      }
+    ]
+  }
+}

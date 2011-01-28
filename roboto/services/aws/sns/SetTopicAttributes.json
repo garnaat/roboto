@@ -1,0 +1,50 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "t", 
+        "topic-arn"
+      ], 
+      "type": "string", 
+      "name": "TopicArn"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "a", 
+        "attribute-name"
+      ], 
+      "type": "string", 
+      "name": "AttributeName"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        null, 
+        "attribute-value"
+      ], 
+      "type": "string", 
+      "name": "AttributeValue"
+    }
+  ], 
+  "name": "SetTopicAttributes", 
+  "response": {
+    "type": "object", 
+    "name": "SetTopicAttributesResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

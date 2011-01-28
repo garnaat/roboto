@@ -1,0 +1,41 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "t", 
+        "topic-arn"
+      ], 
+      "type": "string", 
+      "name": "TopicArn"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "l", 
+        "label"
+      ], 
+      "type": "string", 
+      "name": "Label"
+    }
+  ], 
+  "name": "RemovePermission", 
+  "response": {
+    "type": "object", 
+    "name": "RemovePermissionResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

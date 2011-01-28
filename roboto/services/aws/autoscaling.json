@@ -1,0 +1,29 @@
+{
+    "name": "autoscaling", 
+    "module": "boto.ec2.autoscaling", 
+    "regions": [
+        {
+            "endpoint": "autoscaling.us-east-1.amazonaws.com", 
+            "name": "us-east-1", 
+            "description": "US-East (Northern Virginia)"
+        }, 
+        {
+            "endpoint": "autoscaling.us-west-1.amazonaws.com", 
+            "name": "us-west-1", 
+            "description": "US-West (Northern California)"
+        }, 
+        {
+            "endpoint": "autoscaling.eu-west-1.amazonaws.com", 
+            "name": "eu-west-1", 
+            "description": "EU (Ireland)"
+        }, 
+        {
+            "endpoint": "autoscaling.ap-southeast-1.amazonaws.com", 
+            "name": "ap-southeast-1", 
+            "description": "Asia Pacific (Singapore)"
+        }
+    ], 
+    "provider": "aws", 
+    "path": "/", 
+    "port": 443
+}

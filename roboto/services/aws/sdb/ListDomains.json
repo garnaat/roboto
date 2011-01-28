@@ -1,0 +1,64 @@
+{
+  "params": [
+    {
+      "optional": true, 
+      "cli_option": [
+        "m", 
+        "max-number-of-domains"
+      ], 
+      "type": "int", 
+      "name": "MaxNumberOfDomains"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "n", 
+        "next-token"
+      ], 
+      "type": "string", 
+      "name": "NextToken"
+    }
+  ], 
+  "name": "ListDomains", 
+  "response": {
+    "type": "object", 
+    "name": "ListDomainsResponse", 
+    "properties": [
+      {
+        "type": "object", 
+        "name": "ListDomainsResult", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "array", 
+            "name": "DomainName", 
+            "items": [
+              {
+                "type": "string"
+              }
+            ]
+          }, 
+          {
+            "optional": true, 
+            "type": "string", 
+            "name": "NextToken"
+          }
+        ]
+      }, 
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }, 
+          {
+            "type": "string", 
+            "name": "BoxUsage"
+          }
+        ]
+      }
+    ]
+  }
+}

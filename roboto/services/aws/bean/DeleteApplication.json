@@ -1,0 +1,35 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "a", 
+        "application-name"
+      ], 
+      "name": "ApplicationName", 
+      "optional": false, 
+      "max_length": 100, 
+      "doc": " The name of the application to delete. ", 
+      "type": "string"
+    }
+  ], 
+  "name": "DeleteApplication", 
+  "response": {
+    "type": "object", 
+    "name": "DeleteApplicationResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

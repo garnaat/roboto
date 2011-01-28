@@ -1,0 +1,238 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "a", 
+        "application-name"
+      ], 
+      "name": "ApplicationName", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": "  If specified, Amazon ElasticBeanstalk restricts the returned descriptions to include only those associated with this application.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "v", 
+        "version-label"
+      ], 
+      "name": "VersionLabel", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": "  If specified, Amazon ElasticBeanstalk restricts the returned descriptions to those associated with this application version.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "t", 
+        "template-name"
+      ], 
+      "name": "TemplateName", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": "  If specified, Amazon ElasticBeanstalk restricts the returned descriptions to those that are associated with this environment configuration.  ", 
+      "type": "string"
+    }, 
+    {
+      "doc": "  If specified, Amazon ElasticBeanstalk restricts the returned descriptions to those associated with this environment.  ", 
+      "cli_option": [
+        "e", 
+        "environment-id"
+      ], 
+      "optional": true, 
+      "name": "EnvironmentId", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 4, 
+      "cli_option": [
+        null, 
+        "environment-name"
+      ], 
+      "name": "EnvironmentName", 
+      "optional": true, 
+      "max_length": 23, 
+      "doc": "  If specified, Amazon ElasticBeanstalk restricts the returned descriptions to those associated with this environment.  ", 
+      "type": "string"
+    }, 
+    {
+      "doc": "  If specified, Amazon ElasticBeanstalk restricts the described events to include only those associated with this request ID.  ", 
+      "cli_option": [
+        "r", 
+        "request-id"
+      ], 
+      "optional": true, 
+      "name": "RequestId", 
+      "type": "string"
+    }, 
+    {
+      "name": "Severity", 
+      "doc": "  If specified, limits the events returned from this call to include only those with the specified severity or higher.  ", 
+      "choices": [
+        "TRACE", 
+        "DEBUG", 
+        "INFO", 
+        "WARN", 
+        "ERROR", 
+        "FATAL"
+      ], 
+      "optional": true, 
+      "type": "enum", 
+      "cli_option": [
+        "s", 
+        "severity"
+      ]
+    }, 
+    {
+      "doc": "  If specified, Amazon ElasticBeanstalk restricts the returned descriptions to those that occur on or after this time.  ", 
+      "cli_option": [
+        null, 
+        "start-time"
+      ], 
+      "optional": true, 
+      "name": "StartTime", 
+      "type": "dateTime"
+    }, 
+    {
+      "doc": "  If specified, Amazon ElasticBeanstalk restricts the returned descriptions to those that occur up to but not including the EndTime.  ", 
+      "cli_option": [
+        null, 
+        "end-time"
+      ], 
+      "optional": true, 
+      "name": "EndTime", 
+      "type": "dateTime"
+    }, 
+    {
+      "doc": "  Pagination token. If specified, the events return the next batch of results.  ", 
+      "cli_option": [
+        "n", 
+        "next-token"
+      ], 
+      "optional": true, 
+      "name": "NextToken", 
+      "type": "string"
+    }
+  ], 
+  "name": "DescribeEvents", 
+  "response": {
+    "type": "object", 
+    "name": "DescribeEventsResponse", 
+    "properties": [
+      {
+        "doc": " Result message wrapping a list of event descriptions. ", 
+        "type": "object", 
+        "name": "DescribeEventsResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "doc": "  A list of EventDescription .  ", 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
+                "items": [
+                  {
+                    "doc": " Describes an event. ", 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "doc": " The date when the event occurred. ", 
+                        "optional": true, 
+                        "name": "EventDate", 
+                        "type": "dateTime"
+                      }, 
+                      {
+                        "doc": " The event message. ", 
+                        "optional": true, 
+                        "name": "Message", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 1, 
+                        "name": "ApplicationName", 
+                        "optional": true, 
+                        "max_length": 100, 
+                        "doc": " The application associated with the event. ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 1, 
+                        "name": "VersionLabel", 
+                        "optional": true, 
+                        "max_length": 100, 
+                        "doc": " The release label for the application version associated with this event. ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 1, 
+                        "name": "TemplateName", 
+                        "optional": true, 
+                        "max_length": 100, 
+                        "doc": " The name of the configuration associated with this event. ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 4, 
+                        "name": "EnvironmentName", 
+                        "optional": true, 
+                        "max_length": 23, 
+                        "doc": " The name of the environment associated with this event. ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "doc": " The web service request ID for the activity of this event. ", 
+                        "optional": true, 
+                        "name": "RequestId", 
+                        "type": "string"
+                      }, 
+                      {
+                        "doc": " The severity level of this event. ", 
+                        "type": "enum", 
+                        "name": "Severity", 
+                        "optional": true, 
+                        "choices": [
+                          "TRACE", 
+                          "DEBUG", 
+                          "INFO", 
+                          "WARN", 
+                          "ERROR", 
+                          "FATAL"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "optional": true, 
+            "name": "Events"
+          }, 
+          {
+            "doc": "  If specified, this indicates that there are more results to obtain. Use this token in the next DescribeEvents call to get the next batch of events.  ", 
+            "optional": true, 
+            "name": "NextToken", 
+            "type": "string"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

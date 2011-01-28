@@ -1,0 +1,68 @@
+{
+  "params": [
+    {
+      "optional": true, 
+      "cli_option": [
+        "d", 
+        "domain-name"
+      ], 
+      "type": "string", 
+      "name": "DomainName"
+    }
+  ], 
+  "name": "DomainMetadata", 
+  "response": {
+    "type": "object", 
+    "name": "DomainMetadataResponse", 
+    "properties": [
+      {
+        "type": "object", 
+        "name": "DomainMetadataResult", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "ItemCount"
+          }, 
+          {
+            "type": "string", 
+            "name": "ItemNamesSizeBytes"
+          }, 
+          {
+            "type": "string", 
+            "name": "AttributeNameCount"
+          }, 
+          {
+            "type": "string", 
+            "name": "AttributeNamesSizeBytes"
+          }, 
+          {
+            "type": "string", 
+            "name": "AttributeValueCount"
+          }, 
+          {
+            "type": "string", 
+            "name": "AttributeValuesSizeBytes"
+          }, 
+          {
+            "type": "string", 
+            "name": "Timestamp"
+          }
+        ]
+      }, 
+      {
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "type": "string", 
+            "name": "RequestId"
+          }, 
+          {
+            "type": "string", 
+            "name": "BoxUsage"
+          }
+        ]
+      }
+    ]
+  }
+}

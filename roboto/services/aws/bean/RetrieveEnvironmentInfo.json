@@ -1,0 +1,114 @@
+{
+  "params": [
+    {
+      "doc": " The ID of the data's environment.  If no such environment is found, returns an InvalidParameterValue error.  ", 
+      "cli_option": [
+        "e", 
+        "environment-id"
+      ], 
+      "optional": true, 
+      "name": "EnvironmentId", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 4, 
+      "cli_option": [
+        null, 
+        "environment-name"
+      ], 
+      "name": "EnvironmentName", 
+      "optional": true, 
+      "max_length": 23, 
+      "doc": " The name of the data's environment.  If no such environment is found, returns an InvalidParameterValue error.  ", 
+      "type": "string"
+    }, 
+    {
+      "name": "InfoType", 
+      "doc": "  The type of information to retrieve.  ", 
+      "choices": [
+        "tail"
+      ], 
+      "optional": false, 
+      "type": "enum", 
+      "cli_option": [
+        "i", 
+        "info-type"
+      ]
+    }
+  ], 
+  "name": "RetrieveEnvironmentInfo", 
+  "response": {
+    "type": "object", 
+    "name": "RetrieveEnvironmentInfoResponse", 
+    "properties": [
+      {
+        "doc": " Result message containing a description of the requested environment info. ", 
+        "type": "object", 
+        "name": "RetrieveEnvironmentInfoResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "doc": "  The EnvironmentInfoDescription of the environment.  ", 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
+                "items": [
+                  {
+                    "doc": " The information retrieved from the Amazon EC2 instances. ", 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "doc": " The type of information retrieved. ", 
+                        "type": "enum", 
+                        "name": "InfoType", 
+                        "optional": true, 
+                        "choices": [
+                          "tail"
+                        ]
+                      }, 
+                      {
+                        "doc": " The Amazon EC2 Instance ID for this information. ", 
+                        "optional": true, 
+                        "name": "Ec2InstanceId", 
+                        "type": "string"
+                      }, 
+                      {
+                        "doc": " The time stamp when this information was retrieved. ", 
+                        "optional": true, 
+                        "name": "SampleTimestamp", 
+                        "type": "dateTime"
+                      }, 
+                      {
+                        "doc": " The retrieved information. ", 
+                        "optional": true, 
+                        "name": "Message", 
+                        "type": "string"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "optional": true, 
+            "name": "EnvironmentInfo"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

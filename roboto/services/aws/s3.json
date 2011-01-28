@@ -1,0 +1,29 @@
+{
+    "name": "s3", 
+    "module": "boto.s3", 
+    "regions": [
+        {
+            "endpoint": "s3.amazonaws.com", 
+            "name": null, 
+            "description": "S3 US Standard"
+        }, 
+        {
+            "endpoint": "s3-us-west-1.amazonaws.com", 
+            "name": "us-west-1", 
+            "description": "S3 US-West"
+        }, 
+        {
+            "endpoint": "s3-ap-southeast-1.amazonaws.com", 
+            "name": "ap-southeast-1", 
+            "description": "S3 Asia Pacific"
+        }, 
+        {
+            "endpoint": null, 
+            "name": "eu-west-1", 
+            "description": "S3 Europe"
+        }
+    ], 
+    "provider": "aws", 
+    "path": "/", 
+    "port": 443
+}

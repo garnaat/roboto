@@ -1,0 +1,204 @@
+{
+  "params": [
+    {
+      "doc": "  The ID of the environment to retrieve AWS resource usage data.  ", 
+      "cli_option": [
+        "e", 
+        "environment-id"
+      ], 
+      "optional": true, 
+      "name": "EnvironmentId", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 4, 
+      "cli_option": [
+        null, 
+        "environment-name"
+      ], 
+      "name": "EnvironmentName", 
+      "optional": true, 
+      "max_length": 23, 
+      "doc": "  The name of the environment to retrieve AWS resource usage data.  ", 
+      "type": "string"
+    }
+  ], 
+  "name": "DescribeEnvironmentResources", 
+  "response": {
+    "type": "object", 
+    "name": "DescribeEnvironmentResourcesResponse", 
+    "properties": [
+      {
+        "doc": " Result message containing a list of environment resource descriptions.  ", 
+        "type": "object", 
+        "name": "DescribeEnvironmentResourcesResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "doc": "  A list of EnvironmentResourceDescription .  ", 
+            "type": "object", 
+            "properties": [
+              {
+                "min_length": 4, 
+                "name": "EnvironmentName", 
+                "optional": true, 
+                "max_length": 23, 
+                "doc": " The name of the environment. ", 
+                "type": "string"
+              }, 
+              {
+                "doc": "  The AutoScalingGroups used by this environment.  ", 
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "array", 
+                    "name": "member", 
+                    "items": [
+                      {
+                        "doc": "  Describes an Auto Scaling launch configuration.  ", 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "doc": "  The name of the AutoScalingGroup .  ", 
+                            "optional": true, 
+                            "name": "Name", 
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ], 
+                "optional": true, 
+                "name": "AutoScalingGroups"
+              }, 
+              {
+                "doc": " The Amazon EC2 instances used by this environment. ", 
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "array", 
+                    "name": "member", 
+                    "items": [
+                      {
+                        "doc": " The description of an Amazon EC2 instance. ", 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "doc": " The ID of the Amazon EC2 instance. ", 
+                            "optional": true, 
+                            "name": "Id", 
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ], 
+                "optional": true, 
+                "name": "Instances"
+              }, 
+              {
+                "doc": " The Auto Scaling launch configurations in use by this environment. ", 
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "array", 
+                    "name": "member", 
+                    "items": [
+                      {
+                        "doc": " Describes an Auto Scaling launch configuration. ", 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "doc": " The name of the launch configuration. ", 
+                            "optional": true, 
+                            "name": "Name", 
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ], 
+                "optional": true, 
+                "name": "LaunchConfigurations"
+              }, 
+              {
+                "doc": " The load balancers in use by this environment. ", 
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "array", 
+                    "name": "member", 
+                    "items": [
+                      {
+                        "doc": " Describes an Amazon Elastic Load Balancer. ", 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "doc": " The name of the Amazon Elastic Load Balancer. ", 
+                            "optional": true, 
+                            "name": "Name", 
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ], 
+                "optional": true, 
+                "name": "LoadBalancers"
+              }, 
+              {
+                "doc": "  The AutoScaling triggers in use by this environment.  ", 
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "array", 
+                    "name": "member", 
+                    "items": [
+                      {
+                        "doc": " Describes an Amazon Trigger. ", 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "doc": " The name of the Amazon Trigger. ", 
+                            "optional": true, 
+                            "name": "Name", 
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ], 
+                "optional": true, 
+                "name": "Triggers"
+              }
+            ], 
+            "optional": true, 
+            "name": "EnvironmentResources"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "params": [], 
+  "name": "CreateStorageLocation", 
+  "response": {
+    "type": "object", 
+    "name": "CreateStorageLocationResponse", 
+    "properties": [
+      {
+        "doc": " Results of a CreateStorageLocationResult call. ", 
+        "type": "object", 
+        "name": "CreateStorageLocationResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "min_length": 0, 
+            "name": "S3Bucket", 
+            "optional": true, 
+            "max_length": 255, 
+            "doc": "  The name of the Amazon S3 bucket created.  ", 
+            "type": "string"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

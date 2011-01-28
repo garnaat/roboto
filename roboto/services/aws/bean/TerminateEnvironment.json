@@ -1,0 +1,168 @@
+{
+  "params": [
+    {
+      "doc": " The ID of the environment to terminate. ", 
+      "cli_option": [
+        "e", 
+        "environment-id"
+      ], 
+      "optional": true, 
+      "name": "EnvironmentId", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 4, 
+      "cli_option": [
+        null, 
+        "environment-name"
+      ], 
+      "name": "EnvironmentName", 
+      "optional": true, 
+      "max_length": 23, 
+      "doc": " The name of the environment to terminate. ", 
+      "type": "string"
+    }, 
+    {
+      "doc": "  Indicates whether the associated AWS resources should shut down when the environment is terminated:     true : (default) The user AWS resources (for example, the Auto Scaling group, load balancer, etc.) are terminated along with the environment.     false: The environment is removed from the Amazon ElasticBeanstalk but the AWS resources continue to operate.        true : The specified environment as well as the associated AWS resources, such as Auto Scaling group and load balancer, are terminated.    false: Amazon ElasticBeanstalk resource management is removed from the environment but the AWS resources continue to operate.     For more information, see the  Amazon ElasticBeanstalk User Guide.     Default: true   Valid Values: true | false   ", 
+      "cli_option": [
+        "t", 
+        "terminate-resources"
+      ], 
+      "optional": true, 
+      "name": "TerminateResources", 
+      "type": "boolean"
+    }
+  ], 
+  "name": "TerminateEnvironment", 
+  "response": {
+    "type": "object", 
+    "name": "TerminateEnvironmentResponse", 
+    "properties": [
+      {
+        "doc": " Describes the properties of an environment.   ", 
+        "type": "object", 
+        "name": "TerminateEnvironmentResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "min_length": 4, 
+            "name": "EnvironmentName", 
+            "optional": true, 
+            "max_length": 23, 
+            "doc": " The name of this environment. ", 
+            "type": "string"
+          }, 
+          {
+            "doc": "  The ID of this environment.  ", 
+            "optional": true, 
+            "name": "EnvironmentId", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "ApplicationName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": " The name of the application associated with this environment. ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "VersionLabel", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": " The application version deployed in this environment. ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 0, 
+            "name": "SolutionStackName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": "  The name of the SolutionStack deployed with this environment.   ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "TemplateName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": "  The name of the configuration template used to originally launch this environment.  ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 0, 
+            "name": "Description", 
+            "optional": true, 
+            "max_length": 200, 
+            "doc": " Describes this environment. ", 
+            "type": "string"
+          }, 
+          {
+            "doc": " The URL to the load balancer for this environment. ", 
+            "optional": true, 
+            "name": "EndpointURL", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "CNAME", 
+            "optional": true, 
+            "max_length": 255, 
+            "doc": "  The URL to the CNAME for this environment.  ", 
+            "type": "string"
+          }, 
+          {
+            "doc": " The creation date for this environment. ", 
+            "optional": true, 
+            "name": "DateCreated", 
+            "type": "dateTime"
+          }, 
+          {
+            "doc": " The last modified date for this environment. ", 
+            "optional": true, 
+            "name": "DateUpdated", 
+            "type": "dateTime"
+          }, 
+          {
+            "doc": "  The current operational status of the environment:     Launching : Environment is in the process of initial deployment.   Updating : Environment is in the process of updating its configuration settings or application version.   Ready : Environment is available to have an action performed on it, such as update or terminate.   Terminating : Environment is in the shut-down process.   Terminated : Environment is not running.    ", 
+            "type": "enum", 
+            "name": "Status", 
+            "optional": true, 
+            "choices": [
+              "Launching", 
+              "Updating", 
+              "Ready", 
+              "Terminating", 
+              "Terminated"
+            ]
+          }, 
+          {
+            "doc": "  Describes the health status of the environment. Amazon ElasticBeanstalk indicates the failure levels for a running environment:     Red : Indicates the environment is not working.     Yellow : Indicates that something is wrong, the application might not be available, but the instances appear running.     Green : Indicates the environment is healthy and fully functional.       Red : Indicates the environment is not responsive. Occurs when three or more consecutive failures occur for an environment.   Yellow : Indicates that something is wrong. Occurs when two consecutive failures occur for an environment.   Green : Indicates the environment is healthy and fully functional.    Grey : Default health for a new environment. The environment is not fully launched and health checks have not started or health checks are suspended during an UpdateEnvironment or RestartEnvironement request.    Default: Grey .   ", 
+            "type": "enum", 
+            "name": "Health", 
+            "optional": true, 
+            "choices": [
+              "Green", 
+              "Yellow", 
+              "Red", 
+              "Grey"
+            ]
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+    "name": "sdb", 
+    "module": "boto.sdb", 
+    "regions": [
+        {
+            "endpoint": "sdb.amazonaws.com", 
+            "name": "us-east-1", 
+            "description": "US-East (Northern Virginia)"
+        }, 
+        {
+            "endpoint": "sdb.us-west-1.amazonaws.com", 
+            "name": "us-west-1", 
+            "description": "US-West (Northern California)"
+        }, 
+        {
+            "endpoint": "sdb.eu-west-1.amazonaws.com", 
+            "name": "eu-west-1", 
+            "description": "EU (Ireland)"
+        }, 
+        {
+            "endpoint": "sdb.ap-southeast-1.amazonaws.com", 
+            "name": "ap-southest-1", 
+            "description": "Asia Pacific (Singapore)"
+        }
+    ], 
+    "provider": "aws", 
+    "path": "/", 
+    "port": 443
+}

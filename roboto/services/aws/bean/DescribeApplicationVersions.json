@@ -1,0 +1,148 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "a", 
+        "application-name"
+      ], 
+      "name": "ApplicationName", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": "  If specified, Amazon ElasticBeanstalk restricts the returned descriptions to only include ones that are associated with the specified application.  ", 
+      "type": "string"
+    }, 
+    {
+      "name": "VersionLabels", 
+      "doc": "  If specified, restricts the returned descriptions to only include ones that have the specified version labels.  ", 
+      "optional": true, 
+      "type": "object", 
+      "cli_option": [
+        "v", 
+        "version-labels"
+      ], 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "member", 
+          "items": [
+            {
+              "min_length": 1, 
+              "max_length": 100, 
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ], 
+  "name": "DescribeApplicationVersions", 
+  "response": {
+    "type": "object", 
+    "name": "DescribeApplicationVersionsResponse", 
+    "properties": [
+      {
+        "doc": " Result message wrapping a list of application version descriptions. ", 
+        "type": "object", 
+        "name": "DescribeApplicationVersionsResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "doc": "  A list of ApplicationVersionDescription .  ", 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
+                "items": [
+                  {
+                    "doc": "  Describes the properties of an application version.    ", 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "min_length": 1, 
+                        "name": "ApplicationName", 
+                        "optional": true, 
+                        "max_length": 100, 
+                        "doc": " The name of the application associated with this release. ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 0, 
+                        "name": "Description", 
+                        "optional": true, 
+                        "max_length": 200, 
+                        "doc": " The description of this application version. ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "min_length": 1, 
+                        "name": "VersionLabel", 
+                        "optional": true, 
+                        "max_length": 100, 
+                        "doc": "  A label uniquely identifying the version for the associated application.  ", 
+                        "type": "string"
+                      }, 
+                      {
+                        "doc": "  The location where the source bundle is located for this version.  ", 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "min_length": 0, 
+                            "name": "S3Bucket", 
+                            "optional": true, 
+                            "max_length": 255, 
+                            "doc": " The Amazon S3 bucket where the data is located. ", 
+                            "type": "string"
+                          }, 
+                          {
+                            "min_length": 0, 
+                            "name": "S3Key", 
+                            "optional": true, 
+                            "max_length": 1024, 
+                            "doc": " The Amazon S3 key where the data is located. ", 
+                            "type": "string"
+                          }
+                        ], 
+                        "optional": true, 
+                        "name": "SourceBundle"
+                      }, 
+                      {
+                        "doc": " The creation date of the application version. ", 
+                        "optional": true, 
+                        "name": "DateCreated", 
+                        "type": "dateTime"
+                      }, 
+                      {
+                        "doc": " The last modified date of the application version. ", 
+                        "optional": true, 
+                        "name": "DateUpdated", 
+                        "type": "dateTime"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "optional": true, 
+            "name": "ApplicationVersions"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

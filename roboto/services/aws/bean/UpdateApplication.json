@@ -1,0 +1,131 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "a", 
+        "application-name"
+      ], 
+      "name": "ApplicationName", 
+      "optional": false, 
+      "max_length": 100, 
+      "doc": "  The name of the application to update. If no such application is found, returns an InvalidParameterValue error.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 0, 
+      "cli_option": [
+        "d", 
+        "description"
+      ], 
+      "name": "Description", 
+      "optional": true, 
+      "max_length": 200, 
+      "doc": "  A new description for the application.  Default: If not specified, Amazon ElasticBeanstalk does not update the description.  ", 
+      "type": "string"
+    }
+  ], 
+  "name": "UpdateApplication", 
+  "response": {
+    "type": "object", 
+    "name": "UpdateApplicationResponse", 
+    "properties": [
+      {
+        "doc": " Result message containing a single description of an application. ", 
+        "type": "object", 
+        "name": "UpdateApplicationResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "doc": "  The ApplicationDescription of the application.  ", 
+            "type": "object", 
+            "properties": [
+              {
+                "min_length": 1, 
+                "name": "ApplicationName", 
+                "optional": true, 
+                "max_length": 100, 
+                "doc": " The name of the application. ", 
+                "type": "string"
+              }, 
+              {
+                "min_length": 0, 
+                "name": "Description", 
+                "optional": true, 
+                "max_length": 200, 
+                "doc": " User-defined description of the application. ", 
+                "type": "string"
+              }, 
+              {
+                "doc": " The date when the application was created. ", 
+                "optional": true, 
+                "name": "DateCreated", 
+                "type": "dateTime"
+              }, 
+              {
+                "doc": " The date when the application was last modified. ", 
+                "optional": true, 
+                "name": "DateUpdated", 
+                "type": "dateTime"
+              }, 
+              {
+                "doc": " The names of the versions for this application. ", 
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "array", 
+                    "name": "member", 
+                    "items": [
+                      {
+                        "min_length": 1, 
+                        "max_length": 100, 
+                        "type": "string"
+                      }
+                    ]
+                  }
+                ], 
+                "optional": true, 
+                "name": "Versions"
+              }, 
+              {
+                "doc": "  The names of the configuration templates associated with this application.  ", 
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "array", 
+                    "name": "member", 
+                    "items": [
+                      {
+                        "min_length": 1, 
+                        "max_length": 100, 
+                        "type": "string"
+                      }
+                    ]
+                  }
+                ], 
+                "optional": true, 
+                "name": "ConfigurationTemplates"
+              }
+            ], 
+            "optional": true, 
+            "name": "Application"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

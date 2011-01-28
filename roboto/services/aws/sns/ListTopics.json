@@ -1,0 +1,69 @@
+{
+  "params": [
+    {
+      "optional": true, 
+      "cli_option": [
+        "n", 
+        "next-token"
+      ], 
+      "type": "string", 
+      "name": "NextToken"
+    }
+  ], 
+  "name": "ListTopics", 
+  "response": {
+    "type": "object", 
+    "name": "ListTopicsResponse", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ListTopicsResult", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "array", 
+                "name": "member", 
+                "items": [
+                  {
+                    "doc": "A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve a topic's attributes, use GetTopicAttributes.", 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "TopicArn"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "name": "Topics"
+          }, 
+          {
+            "optional": true, 
+            "type": "string", 
+            "name": "NextToken"
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}

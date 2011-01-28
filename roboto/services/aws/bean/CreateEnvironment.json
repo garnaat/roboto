@@ -1,0 +1,310 @@
+{
+  "params": [
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "a", 
+        "application-name"
+      ], 
+      "name": "ApplicationName", 
+      "optional": false, 
+      "max_length": 100, 
+      "doc": "  The name of the application that contains the version to be deployed.   If no application is found with this name, returns an InvalidParameterValue error.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "v", 
+        "version-label"
+      ], 
+      "name": "VersionLabel", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": " The name of the application version to deploy.  If the specified application has no associated application versions, Amazon ElasticBeanstalk returns an InvalidParameterValue error.   Default: If not specified, Amazon ElasticBeanstalk attempts to launch the most recently created application version.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 4, 
+      "cli_option": [
+        "e", 
+        "environment-name"
+      ], 
+      "name": "EnvironmentName", 
+      "optional": false, 
+      "max_length": 23, 
+      "doc": "  A unique name for the deployment environment. Used in the application URL.  Constraint: Must be from 4 to 23 characters in length. The name can contain only letters, numbers, and hyphens. It cannot start or end with a hyphen.   Constraint: This name must be unique in your account. If the specified name already exists, Amazon ElasticBeanstalk returns an InvalidParameterValue error.  Default: If the CNAME parameter is not specified, the environment name becomes part of the CNAME, and therefore part of the visible URL for your application.   ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 1, 
+      "cli_option": [
+        "t", 
+        "template-name"
+      ], 
+      "name": "TemplateName", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": "  The name of the configuration template to use in deployment. If no configuration template is found with this name, Amazon ElasticBeanstalk returns an InvalidParameterValue error.   This parameter is optional. You must specify either this parameter or a SolutionStackName, but not both. If you specify both, Amazon ElasticBeanstalk returns an InvalidParameterCombination error. If you do not specify either, Amazon ElasticBeanstalk returns a MissingRequiredParameter error.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 0, 
+      "cli_option": [
+        "s", 
+        "solution-stack-name"
+      ], 
+      "name": "SolutionStackName", 
+      "optional": true, 
+      "max_length": 100, 
+      "doc": "  This is an alternative to specifying a configuration name. If specified, Amazon ElasticBeanstalk sets the configuration values to the default values associated with the specified solution stack.   This parameter is optional. You must specify either this or a TemplateName, but not both. If you specify both, Amazon ElasticBeanstalk returns an InvalidParameterCombination error. If you do not specify either, Amazon ElasticBeanstalk returns a MissingRequiredParameter error.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 4, 
+      "cli_option": [
+        "c", 
+        "c-n-a-m-e-prefix"
+      ], 
+      "name": "CNAMEPrefix", 
+      "optional": true, 
+      "max_length": 63, 
+      "doc": "  If specified, the environment attempts to use this value as the prefix for the CNAME. If not specified, the environment uses the environment name.  ", 
+      "type": "string"
+    }, 
+    {
+      "min_length": 0, 
+      "cli_option": [
+        "d", 
+        "description"
+      ], 
+      "name": "Description", 
+      "optional": true, 
+      "max_length": 200, 
+      "doc": " Describes this environment. ", 
+      "type": "string"
+    }, 
+    {
+      "name": "OptionSettings", 
+      "doc": "  If specified, Amazon ElasticBeanstalk sets the specified configuration options to the requested value in the configuration set for the new environment. These override the values obtained from the solution stack or the configuration template.  ", 
+      "optional": true, 
+      "type": "object", 
+      "cli_option": [
+        "o", 
+        "option-settings"
+      ], 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "member", 
+          "items": [
+            {
+              "doc": "  A specification identifying an individual configuration option along with its current value.   ", 
+              "type": "object", 
+              "properties": [
+                {
+                  "min_length": 1, 
+                  "name": "Namespace", 
+                  "optional": true, 
+                  "max_length": 255, 
+                  "doc": "  A unique namespace identifying the option's associated AWS resource.  ", 
+                  "type": "string"
+                }, 
+                {
+                  "min_length": 1, 
+                  "name": "OptionName", 
+                  "optional": true, 
+                  "max_length": 100, 
+                  "doc": "  The name of the configuration option.  ", 
+                  "type": "string"
+                }, 
+                {
+                  "min_length": 0, 
+                  "name": "Value", 
+                  "optional": true, 
+                  "max_length": 100, 
+                  "doc": "  The current value for the configuration option.  ", 
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }, 
+    {
+      "name": "OptionsToRemove", 
+      "doc": "  A list of custom user-defined configuration options to remove from the configuration set for this new environment.  ", 
+      "optional": true, 
+      "type": "object", 
+      "cli_option": [
+        null, 
+        "options-to-remove"
+      ], 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "member", 
+          "items": [
+            {
+              "doc": "  A specification identifying an individual configuration option.  ", 
+              "type": "object", 
+              "properties": [
+                {
+                  "min_length": 1, 
+                  "name": "Namespace", 
+                  "optional": true, 
+                  "max_length": 255, 
+                  "doc": "  A unique namespace identifying the option's associated AWS resource.  ", 
+                  "type": "string"
+                }, 
+                {
+                  "min_length": 1, 
+                  "name": "OptionName", 
+                  "optional": true, 
+                  "max_length": 100, 
+                  "doc": "  The name of the configuration option.  ", 
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ], 
+  "name": "CreateEnvironment", 
+  "response": {
+    "type": "object", 
+    "name": "CreateEnvironmentResponse", 
+    "properties": [
+      {
+        "doc": " Describes the properties of an environment.   ", 
+        "type": "object", 
+        "name": "CreateEnvironmentResult", 
+        "optional": false, 
+        "properties": [
+          {
+            "min_length": 4, 
+            "name": "EnvironmentName", 
+            "optional": true, 
+            "max_length": 23, 
+            "doc": " The name of this environment. ", 
+            "type": "string"
+          }, 
+          {
+            "doc": "  The ID of this environment.  ", 
+            "optional": true, 
+            "name": "EnvironmentId", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "ApplicationName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": " The name of the application associated with this environment. ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "VersionLabel", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": " The application version deployed in this environment. ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 0, 
+            "name": "SolutionStackName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": "  The name of the SolutionStack deployed with this environment.   ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "TemplateName", 
+            "optional": true, 
+            "max_length": 100, 
+            "doc": "  The name of the configuration template used to originally launch this environment.  ", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 0, 
+            "name": "Description", 
+            "optional": true, 
+            "max_length": 200, 
+            "doc": " Describes this environment. ", 
+            "type": "string"
+          }, 
+          {
+            "doc": " The URL to the load balancer for this environment. ", 
+            "optional": true, 
+            "name": "EndpointURL", 
+            "type": "string"
+          }, 
+          {
+            "min_length": 1, 
+            "name": "CNAME", 
+            "optional": true, 
+            "max_length": 255, 
+            "doc": "  The URL to the CNAME for this environment.  ", 
+            "type": "string"
+          }, 
+          {
+            "doc": " The creation date for this environment. ", 
+            "optional": true, 
+            "name": "DateCreated", 
+            "type": "dateTime"
+          }, 
+          {
+            "doc": " The last modified date for this environment. ", 
+            "optional": true, 
+            "name": "DateUpdated", 
+            "type": "dateTime"
+          }, 
+          {
+            "doc": "  The current operational status of the environment:     Launching : Environment is in the process of initial deployment.   Updating : Environment is in the process of updating its configuration settings or application version.   Ready : Environment is available to have an action performed on it, such as update or terminate.   Terminating : Environment is in the shut-down process.   Terminated : Environment is not running.    ", 
+            "type": "enum", 
+            "name": "Status", 
+            "optional": true, 
+            "choices": [
+              "Launching", 
+              "Updating", 
+              "Ready", 
+              "Terminating", 
+              "Terminated"
+            ]
+          }, 
+          {
+            "doc": "  Describes the health status of the environment. Amazon ElasticBeanstalk indicates the failure levels for a running environment:     Red : Indicates the environment is not working.     Yellow : Indicates that something is wrong, the application might not be available, but the instances appear running.     Green : Indicates the environment is healthy and fully functional.       Red : Indicates the environment is not responsive. Occurs when three or more consecutive failures occur for an environment.   Yellow : Indicates that something is wrong. Occurs when two consecutive failures occur for an environment.   Green : Indicates the environment is healthy and fully functional.    Grey : Default health for a new environment. The environment is not fully launched and health checks have not started or health checks are suspended during an UpdateEnvironment or RestartEnvironement request.    Default: Grey .   ", 
+            "type": "enum", 
+            "name": "Health", 
+            "optional": true, 
+            "choices": [
+              "Green", 
+              "Yellow", 
+              "Red", 
+              "Grey"
+            ]
+          }
+        ]
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "name": "ResponseMetadata", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "RequestId"
+          }
+        ]
+      }
+    ]
+  }
+}
