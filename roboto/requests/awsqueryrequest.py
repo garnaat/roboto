@@ -168,7 +168,7 @@ class AWSQueryRequest(object):
             else:
                 param.properties = [self._create_param(pdict) for pdict in param.properties]
         elif param.type == 'array':
-            print 'handle array object here', pdict
+            pass
         return param
         
     def create_param_objs(self):
