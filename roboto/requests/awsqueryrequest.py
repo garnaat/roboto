@@ -62,11 +62,11 @@ class Line(object):
 
 class CLIParam(object):
 
-    def __init__(self, **kwargs):
+    def __init__(self, pdict):
         self.doc = ''
         self.cli_option = None
-        for key in kwargs:
-            setattr(self, key, kwargs.get(key))
+        for key in pdict:
+            setattr(self, key, pdict.get(key))
 
     @property
     def long_name(self):
@@ -156,7 +156,7 @@ class AWSQueryRequest(object):
             print 'Unable to find request: %s' % self.name
             
     def _create_param(self, pdict):
-        param = CLIParam(**pdict)
+        param = CLIParam(pdict)
         if param.type in self.CLITypeMap:
             return param
         elif param.type == 'object':
@@ -281,7 +281,7 @@ class AWSQueryRequest(object):
                                                 self.body)
 
     def _get_param_cli_props(self, param_dict):
-        param = self.CLIParam(**param_dict)
+        param = self.CLIParam(param_dict)
         if param.cli_option:
             if param.type in self.CLITypeMap:
                 type = self.CLITypeMap[param.type]
