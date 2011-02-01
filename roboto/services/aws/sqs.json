@@ -1,6 +1,8 @@
 {
-    "name": "sqs", 
-    "module": "boto.sqs", 
+    "name": "sqs",
+    "description": "Simple Queue Service",
+    "authentication": "sign-v2",
+    "api_version": "2009-02-01",
     "regions": [
         {
             "endpoint": "sqs.us-east-1.amazonaws.com", 

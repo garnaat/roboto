@@ -1,5 +1,6 @@
 {
     "name": "bean",
+    "description": "Elastic Beanstalk",
     "authentication": "sign-v2",
     "api_version" : "2010-12-01",
     "regions": [

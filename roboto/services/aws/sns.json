@@ -1,6 +1,8 @@
 {
-    "name": "sns", 
-    "module": "boto.sns", 
+    "name": "sns",
+    "description": "Simple Notification Service",
+    "authentication": "sns",
+    "api_version": "2010-03-31",
     "regions": [
         {
             "endpoint": "sns.us-east-1.amazonaws.com", 

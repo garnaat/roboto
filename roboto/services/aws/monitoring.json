@@ -1,6 +1,8 @@
 {
-    "name": "monitoring", 
-    "module": "boto.ec2.monitoring", 
+    "name": "monitoring",
+    "description": "CloudWatch",
+    "authentication": "sign-v2",
+    "api_version": "2010-08-01",
     "regions": [
         {
             "endpoint": "monitoring.us-east-1.amazonaws.com", 

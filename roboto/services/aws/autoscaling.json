@@ -1,6 +1,8 @@
 {
-    "name": "autoscaling", 
-    "module": "boto.ec2.autoscaling", 
+    "name": "autoscaling",
+    "description": "Auto Scaling",
+    "authentication": "sign-v2",
+    "api_version" : "2009-05-15",
     "regions": [
         {
             "endpoint": "autoscaling.us-east-1.amazonaws.com", 

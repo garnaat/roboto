@@ -1,5 +1,6 @@
 {
     "name": "ec2",
+    "description": "Elastic Compute Cloud",
     "authentication": "ec2",
     "api_version" : "2010-08-31",
     "regions": [

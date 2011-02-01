@@ -1,6 +1,8 @@
 {
-    "name": "rds", 
-    "module": "boto.rds", 
+    "name": "rds",
+    "description": "Relational Data Store",
+    "authentication": "sign-v2",
+    "api_version": "2009-10-16",
     "regions": [
         {
             "endpoint": "rds.us-east-1.amazonaws.com", 

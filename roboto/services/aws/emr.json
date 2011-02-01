@@ -1,6 +1,8 @@
 {
-    "name": "emr", 
-    "module": "boto.emr", 
+    "name": "emr",
+    "description": "Elastic MapReduce",
+    "authentication": "sign-v2",
+    "api_version": "'2009-03-31",
     "regions": [
         {
             "endpoint": "us-east-1.elasticmapreduce.amazonaws.com", 

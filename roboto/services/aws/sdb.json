@@ -1,6 +1,8 @@
 {
-    "name": "sdb", 
-    "module": "boto.sdb", 
+    "name": "sdb",
+    "description": "SimpleDB",
+    "authentication": "sign-v2",
+    "api_version": "2009-04-15",
     "regions": [
         {
             "endpoint": "sdb.amazonaws.com", 
