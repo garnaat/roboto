@@ -69,7 +69,6 @@ wanted to add support for Elastic Beanstalk.  The first thing I would
 need to do is create a JSON description of the service itself.  This
 file would look like this:
 
-<code>
 {
     "name": "bean",
     "authentication": "sign-v2",
@@ -85,7 +84,6 @@ file would look like this:
     "path": "/", 
     "port": 443
 }
-</code>
 
 The file would be named bean.json and would be placed in the
 roboto/roboto/services/aws/ directory.  We would then need to create
