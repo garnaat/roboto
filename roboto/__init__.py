@@ -44,17 +44,17 @@ class Param:
     @classmethod
     def encode(cls, p, rp, v, label=None):
         try:
-            mthd = getattr(cls, 'encode_'+p['type'])
+            mthd = getattr(cls, 'encode_'+p.type)
             mthd(p, rp, v, label)
         except AttributeError:
-            raise 'Unknown type: %s' % p['type']
+            raise 'Unknown type: %s' % p.type
         
     @classmethod
     def encode_string(cls, p, rp, v, l):
         if l:
             label = l
         else:
-            label = awsify_name(p['name'])
+            label = awsify_name(p.name)
         rp[label] = v
 
     @classmethod
@@ -62,7 +62,7 @@ class Param:
         if l:
             label = l
         else:
-            label = awsify_name(p['name'])
+            label = awsify_name(p.name)
         rp[label] = '%d' % v
         
     @classmethod
@@ -70,7 +70,7 @@ class Param:
         if l:
             label = l
         else:
-            label = awsify_name(p['name'])
+            label = awsify_name(p.name)
         if v:
             v = 'true'
         else:
@@ -82,7 +82,7 @@ class Param:
         if l:
             label = l
         else:
-            label = awsify_name(p['name'])
+            label = awsify_name(p.name)
         rp[label] = v
         
     @classmethod
@@ -91,7 +91,7 @@ class Param:
         if l:
             label = l
         else:
-            label = awsify_name(p['name'])
+            label = awsify_name(p.name)
         label = label + '.%d'
         for i, value in enumerate(v):
             rp[label%(i+1)] = value
@@ -99,7 +99,7 @@ class Param:
     @classmethod
     def validate(cls, p, v):
         try:
-            mthd = getattr(cls, 'validate_'+p['type'])
+            mthd = getattr(cls, 'validate_'+p.type)
             mthd(p, v)
         except AttributeError:
             raise ValidationException(p, '')
@@ -115,7 +115,7 @@ class Param:
     @classmethod
     def validate_boolean(cls, p, v):
         if v not in ('true', 'True', 'false', 'False', True, False):
-            raise 'Invalid value for a boolean param: %s' % p['name']
+            raise 'Invalid value for a boolean param: %s' % p.name
         
     @classmethod
     def validate_datetime(cls, p, v):

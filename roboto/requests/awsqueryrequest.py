@@ -60,6 +60,29 @@ class Line(object):
             print self.line
             self.printed = True
 
+class CLIParam(object):
+
+    def __init__(self, **kwargs):
+        self.doc = ''
+        self.cli_option = None
+        for key in kwargs:
+            setattr(self, key, kwargs.get(key))
+
+    @property
+    def long_name(self):
+        ln = None
+        if self.cli_option:
+            ln = '--%s' % self.cli_option[-1]
+        return ln
+
+    @property
+    def short_name(self):
+        sn = None
+        if self.cli_option:
+            if len(self.cli_option) == 2 and self.cli_option[0]:
+                sn = '-%s' % self.cli_option[0]
+        return sn
+
 class AWSQueryRequest(object):
     """
     This class should be able to handle requests/responses for any
@@ -71,6 +94,7 @@ class AWSQueryRequest(object):
                   'int' : 'int',
                   'enum' : 'choice',
                   'datetime' : 'string',
+                  'dateTime' : 'string',
                   'boolean' : 'string'}
 
     def __init__(self, service, request, **args):
@@ -98,6 +122,7 @@ class AWSQueryRequest(object):
         self.json_dir = None
         self._get_json_dir()
         self._load_json()
+        self.params = self.create_param_objs()
 
     def _get_json_dir(self):
         if self.json_dir == None:
@@ -130,6 +155,25 @@ class AWSQueryRequest(object):
         else:
             print 'Unable to find request: %s' % self.name
             
+    def _create_param(self, pdict):
+        param = CLIParam(**pdict)
+        if param.type in self.CLITypeMap:
+            return param
+        elif param.type == 'object':
+            if len(param.properties) == 1:
+                pdict = param.properties[0]
+                pdict['name'] = '%s.%s' % (param.name, pdict['name'])
+                pdict['doc'] = param.doc
+                return self._create_param(pdict)
+            else:
+                param.properties = [self._create_param(pdict) for pdict in param.properties]
+        elif param.type == 'array':
+            print 'handle array object here', pdict
+        return param
+        
+    def create_param_objs(self):
+        return [self._create_param(pdict) for pdict in self._schema['params']]
+
     @property
     def status(self):
         retval = None
@@ -149,13 +193,6 @@ class AWSQueryRequest(object):
         retval = None
         if self.response is not None:
             retval = getattr(self.aws_response, 'requestId')
-        return retval
-
-    @property
-    def params(self):
-        retval = None
-        if self._schema:
-            retval = self._schema['params']
         return retval
 
     @property
@@ -197,17 +234,17 @@ class AWSQueryRequest(object):
     def process_args(self, args=None):
         if args:
             self.args = args
-        required = [p['name'] for p in self.params if not p['optional']]
+        required = [p.name for p in self.params if not p.optional]
         for param in self.params:
-            if 'cli_option' in param:
-                python_name = param['cli_option'][1]
+            if param.cli_option:
+                python_name = param.cli_option[-1]
             else:
-                python_name = pythonize_name(param['name'])
+                python_name = pythonize_name(param.name)
             if python_name in self.args:
                 value = self.args[python_name]
                 if value is not None:
-                    if param['name'] in required:
-                        required.remove(param['name'])
+                    if param.name in required:
+                        required.remove(param.name)
                     Param.encode(param, self.request_params,
                                  self.args[python_name])
                 del self.args[python_name]
@@ -243,6 +280,29 @@ class AWSQueryRequest(object):
                                                 self.reason,
                                                 self.body)
 
+    def _get_param_cli_props(self, param_dict):
+        param = self.CLIParam(**param_dict)
+        if param.cli_option:
+            if param.type in self.CLITypeMap:
+                type = self.CLITypeMap[param.type]
+                if param.short_name:
+                    self.parser.add_option(param.short_name,
+                                           param.long_name,
+                                           action='store', type=type,
+                                           help=param.doc)
+                elif param.long_name:
+                    self.parser.add_option(param.long_name,
+                                           action='store', type=type,
+                                           help=param.doc)
+            elif param.type == 'object':
+                param.properties = [self._get_param_cli_props(p_dict) for p_dict in param.properties]
+            elif param.type == 'array':
+                print 'handle array object here', param_dict
+            else:
+                print 'handle non-object here', param_dict
+            print 'handle CLI arg here', param
+        return param
+        
     def build_cli_parser(self):
         self.parser = optparse.OptionParser()
         self.parser.add_option('-D', '--debug', action='store_true',
@@ -254,19 +314,25 @@ class AWSQueryRequest(object):
                                    metavar=' name=value',
                                    help='A filter for limiting the results')
         for param in self.params:
-            if 'cli_option' in param:
-                type = self.CLITypeMap[param['type']]
-                if param['cli_option'][0] is None:
-                    long_name = '--' + param['cli_option'][1]
-                    self.parser.add_option(long_name,
-                                           action='store', type=type,
-                                           help=param.get('doc', None))
-                else:
-                    short_name = '-' + param['cli_option'][0]
-                    long_name = '--' + param['cli_option'][1]
-                    self.parser.add_option(short_name, long_name,
-                                           action='store', type=type,
-                                           help=param.get('doc', None))
+            if param.cli_option:
+                ptype = None
+                if param.type in self.CLITypeMap:
+                    ptype = self.CLITypeMap[param.type]
+                    action = 'store'
+                elif param.type == 'array':
+                    if len(param.items) == 1:
+                        ptype = param.items[0]['type']
+                        action = 'append'
+                if ptype:
+                    if param.short_name:
+                        self.parser.add_option(param.short_name,
+                                               param.long_name,
+                                               action=action, type=ptype,
+                                               help=param.doc)
+                    elif param.long_name:
+                        self.parser.add_option(param.long_name,
+                                               action=action, type=ptype,
+                                               help=param.doc)
 
     def do_cli(self, cli_args=None):
         if not self.parser:
@@ -279,11 +345,11 @@ class AWSQueryRequest(object):
             sys.exit(0)
         d = {}
         for param in self.params:
-            if 'cli_option' in param:
-                p_name = param['cli_option'][1]
+            if param.cli_option:
+                p_name = param.cli_option[-1]
                 d[p_name] = getattr(options, p_name.replace('-', '_'))
             else:
-                p_name = pythonize_name(param['name'])
+                p_name = pythonize_name(param.name)
                 d[p_name] = args
         try:
             self.process_args(d)

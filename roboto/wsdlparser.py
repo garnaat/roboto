@@ -262,6 +262,7 @@ def find_real_type(p, type_dict):
     return find_real_type(p, d)
 
 def simplify_type(type_dict):
+    print type_dict
     if 'properties' in type_dict:
         if len(type_dict['properties']) == 1:
             val = type_dict['properties'][0]
@@ -271,7 +272,7 @@ def simplify_type(type_dict):
             simplify_type(type_dict)
         else:
             for prop in type_dict['properties']:
-                simplify_type(type_dict['properties'][prop])
+                simplify_type(prop)
     elif 'items' in type_dict:
         for item in type_dict['items']:
             simplify_type(item)
