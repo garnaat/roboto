@@ -49,3 +49,71 @@ these instructions to try out the current version of roboto:
    [roboto]
    json_dir = /path/to/roboto/data
 
+I'd like to find a better way to handle this setup, perhaps in the
+eventual setup.py installation script but for now this manual step is
+required.  At this point, you should be able to test the roboto CLI
+stuff out by trying out a few calls to the AWS IAM service using the
+commands that are already in the roboto/bin directory.  To do this,
+you of course need an AWS account that has signed up for IAM and you
+need to include your AWS credentials in the ~/.boto file.  If all of
+those conditions are satisfied you should be able to do:
+
+$ iam-list-groups
+
+and see some output, at least if you have any groups defined in IAM.
+If you don't, you can just add the "--debug" flag and at least confirm
+that it's successfully making the roundtrip to AWS.
+
+Now, some details about extending roboto.  As an example, let's say I
+wanted to add support for Elastic Beanstalk.  The first thing I would
+need to do is create a JSON description of the service itself.  This
+file would look like this:
+
+{
+    "name": "bean",
+    "authentication": "sign-v2",
+    "api_version" : "2010-12-01",
+    "regions": [
+        {
+            "endpoint": "elasticbeanstalk.us-east-1.amazonaws.com", 
+            "name": "us-east-1", 
+            "description": "US-East (Northern Virginia)"
+        }
+    ], 
+    "provider": "aws", 
+    "path": "/", 
+    "port": 443
+}
+
+The file would be named bean.json and would be placed in the
+roboto/roboto/services/aws/ directory.  We would then need to create
+the JSON descriptors for the various requests and also the small
+command wrappers.  If you have an existing WSDL, these can be produced
+automatically using the WSDL parsing utility.  The command would look
+like this:
+
+$ cd <dir where roboto src lives>
+$ bin/parse_wsdl --json-dir roboto/services/aws/bean --bin-dir bin --prefix=bean --template=<path to beanstalk.wsdl>
+
+This command would create a JSON file for each request in the
+directory roboto/roboto/services/aws/beanstalk.  In addition, it would
+create a small command wrapper for each request in the roboto/bin
+directory.  If you don't have a WSDL to start with, you can try to
+manually create the JSON files for your new requests based on the
+examples in the services directory.  The command wrappers are very
+simple and look like this:
+
+#!/usr/bin/env python
+
+import roboto.services.awsqueryservice as aqs
+
+if __name__ == '__main__':
+    r = aqs.get_request('bean', 'ListAvailableSolutionStacks')
+    r.do_cli()
+
+At this point, you should be able to try out the new CLI tools for elastic beanstalk.
+
+cacao:roboto mitch$ bin/bean-list-available-solution-stacks
+SOLUTIONSTACK	32bit Amazon Linux running Tomcat 6	
+SOLUTIONSTACK	64bit Amazon Linux running Tomcat 6	
+
