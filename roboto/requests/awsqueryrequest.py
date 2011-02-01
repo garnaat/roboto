@@ -296,11 +296,6 @@ class AWSQueryRequest(object):
                                            help=param.doc)
             elif param.type == 'object':
                 param.properties = [self._get_param_cli_props(p_dict) for p_dict in param.properties]
-            elif param.type == 'array':
-                print 'handle array object here', param_dict
-            else:
-                print 'handle non-object here', param_dict
-            print 'handle CLI arg here', param
         return param
         
     def build_cli_parser(self):

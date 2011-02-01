@@ -1,6 +1,7 @@
 {
-    "name": "ec2", 
-    "module": "boto.ec2", 
+    "name": "ec2",
+    "authentication": "ec2",
+    "api_version" : "2010-08-31",
     "regions": [
         {
             "endpoint": "ec2.us-east-1.amazonaws.com", 
