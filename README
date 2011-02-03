@@ -13,8 +13,8 @@ Roboto starts with a different set of logical, hierarchical objects.
 
  * Provider (e.g. Amazon Web Services)
    * Service (e.g. Elastic Compute Cloud (EC2))
-     * Endpoint (e.g. us-west-1 AKA region)
-       * Host (e.g. ec2.us-west-1.amazonaws.com)
+     * Region (e.g. us-west-1 AKA region)
+       * Endpoint (e.g. ec2.us-west-1.amazonaws.com)
        * Port (e.g. 443)
        * Path (e.g. /)
      * Request (e.g. DescribeInstances)
