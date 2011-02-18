@@ -1,0 +1,245 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "s", 
+        "snapshot-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "snapshotId"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "snapshotSet"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "o", 
+        "owners-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "owner"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "ownersSet"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "r", 
+        "restorable-by-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "user"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "restorableBySet"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "f", 
+        "filter-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "name"
+                }, 
+                {
+                  "optional": false, 
+                  "type": "object", 
+                  "properties": [
+                    {
+                      "optional": true, 
+                      "type": "array", 
+                      "name": "item", 
+                      "items": [
+                        {
+                          "type": "object", 
+                          "properties": [
+                            {
+                              "optional": false, 
+                              "type": "string", 
+                              "name": "value"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ], 
+                  "name": "valueSet"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "filterSet"
+    }
+  ], 
+  "name": "DescribeSnapshots", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "array", 
+            "name": "item", 
+            "items": [
+              {
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "snapshotId"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "volumeId"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "status"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "dateTime", 
+                    "name": "startTime"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "progress"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "ownerId"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "volumeSize"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "description"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "ownerAlias"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": true, 
+                        "type": "array", 
+                        "name": "item", 
+                        "items": [
+                          {
+                            "type": "object", 
+                            "properties": [
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "key"
+                              }, 
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "value"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ], 
+                    "name": "tagSet"
+                  }
+                ]
+              }
+            ]
+          }
+        ], 
+        "name": "snapshotSet"
+      }
+    ], 
+    "name": "DescribeSnapshotsResponse"
+  }
+}

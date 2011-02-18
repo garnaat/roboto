@@ -1,0 +1,30 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "v", 
+        "vpn-gateway-id"
+      ], 
+      "type": "string", 
+      "name": "vpnGatewayId"
+    }
+  ], 
+  "name": "DeleteVpnGateway", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "DeleteVpnGatewayResponse"
+  }
+}

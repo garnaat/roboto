@@ -1,0 +1,77 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "v", 
+        "volume-id"
+      ], 
+      "type": "string", 
+      "name": "volumeId"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "i", 
+        "instance-id"
+      ], 
+      "type": "string", 
+      "name": "instanceId"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "d", 
+        "device"
+      ], 
+      "type": "string", 
+      "name": "device"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "f", 
+        "force"
+      ], 
+      "type": "boolean", 
+      "name": "force"
+    }
+  ], 
+  "name": "DetachVolume", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "volumeId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "instanceId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "device"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "status"
+      }, 
+      {
+        "optional": false, 
+        "type": "dateTime", 
+        "name": "attachTime"
+      }
+    ], 
+    "name": "DetachVolumeResponse"
+  }
+}

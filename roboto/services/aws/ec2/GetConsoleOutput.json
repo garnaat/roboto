@@ -1,0 +1,40 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "i", 
+        "instance-id"
+      ], 
+      "type": "string", 
+      "name": "instanceId"
+    }
+  ], 
+  "name": "GetConsoleOutput", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "instanceId"
+      }, 
+      {
+        "optional": false, 
+        "type": "dateTime", 
+        "name": "timestamp"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "output"
+      }
+    ], 
+    "name": "GetConsoleOutputResponse"
+  }
+}

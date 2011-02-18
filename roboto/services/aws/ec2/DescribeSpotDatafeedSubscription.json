@@ -1,0 +1,59 @@
+{
+  "params": [], 
+  "name": "DescribeSpotDatafeedSubscription", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "ownerId"
+          }, 
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "bucket"
+          }, 
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "prefix"
+          }, 
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "state"
+          }, 
+          {
+            "optional": true, 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "string", 
+                "name": "code"
+              }, 
+              {
+                "optional": false, 
+                "type": "string", 
+                "name": "message"
+              }
+            ], 
+            "name": "fault"
+          }
+        ], 
+        "name": "spotDatafeedSubscription"
+      }
+    ], 
+    "name": "DescribeSpotDatafeedSubscriptionResponse"
+  }
+}

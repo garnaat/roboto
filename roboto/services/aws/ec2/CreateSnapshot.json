@@ -1,0 +1,74 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "v", 
+        "volume-id"
+      ], 
+      "type": "string", 
+      "name": "volumeId"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "d", 
+        "description"
+      ], 
+      "type": "string", 
+      "name": "description"
+    }
+  ], 
+  "name": "CreateSnapshot", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "snapshotId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "volumeId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "status"
+      }, 
+      {
+        "optional": false, 
+        "type": "dateTime", 
+        "name": "startTime"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "progress"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "ownerId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "volumeSize"
+      }, 
+      {
+        "optional": true, 
+        "type": "string", 
+        "name": "description"
+      }
+    ], 
+    "name": "CreateSnapshotResponse"
+  }
+}

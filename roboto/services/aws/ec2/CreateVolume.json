@@ -1,0 +1,73 @@
+{
+  "params": [
+    {
+      "optional": true, 
+      "cli_option": [
+        "s", 
+        "size"
+      ], 
+      "type": "string", 
+      "name": "size"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        null, 
+        "snapshot-id"
+      ], 
+      "type": "string", 
+      "name": "snapshotId"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "a", 
+        "availability-zone"
+      ], 
+      "type": "string", 
+      "name": "availabilityZone"
+    }
+  ], 
+  "name": "CreateVolume", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "volumeId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "size"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "snapshotId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "availabilityZone"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "status"
+      }, 
+      {
+        "optional": false, 
+        "type": "dateTime", 
+        "name": "createTime"
+      }
+    ], 
+    "name": "CreateVolumeResponse"
+  }
+}

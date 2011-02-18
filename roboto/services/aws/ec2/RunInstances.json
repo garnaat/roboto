@@ -1,0 +1,592 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "i", 
+        "image-id"
+      ], 
+      "type": "string", 
+      "name": "imageId"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "m", 
+        "min-count"
+      ], 
+      "type": "int", 
+      "name": "minCount"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        null, 
+        "max-count"
+      ], 
+      "type": "int", 
+      "name": "maxCount"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "k", 
+        "key-name"
+      ], 
+      "type": "string", 
+      "name": "keyName"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "g", 
+        "group-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "groupId"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "groupSet"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "a", 
+        "additional-info"
+      ], 
+      "type": "string", 
+      "name": "additionalInfo"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "u", 
+        "user-data"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "string", 
+          "name": "data"
+        }
+      ], 
+      "name": "userData"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        null, 
+        "addressing-type"
+      ], 
+      "type": "string", 
+      "name": "addressingType"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        null, 
+        "instance-type"
+      ], 
+      "type": "string", 
+      "name": "instanceType"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "p", 
+        "placement"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "string", 
+          "name": "availabilityZone"
+        }, 
+        {
+          "optional": true, 
+          "type": "string", 
+          "name": "groupName"
+        }
+      ], 
+      "name": "placement"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        null, 
+        "kernel-id"
+      ], 
+      "type": "string", 
+      "name": "kernelId"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "r", 
+        "ramdisk-id"
+      ], 
+      "type": "string", 
+      "name": "ramdiskId"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "b", 
+        "block-device-mapping"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "deviceName"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "blockDeviceMapping"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        null, 
+        "monitoring"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "boolean", 
+          "name": "enabled"
+        }
+      ], 
+      "name": "monitoring"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "s", 
+        "subnet-id"
+      ], 
+      "type": "string", 
+      "name": "subnetId"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "d", 
+        "disable-api-termination"
+      ], 
+      "type": "boolean", 
+      "name": "disableApiTermination"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        null, 
+        "instance-initiated-shutdown-behavior"
+      ], 
+      "type": "string", 
+      "name": "instanceInitiatedShutdownBehavior"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "l", 
+        "license"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "string", 
+          "name": "pool"
+        }
+      ], 
+      "name": "license"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        null, 
+        "private-ip-address"
+      ], 
+      "type": "string", 
+      "name": "privateIpAddress"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "c", 
+        "client-token"
+      ], 
+      "type": "string", 
+      "name": "clientToken"
+    }
+  ], 
+  "name": "RunInstances", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "reservationId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "ownerId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "array", 
+            "name": "item", 
+            "items": [
+              {
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "groupId"
+                  }
+                ]
+              }
+            ]
+          }
+        ], 
+        "name": "groupSet"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "array", 
+            "name": "item", 
+            "items": [
+              {
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "instanceId"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "imageId"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "int", 
+                        "name": "code"
+                      }, 
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "name"
+                      }
+                    ], 
+                    "name": "instanceState"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "privateDnsName"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "dnsName"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "reason"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "keyName"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "amiLaunchIndex"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": true, 
+                        "type": "array", 
+                        "name": "item", 
+                        "items": [
+                          {
+                            "type": "object", 
+                            "properties": [
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "productCode"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ], 
+                    "name": "productCodes"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "instanceType"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "dateTime", 
+                    "name": "launchTime"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "availabilityZone"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "groupName"
+                      }
+                    ], 
+                    "name": "placement"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "kernelId"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "ramdiskId"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "platform"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "state"
+                      }
+                    ], 
+                    "name": "monitoring"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "subnetId"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "vpcId"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "privateIpAddress"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "ipAddress"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "code"
+                      }, 
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "message"
+                      }
+                    ], 
+                    "name": "stateReason"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "architecture"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "rootDeviceType"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "rootDeviceName"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": true, 
+                        "type": "array", 
+                        "name": "item", 
+                        "items": [
+                          {
+                            "type": "object", 
+                            "properties": [
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "deviceName"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ], 
+                    "name": "blockDeviceMapping"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "instanceLifecycle"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "spotInstanceRequestId"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "pool"
+                      }
+                    ], 
+                    "name": "license"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "virtualizationType"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "clientToken"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": true, 
+                        "type": "array", 
+                        "name": "item", 
+                        "items": [
+                          {
+                            "type": "object", 
+                            "properties": [
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "key"
+                              }, 
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "value"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ], 
+                    "name": "tagSet"
+                  }
+                ]
+              }
+            ]
+          }
+        ], 
+        "name": "instancesSet"
+      }, 
+      {
+        "optional": true, 
+        "type": "string", 
+        "name": "requesterId"
+      }
+    ], 
+    "name": "RunInstancesResponse"
+  }
+}

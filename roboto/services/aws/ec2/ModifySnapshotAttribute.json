@@ -1,0 +1,40 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "s", 
+        "snapshot-id"
+      ], 
+      "type": "string", 
+      "name": "snapshotId"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "c", 
+        "create-volume-permission"
+      ], 
+      "type": "object", 
+      "properties": [], 
+      "name": "createVolumePermission"
+    }
+  ], 
+  "name": "ModifySnapshotAttribute", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "ModifySnapshotAttributeResponse"
+  }
+}

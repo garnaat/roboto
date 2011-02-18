@@ -1,0 +1,30 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "s", 
+        "snapshot-id"
+      ], 
+      "type": "string", 
+      "name": "snapshotId"
+    }
+  ], 
+  "name": "DeleteSnapshot", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "DeleteSnapshotResponse"
+  }
+}

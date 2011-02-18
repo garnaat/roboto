@@ -1,0 +1,40 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "k", 
+        "key-name"
+      ], 
+      "type": "string", 
+      "name": "keyName"
+    }
+  ], 
+  "name": "CreateKeyPair", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "keyName"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "keyFingerprint"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "keyMaterial"
+      }
+    ], 
+    "name": "CreateKeyPairResponse"
+  }
+}

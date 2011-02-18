@@ -1,0 +1,30 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "i", 
+        "instance-id"
+      ], 
+      "type": "string", 
+      "name": "instanceId"
+    }
+  ], 
+  "name": "DescribeInstanceAttribute", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "instanceId"
+      }
+    ], 
+    "name": "DescribeInstanceAttributeResponse"
+  }
+}

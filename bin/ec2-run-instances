@@ -1,0 +1,7 @@
+#!/usr/bin/env python
+
+import roboto.services.awsqueryservice as aqs
+
+if __name__ == '__main__':
+    r = aqs.get_request('ec2', 'RunInstances')
+    r.do_cli()

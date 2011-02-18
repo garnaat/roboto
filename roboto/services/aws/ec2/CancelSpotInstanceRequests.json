@@ -1,0 +1,73 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "s", 
+        "spot-instance-request-id-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "spotInstanceRequestId"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "spotInstanceRequestIdSet"
+    }
+  ], 
+  "name": "CancelSpotInstanceRequests", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "array", 
+            "name": "item", 
+            "items": [
+              {
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "spotInstanceRequestId"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "state"
+                  }
+                ]
+              }
+            ]
+          }
+        ], 
+        "name": "spotInstanceRequestSet"
+      }
+    ], 
+    "name": "CancelSpotInstanceRequestsResponse"
+  }
+}

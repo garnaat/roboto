@@ -1,0 +1,181 @@
+{
+  "params": [
+    {
+      "optional": true, 
+      "cli_option": [
+        "s", 
+        "start-time"
+      ], 
+      "type": "dateTime", 
+      "name": "startTime"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "e", 
+        "end-time"
+      ], 
+      "type": "dateTime", 
+      "name": "endTime"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "i", 
+        "instance-type-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "instanceType"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "instanceTypeSet"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "p", 
+        "product-description-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "productDescription"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "productDescriptionSet"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "f", 
+        "filter-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "name"
+                }, 
+                {
+                  "optional": false, 
+                  "type": "object", 
+                  "properties": [
+                    {
+                      "optional": true, 
+                      "type": "array", 
+                      "name": "item", 
+                      "items": [
+                        {
+                          "type": "object", 
+                          "properties": [
+                            {
+                              "optional": false, 
+                              "type": "string", 
+                              "name": "value"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ], 
+                  "name": "valueSet"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "filterSet"
+    }
+  ], 
+  "name": "DescribeSpotPriceHistory", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "array", 
+            "name": "item", 
+            "items": [
+              {
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "instanceType"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "productDescription"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "spotPrice"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "dateTime", 
+                    "name": "timestamp"
+                  }
+                ]
+              }
+            ]
+          }
+        ], 
+        "name": "spotPriceHistorySet"
+      }
+    ], 
+    "name": "DescribeSpotPriceHistoryResponse"
+  }
+}

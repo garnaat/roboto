@@ -1,0 +1,30 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "d", 
+        "dhcp-options-id"
+      ], 
+      "type": "string", 
+      "name": "dhcpOptionsId"
+    }
+  ], 
+  "name": "DeleteDhcpOptions", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "DeleteDhcpOptionsResponse"
+  }
+}

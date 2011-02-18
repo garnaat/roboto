@@ -1,0 +1,223 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "v", 
+        "volume-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "volumeId"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "volumeSet"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "f", 
+        "filter-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "name"
+                }, 
+                {
+                  "optional": false, 
+                  "type": "object", 
+                  "properties": [
+                    {
+                      "optional": true, 
+                      "type": "array", 
+                      "name": "item", 
+                      "items": [
+                        {
+                          "type": "object", 
+                          "properties": [
+                            {
+                              "optional": false, 
+                              "type": "string", 
+                              "name": "value"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ], 
+                  "name": "valueSet"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "filterSet"
+    }
+  ], 
+  "name": "DescribeVolumes", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "array", 
+            "name": "item", 
+            "items": [
+              {
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "volumeId"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "size"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "snapshotId"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "availabilityZone"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "status"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "dateTime", 
+                    "name": "createTime"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": true, 
+                        "type": "array", 
+                        "name": "item", 
+                        "items": [
+                          {
+                            "type": "object", 
+                            "properties": [
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "volumeId"
+                              }, 
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "instanceId"
+                              }, 
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "device"
+                              }, 
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "status"
+                              }, 
+                              {
+                                "optional": false, 
+                                "type": "dateTime", 
+                                "name": "attachTime"
+                              }, 
+                              {
+                                "optional": false, 
+                                "type": "boolean", 
+                                "name": "deleteOnTermination"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ], 
+                    "name": "attachmentSet"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": true, 
+                        "type": "array", 
+                        "name": "item", 
+                        "items": [
+                          {
+                            "type": "object", 
+                            "properties": [
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "key"
+                              }, 
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "value"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ], 
+                    "name": "tagSet"
+                  }
+                ]
+              }
+            ]
+          }
+        ], 
+        "name": "volumeSet"
+      }
+    ], 
+    "name": "DescribeVolumesResponse"
+  }
+}

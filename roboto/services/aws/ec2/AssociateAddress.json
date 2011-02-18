@@ -1,0 +1,39 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "p", 
+        "public-ip"
+      ], 
+      "type": "string", 
+      "name": "publicIp"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "i", 
+        "instance-id"
+      ], 
+      "type": "string", 
+      "name": "instanceId"
+    }
+  ], 
+  "name": "AssociateAddress", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "AssociateAddressResponse"
+  }
+}

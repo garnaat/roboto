@@ -1,0 +1,161 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "i", 
+        "instance-id"
+      ], 
+      "type": "string", 
+      "name": "instanceId"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "s", 
+        "storage"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "object", 
+          "properties": [
+            {
+              "optional": false, 
+              "type": "string", 
+              "name": "bucket"
+            }, 
+            {
+              "optional": false, 
+              "type": "string", 
+              "name": "prefix"
+            }, 
+            {
+              "optional": true, 
+              "type": "string", 
+              "name": "awsAccessKeyId"
+            }, 
+            {
+              "optional": true, 
+              "type": "string", 
+              "name": "uploadPolicy"
+            }, 
+            {
+              "optional": true, 
+              "type": "string", 
+              "name": "uploadPolicySignature"
+            }
+          ], 
+          "name": "S3"
+        }
+      ], 
+      "name": "storage"
+    }
+  ], 
+  "name": "BundleInstance", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "instanceId"
+          }, 
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "bundleId"
+          }, 
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "state"
+          }, 
+          {
+            "optional": false, 
+            "type": "dateTime", 
+            "name": "startTime"
+          }, 
+          {
+            "optional": false, 
+            "type": "dateTime", 
+            "name": "updateTime"
+          }, 
+          {
+            "optional": false, 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "bucket"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "prefix"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "awsAccessKeyId"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "uploadPolicy"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "uploadPolicySignature"
+                  }
+                ], 
+                "name": "S3"
+              }
+            ], 
+            "name": "storage"
+          }, 
+          {
+            "optional": true, 
+            "type": "string", 
+            "name": "progress"
+          }, 
+          {
+            "optional": true, 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": false, 
+                "type": "string", 
+                "name": "code"
+              }, 
+              {
+                "optional": false, 
+                "type": "string", 
+                "name": "message"
+              }
+            ], 
+            "name": "error"
+          }
+        ], 
+        "name": "bundleInstanceTask"
+      }
+    ], 
+    "name": "BundleInstanceResponse"
+  }
+}

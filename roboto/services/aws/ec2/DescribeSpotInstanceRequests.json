@@ -1,0 +1,335 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "s", 
+        "spot-instance-request-id-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "spotInstanceRequestId"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "spotInstanceRequestIdSet"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "f", 
+        "filter-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "name"
+                }, 
+                {
+                  "optional": false, 
+                  "type": "object", 
+                  "properties": [
+                    {
+                      "optional": true, 
+                      "type": "array", 
+                      "name": "item", 
+                      "items": [
+                        {
+                          "type": "object", 
+                          "properties": [
+                            {
+                              "optional": false, 
+                              "type": "string", 
+                              "name": "value"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ], 
+                  "name": "valueSet"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "filterSet"
+    }
+  ], 
+  "name": "DescribeSpotInstanceRequests", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "array", 
+            "name": "item", 
+            "items": [
+              {
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "spotInstanceRequestId"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "spotPrice"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "type"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "state"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "code"
+                      }, 
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "message"
+                      }
+                    ], 
+                    "name": "fault"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "dateTime", 
+                    "name": "validFrom"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "dateTime", 
+                    "name": "validUntil"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "launchGroup"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "availabilityZoneGroup"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "imageId"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "keyName"
+                      }, 
+                      {
+                        "optional": false, 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "optional": true, 
+                            "type": "array", 
+                            "name": "item", 
+                            "items": [
+                              {
+                                "type": "object", 
+                                "properties": [
+                                  {
+                                    "optional": false, 
+                                    "type": "string", 
+                                    "name": "groupId"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ], 
+                        "name": "groupSet"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "addressingType"
+                      }, 
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "instanceType"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "optional": true, 
+                            "type": "string", 
+                            "name": "availabilityZone"
+                          }, 
+                          {
+                            "optional": true, 
+                            "type": "string", 
+                            "name": "groupName"
+                          }
+                        ], 
+                        "name": "placement"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "kernelId"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "ramdiskId"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "optional": true, 
+                            "type": "array", 
+                            "name": "item", 
+                            "items": [
+                              {
+                                "type": "object", 
+                                "properties": [
+                                  {
+                                    "optional": false, 
+                                    "type": "string", 
+                                    "name": "deviceName"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ], 
+                        "name": "blockDeviceMapping"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "optional": true, 
+                            "type": "boolean", 
+                            "name": "enabled"
+                          }
+                        ], 
+                        "name": "monitoring"
+                      }, 
+                      {
+                        "optional": true, 
+                        "type": "string", 
+                        "name": "subnetId"
+                      }
+                    ], 
+                    "name": "launchSpecification"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "instanceId"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "dateTime", 
+                    "name": "createTime"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "string", 
+                    "name": "productDescription"
+                  }, 
+                  {
+                    "optional": true, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": true, 
+                        "type": "array", 
+                        "name": "item", 
+                        "items": [
+                          {
+                            "type": "object", 
+                            "properties": [
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "key"
+                              }, 
+                              {
+                                "optional": false, 
+                                "type": "string", 
+                                "name": "value"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ], 
+                    "name": "tagSet"
+                  }
+                ]
+              }
+            ]
+          }
+        ], 
+        "name": "spotInstanceRequestSet"
+      }
+    ], 
+    "name": "DescribeSpotInstanceRequestsResponse"
+  }
+}

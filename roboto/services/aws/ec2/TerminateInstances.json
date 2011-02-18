@@ -1,0 +1,102 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "i", 
+        "instances-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "instanceId"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "instancesSet"
+    }
+  ], 
+  "name": "TerminateInstances", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "array", 
+            "name": "item", 
+            "items": [
+              {
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "instanceId"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "int", 
+                        "name": "code"
+                      }, 
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "name"
+                      }
+                    ], 
+                    "name": "currentState"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "int", 
+                        "name": "code"
+                      }, 
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "name"
+                      }
+                    ], 
+                    "name": "previousState"
+                  }
+                ]
+              }
+            ]
+          }
+        ], 
+        "name": "instancesSet"
+      }
+    ], 
+    "name": "TerminateInstancesResponse"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "i", 
+        "instances-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": false, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "instanceId"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "instancesSet"
+    }
+  ], 
+  "name": "RebootInstances", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "RebootInstancesResponse"
+  }
+}

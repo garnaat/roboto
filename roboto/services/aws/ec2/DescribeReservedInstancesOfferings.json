@@ -1,0 +1,177 @@
+{
+  "params": [
+    {
+      "optional": true, 
+      "cli_option": [
+        "r", 
+        "reserved-instances-offerings-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "reservedInstancesOfferingId"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "reservedInstancesOfferingsSet"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "i", 
+        "instance-type"
+      ], 
+      "type": "string", 
+      "name": "instanceType"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "a", 
+        "availability-zone"
+      ], 
+      "type": "string", 
+      "name": "availabilityZone"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "p", 
+        "product-description"
+      ], 
+      "type": "string", 
+      "name": "productDescription"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "f", 
+        "filter-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "name"
+                }, 
+                {
+                  "optional": false, 
+                  "type": "object", 
+                  "properties": [
+                    {
+                      "optional": true, 
+                      "type": "array", 
+                      "name": "item", 
+                      "items": [
+                        {
+                          "type": "object", 
+                          "properties": [
+                            {
+                              "optional": false, 
+                              "type": "string", 
+                              "name": "value"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ], 
+                  "name": "valueSet"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "filterSet"
+    }
+  ], 
+  "name": "DescribeReservedInstancesOfferings", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": true, 
+            "type": "array", 
+            "name": "item", 
+            "items": [
+              {
+                "type": "object", 
+                "properties": [
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "reservedInstancesOfferingId"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "instanceType"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "availabilityZone"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "long", 
+                    "name": "duration"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "double", 
+                    "name": "fixedPrice"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "double", 
+                    "name": "usagePrice"
+                  }, 
+                  {
+                    "optional": false, 
+                    "type": "string", 
+                    "name": "productDescription"
+                  }
+                ]
+              }
+            ]
+          }
+        ], 
+        "name": "reservedInstancesOfferingsSet"
+      }
+    ], 
+    "name": "DescribeReservedInstancesOfferingsResponse"
+  }
+}

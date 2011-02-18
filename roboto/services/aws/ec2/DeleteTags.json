@@ -1,0 +1,82 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "r", 
+        "resources-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "resourceId"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "resourcesSet"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "t", 
+        "tag-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": true, 
+                  "type": "string", 
+                  "name": "key"
+                }, 
+                {
+                  "optional": true, 
+                  "type": "string", 
+                  "name": "value"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "tagSet"
+    }
+  ], 
+  "name": "DeleteTags", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "DeleteTagsResponse"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "t", 
+        "type"
+      ], 
+      "type": "string", 
+      "name": "type"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "c", 
+        "customer-gateway-id"
+      ], 
+      "type": "string", 
+      "name": "customerGatewayId"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "v", 
+        "vpn-gateway-id"
+      ], 
+      "type": "string", 
+      "name": "vpnGatewayId"
+    }
+  ], 
+  "name": "CreateVpnConnection", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "vpnConnectionId"
+          }, 
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "state"
+          }, 
+          {
+            "optional": true, 
+            "type": "string", 
+            "name": "customerGatewayConfiguration"
+          }, 
+          {
+            "optional": true, 
+            "type": "string", 
+            "name": "type"
+          }, 
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "customerGatewayId"
+          }, 
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "vpnGatewayId"
+          }, 
+          {
+            "optional": true, 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": true, 
+                "type": "array", 
+                "name": "item", 
+                "items": [
+                  {
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "key"
+                      }, 
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "value"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "name": "tagSet"
+          }
+        ], 
+        "name": "vpnConnection"
+      }
+    ], 
+    "name": "CreateVpnConnectionResponse"
+  }
+}

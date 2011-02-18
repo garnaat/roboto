@@ -1,0 +1,39 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "v", 
+        "vpn-gateway-id"
+      ], 
+      "type": "string", 
+      "name": "vpnGatewayId"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        null, 
+        "vpc-id"
+      ], 
+      "type": "string", 
+      "name": "vpcId"
+    }
+  ], 
+  "name": "DetachVpnGateway", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "DetachVpnGatewayResponse"
+  }
+}

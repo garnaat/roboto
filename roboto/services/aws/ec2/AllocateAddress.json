@@ -1,0 +1,20 @@
+{
+  "params": [], 
+  "name": "AllocateAddress", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "publicIp"
+      }
+    ], 
+    "name": "AllocateAddressResponse"
+  }
+}

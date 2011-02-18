@@ -1,0 +1,57 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "i", 
+        "instance-id"
+      ], 
+      "type": "string", 
+      "name": "instanceId"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "n", 
+        "name"
+      ], 
+      "type": "string", 
+      "name": "name"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        "d", 
+        "description"
+      ], 
+      "type": "string", 
+      "name": "description"
+    }, 
+    {
+      "optional": true, 
+      "cli_option": [
+        null, 
+        "no-reboot"
+      ], 
+      "type": "boolean", 
+      "name": "noReboot"
+    }
+  ], 
+  "name": "CreateImage", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "imageId"
+      }
+    ], 
+    "name": "CreateImageResponse"
+  }
+}

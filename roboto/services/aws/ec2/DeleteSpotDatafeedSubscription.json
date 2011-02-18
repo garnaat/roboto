@@ -1,0 +1,20 @@
+{
+  "params": [], 
+  "name": "DeleteSpotDatafeedSubscription", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "DeleteSpotDatafeedSubscriptionResponse"
+  }
+}

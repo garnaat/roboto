@@ -1,0 +1,130 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "u", 
+        "user-id"
+      ], 
+      "type": "string", 
+      "name": "userId"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "g", 
+        "group-name"
+      ], 
+      "type": "string", 
+      "name": "groupName"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "i", 
+        "ip-permissions"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "ipProtocol"
+                }, 
+                {
+                  "optional": false, 
+                  "type": "int", 
+                  "name": "fromPort"
+                }, 
+                {
+                  "optional": false, 
+                  "type": "int", 
+                  "name": "toPort"
+                }, 
+                {
+                  "optional": false, 
+                  "type": "object", 
+                  "properties": [
+                    {
+                      "optional": true, 
+                      "type": "array", 
+                      "name": "item", 
+                      "items": [
+                        {
+                          "type": "object", 
+                          "properties": [
+                            {
+                              "optional": false, 
+                              "type": "string", 
+                              "name": "userId"
+                            }, 
+                            {
+                              "optional": false, 
+                              "type": "string", 
+                              "name": "groupName"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ], 
+                  "name": "groups"
+                }, 
+                {
+                  "optional": false, 
+                  "type": "object", 
+                  "properties": [
+                    {
+                      "optional": true, 
+                      "type": "array", 
+                      "name": "item", 
+                      "items": [
+                        {
+                          "type": "object", 
+                          "properties": [
+                            {
+                              "optional": false, 
+                              "type": "string", 
+                              "name": "cidrIp"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ], 
+                  "name": "ipRanges"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "ipPermissions"
+    }
+  ], 
+  "name": "AuthorizeSecurityGroupIngress", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "AuthorizeSecurityGroupIngressResponse"
+  }
+}

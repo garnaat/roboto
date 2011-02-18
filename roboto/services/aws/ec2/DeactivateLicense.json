@@ -1,0 +1,39 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "l", 
+        "license-id"
+      ], 
+      "type": "string", 
+      "name": "licenseId"
+    }, 
+    {
+      "optional": false, 
+      "cli_option": [
+        "c", 
+        "capacity"
+      ], 
+      "type": "int", 
+      "name": "capacity"
+    }
+  ], 
+  "name": "DeactivateLicense", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "DeactivateLicenseResponse"
+  }
+}

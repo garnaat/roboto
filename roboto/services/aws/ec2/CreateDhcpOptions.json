@@ -1,0 +1,157 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "d", 
+        "dhcp-configuration-set"
+      ], 
+      "type": "object", 
+      "properties": [
+        {
+          "optional": true, 
+          "type": "array", 
+          "name": "item", 
+          "items": [
+            {
+              "type": "object", 
+              "properties": [
+                {
+                  "optional": false, 
+                  "type": "string", 
+                  "name": "key"
+                }, 
+                {
+                  "optional": false, 
+                  "type": "object", 
+                  "properties": [
+                    {
+                      "optional": true, 
+                      "type": "array", 
+                      "name": "item", 
+                      "items": [
+                        {
+                          "type": "object", 
+                          "properties": [
+                            {
+                              "optional": false, 
+                              "type": "string", 
+                              "name": "value"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ], 
+                  "name": "valueSet"
+                }
+              ]
+            }
+          ]
+        }
+      ], 
+      "name": "dhcpConfigurationSet"
+    }
+  ], 
+  "name": "CreateDhcpOptions", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "object", 
+        "properties": [
+          {
+            "optional": false, 
+            "type": "string", 
+            "name": "dhcpOptionsId"
+          }, 
+          {
+            "optional": false, 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": true, 
+                "type": "array", 
+                "name": "item", 
+                "items": [
+                  {
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "key"
+                      }, 
+                      {
+                        "optional": false, 
+                        "type": "object", 
+                        "properties": [
+                          {
+                            "optional": true, 
+                            "type": "array", 
+                            "name": "item", 
+                            "items": [
+                              {
+                                "type": "object", 
+                                "properties": [
+                                  {
+                                    "optional": false, 
+                                    "type": "string", 
+                                    "name": "value"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ], 
+                        "name": "valueSet"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "name": "dhcpConfigurationSet"
+          }, 
+          {
+            "optional": true, 
+            "type": "object", 
+            "properties": [
+              {
+                "optional": true, 
+                "type": "array", 
+                "name": "item", 
+                "items": [
+                  {
+                    "type": "object", 
+                    "properties": [
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "key"
+                      }, 
+                      {
+                        "optional": false, 
+                        "type": "string", 
+                        "name": "value"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ], 
+            "name": "tagSet"
+          }
+        ], 
+        "name": "dhcpOptions"
+      }
+    ], 
+    "name": "CreateDhcpOptionsResponse"
+  }
+}

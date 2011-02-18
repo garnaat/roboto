@@ -1,0 +1,30 @@
+{
+  "params": [
+    {
+      "optional": false, 
+      "cli_option": [
+        "v", 
+        "volume-id"
+      ], 
+      "type": "string", 
+      "name": "volumeId"
+    }
+  ], 
+  "name": "DeleteVolume", 
+  "response": {
+    "type": "object", 
+    "properties": [
+      {
+        "optional": false, 
+        "type": "string", 
+        "name": "requestId"
+      }, 
+      {
+        "optional": false, 
+        "type": "boolean", 
+        "name": "return"
+      }
+    ], 
+    "name": "DeleteVolumeResponse"
+  }
+}
