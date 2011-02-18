@@ -29,9 +29,9 @@ import os
 import sys
 import optparse
 import boto
-import roboto.jsonresponse
+import boto.jsonresponse
 import roboto.param
-import roboto.utils
+import boto.utils
 
 class ValidationException(Exception):
 
@@ -228,7 +228,7 @@ class AWSQueryRequest(object):
         for i, filter in enumerate(self.filters):
             if filter['name'] in args:
                 self.request_params['Filter.%d.Name' % (i+1)] = filter['name']
-                for j, value in enumerate(roboto.utils.mklist(args[filter['name']])):
+                for j, value in enumerate(boto.utils.mklist(args[filter['name']])):
                     roboto.param.Param.encode(filter, self.request_params, value,
                                  'Filter.%d.Value.%d' % (i+1,j+1))
 
@@ -240,7 +240,7 @@ class AWSQueryRequest(object):
             if param.cli_option:
                 python_name = param.cli_option[-1]
             else:
-                python_name = roboto.utils.pythonize_name(param.name)
+                python_name = boto.utils.pythonize_name(param.name)
             if python_name in self.args:
                 value = self.args[python_name]
                 if value is not None:
@@ -269,9 +269,9 @@ class AWSQueryRequest(object):
         self.body = self.http_response.read()
         boto.log.debug(self.body)
         if self.http_response.status == 200:
-            self.aws_response = roboto.jsonresponse.Element(list_marker=self.list_markers,
-                                                            item_marker=self.item_markers)
-            h = roboto.jsonresponse.XmlHandler(self.aws_response, self.connection)
+            self.aws_response = boto.jsonresponse.Element(list_marker=self.list_markers,
+                                                          item_marker=self.item_markers)
+            h = boto.jsonresponse.XmlHandler(self.aws_response, self.connection)
             h.parse(self.body)
             return self.aws_response
         else:
@@ -345,7 +345,7 @@ class AWSQueryRequest(object):
                 p_name = param.cli_option[-1]
                 d[p_name] = getattr(options, p_name.replace('-', '_'))
             else:
-                p_name = roboto.utils.pythonize_name(param.name)
+                p_name = boto.utils.pythonize_name(param.name)
                 d[p_name] = args
         try:
             self.process_args(d)

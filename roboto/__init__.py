@@ -20,24 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-def mklist(value):
-    if not isinstance(value, list):
-        value = [value]
-    return value
-
-def pythonize_name(name, sep='_'):
-    s = ''
-    if name[0].isupper:
-        s = name[0].lower()
-    for c in name[1:]:
-        if c.isupper():
-            s += sep + c.lower()
-        else:
-            s += c
-    return s
-
-def awsify_name(name):
-    return name[0:1].upper()+name[1:]
+import boto.utils
 
 class Param:
 
@@ -54,7 +37,7 @@ class Param:
         if l:
             label = l
         else:
-            label = awsify_name(p.name)
+            label = boto.utils.awsify_name(p.name)
         rp[label] = v
 
     @classmethod
@@ -62,7 +45,7 @@ class Param:
         if l:
             label = l
         else:
-            label = awsify_name(p.name)
+            label = boto.utils.awsify_name(p.name)
         rp[label] = '%d' % v
         
     @classmethod
@@ -70,7 +53,7 @@ class Param:
         if l:
             label = l
         else:
-            label = awsify_name(p.name)
+            label = boto.utils.awsify_name(p.name)
         if v:
             v = 'true'
         else:
@@ -82,16 +65,16 @@ class Param:
         if l:
             label = l
         else:
-            label = awsify_name(p.name)
+            label = boto.utils.awsify_name(p.name)
         rp[label] = v
         
     @classmethod
     def encode_array(cls, p, rp, v, l):
-        v = mklist(v)
+        v = boto.utils.mklist(v)
         if l:
             label = l
         else:
-            label = awsify_name(p.name)
+            label = boto.utils.awsify_name(p.name)
         label = label + '.%d'
         for i, value in enumerate(v):
             rp[label%(i+1)] = value
