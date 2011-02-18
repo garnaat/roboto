@@ -21,6 +21,7 @@
 # IN THE SOFTWARE.
 
 import xml.sax
+import utils
 
 class XmlHandler(xml.sax.ContentHandler):
 
@@ -53,13 +54,13 @@ class XmlHandler(xml.sax.ContentHandler):
 class Element(dict):
 
     def __init__(self, connection=None, element_name=None,
-                 stack=None, parent=None, list_marker=['Set'],
+                 stack=None, parent=None, list_marker=('Set',),
                  item_marker=('member', 'item')):
         dict.__init__(self)
         self.connection = connection
         self.element_name = element_name
-        self.list_marker = list_marker
-        self.item_marker = item_marker
+        self.list_marker = utils.mklist(list_marker)
+        self.item_marker = utils.mklist(item_marker)
         if stack is None:
             self.stack = []
         else:

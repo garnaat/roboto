@@ -30,7 +30,8 @@ import sys
 import optparse
 import boto
 import roboto.jsonresponse
-from roboto import mklist, pythonize_name, Param
+import roboto.param
+import roboto.utils
 
 class ValidationException(Exception):
 
@@ -227,8 +228,8 @@ class AWSQueryRequest(object):
         for i, filter in enumerate(self.filters):
             if filter['name'] in args:
                 self.request_params['Filter.%d.Name' % (i+1)] = filter['name']
-                for j, value in enumerate(mklist(args[filter['name']])):
-                    Param.encode(filter, self.request_params, value,
+                for j, value in enumerate(roboto.utils.mklist(args[filter['name']])):
+                    roboto.param.Param.encode(filter, self.request_params, value,
                                  'Filter.%d.Value.%d' % (i+1,j+1))
 
     def process_args(self, args=None):
@@ -239,13 +240,13 @@ class AWSQueryRequest(object):
             if param.cli_option:
                 python_name = param.cli_option[-1]
             else:
-                python_name = pythonize_name(param.name)
+                python_name = roboto.utils.pythonize_name(param.name)
             if python_name in self.args:
                 value = self.args[python_name]
                 if value is not None:
                     if param.name in required:
                         required.remove(param.name)
-                    Param.encode(param, self.request_params,
+                    roboto.param.Param.encode(param, self.request_params,
                                  self.args[python_name])
                 del self.args[python_name]
         if required:
@@ -344,7 +345,7 @@ class AWSQueryRequest(object):
                 p_name = param.cli_option[-1]
                 d[p_name] = getattr(options, p_name.replace('-', '_'))
             else:
-                p_name = pythonize_name(param.name)
+                p_name = roboto.utils.pythonize_name(param.name)
                 d[p_name] = args
         try:
             self.process_args(d)
