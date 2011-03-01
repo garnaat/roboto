@@ -296,7 +296,7 @@ def build_json(**kwargs):
             if 'properties' in param_type:
                 for param2 in param_type['properties']:
                     if isinstance(param2, dict):
-                        cli_name = utils.pythonize_name(param2['name'], '-')
+                        cli_name = boto.utils.pythonize_name(param2['name'], '-')
                         short_name = cli_name[0]
                         if short_name not in short_names:
                             short_names.append(short_name)
@@ -318,7 +318,7 @@ def build_json(**kwargs):
         json.dump(op, fp, indent=2)
         fp.close()
         print 'Wrote file: %s' % json_filename
-        bin_filename = kwargs['prefix'] + '-' + utils.pythonize_name(op['name'], '-')
+        bin_filename = kwargs['prefix'] + '-' + boto.utils.pythonize_name(op['name'], '-')
         bin_filename = os.path.join(kwargs['bin_dir'], bin_filename)
         fp = open(bin_filename, 'w')
         fp2 = open(kwargs['template'], 'r')
