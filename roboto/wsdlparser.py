@@ -28,7 +28,7 @@ import re
 import copy
 import os
 import json
-import utils
+import boto.utils
 
 class WSDLParser(object):
     

@@ -28,6 +28,7 @@ except ImportError:
 import os
 import sys
 import optparse
+import textwrap
 import boto
 import boto.jsonresponse
 import roboto.param
@@ -422,3 +423,35 @@ class AWSQueryRequest(object):
         else:
             print 'No formatter found: dumping raw data'
             print self.aws_response
+
+    def to_py(self, fp, tab_pos=1, tab_width=4):
+        ws = ' '*(tab_pos*tab_width)
+        fp.write('%sdef %s(self' % (ws, boto.utils.pythonize_name(self.name)))
+        tab_pos += 1
+        ws = ' '*(tab_pos*tab_width)
+        arglist = []
+        for param in self.params:
+            s = ' %s' % boto.utils.pythonize_name(param.name)
+            if param.optional:
+                s += '=None'
+            arglist.append(s)
+        if arglist:
+            fp.write(',%s):\n' % ','.join(arglist))
+        fp.write('%s"""\n' % ws)
+        doc = self._schema.get('doc', 'The %s request.' % self.name)
+        fp.write('%s%s\n' % (ws, doc))
+        for param in self.params:
+            p_name = boto.utils.pythonize_name(param.name)
+            fp.write('\n')
+            fp.write('%s:type %s: %s\n' % (ws, p_name, param.type))
+            prefix = '%s:param %s: ' % (ws, p_name)
+            fp.write(prefix)
+            pos = len(prefix)
+            wrap = 70 - pos
+            doclines = textwrap.wrap(param.doc, wrap)
+            fp.write('%s\n' % doclines[0])
+            doc_ws = ' '*(pos+1)
+            for line in doclines[1:]:
+                fp.write('%s%s\n' % (doc_ws, line))
+        fp.write('%s"""\n' % ws)
+        fp.write('%spass\n\n' % ws)
